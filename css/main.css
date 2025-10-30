@@ -12,6 +12,7 @@
 @import 'utils/reset.css';
 @import 'utils/typography.css';
 @import 'utils/responsive.css';
+@import 'mobile-responsive.css';
 
 /* Import component styles */
 @import 'components/header.css';

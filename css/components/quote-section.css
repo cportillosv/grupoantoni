@@ -4,8 +4,7 @@
 
 .quote-section {
   position: relative;
-  height: 60vh;
-  min-height: 400px;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
