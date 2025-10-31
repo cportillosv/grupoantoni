@@ -8,6 +8,8 @@ export class Hero {
     this.heroContent = document.querySelector('.hero-content');
     this.heroBackground = document.querySelector('.hero-background');
     this.ctaButtons = document.querySelectorAll('.hero-actions .btn');
+    this.heroSlides = document.querySelectorAll('.hero-slide');
+    this.currentSlide = 0;
 
     this.init();
   }
@@ -16,6 +18,33 @@ export class Hero {
     this.bindEvents();
     this.initParallax();
     this.initTypewriter();
+    this.initSlideshow();
+  }
+
+  initSlideshow() {
+    if (!this.heroSlides || this.heroSlides.length === 0) {
+      return;
+    }
+
+    // Change slide every 5 seconds
+    setInterval(() => {
+      this.nextSlide();
+    }, 5000);
+  }
+
+  nextSlide() {
+    if (!this.heroSlides || this.heroSlides.length === 0) {
+      return;
+    }
+
+    // Remove active class from current slide
+    this.heroSlides[this.currentSlide].classList.remove('active');
+
+    // Move to next slide
+    this.currentSlide = (this.currentSlide + 1) % this.heroSlides.length;
+
+    // Add active class to new slide
+    this.heroSlides[this.currentSlide].classList.add('active');
   }
 
   bindEvents() {
