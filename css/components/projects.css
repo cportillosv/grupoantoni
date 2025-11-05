@@ -3,19 +3,20 @@
    ======================================== */
 
 .projects {
-  padding: 0;
+  padding: var(--spacing-xxl, 4rem) 0;
   background-color: #ffffff;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  margin-top: var(--spacing-xl, 3rem);
 }
 
 .projects-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
   position: relative;
   z-index: 2;
 }
@@ -26,10 +27,11 @@
 }
 
 .projects-title {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 400;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   color: #1a1a1a;
+  line-height: 1.2;
   font-family:
     'Inter',
     -apple-system,
@@ -46,11 +48,11 @@
 }
 
 .projects-subtitle {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: #6b7280;
-  max-width: 32rem;
+  max-width: 36rem;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .projects-list {
@@ -62,8 +64,8 @@
 .project-item {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  margin-bottom: 6rem;
+  gap: 4rem;
+  margin-bottom: 8rem;
   position: relative;
   z-index: 2;
 }
@@ -85,9 +87,10 @@
 
 .project-image img {
   width: 100%;
-  height: 20rem;
+  height: 28rem;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
+  border-radius: 0.75rem;
 }
 
 .project-image:hover img {
@@ -96,15 +99,19 @@
 
 .project-content {
   flex: 1;
-  padding: 0 1rem;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .project-name {
-  font-size: 1.875rem;
+  font-size: 2.25rem;
   font-weight: 700;
   font-style: italic;
   color: #1a1a1a;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
   font-family:
     'Inter',
     -apple-system,
@@ -123,22 +130,31 @@
 
 .project-description {
   color: #374151;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
 }
 
 .project-link {
   color: #4f8ce3;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1.125rem;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  transition: opacity 0.2s ease;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #4f8ce3;
+  border-radius: 0.5rem;
+  width: fit-content;
 }
 
 .project-link:hover {
-  opacity: 0.8;
+  background-color: #4f8ce3;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 140, 227, 0.3);
 }
 
 /* Responsive Design */
@@ -149,8 +165,20 @@
 
   .project-item {
     flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 4rem;
+    gap: 2.5rem;
+    margin-bottom: 5rem;
+  }
+
+  .project-image img {
+    height: 24rem;
+  }
+
+  .project-content {
+    padding: 0;
+  }
+
+  .project-name {
+    font-size: 1.875rem;
   }
 
   .project-item-reverse {
@@ -170,6 +198,7 @@
 @media (max-width: 768px) {
   .projects {
     padding: 3rem 0;
+    margin-top: var(--spacing-lg, 2rem);
   }
 
   .projects-title {

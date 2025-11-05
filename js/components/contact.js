@@ -127,15 +127,6 @@ export class Contact {
       }
     }
 
-    // Confirm email validation
-    if (fieldName === 'confirmEmail' && value) {
-      const emailValue = document.getElementById('email').value.trim();
-      if (value !== emailValue) {
-        this.showFieldError(input, 'Email addresses do not match');
-        return false;
-      }
-    }
-
     // Phone validation
     if (fieldName === 'phone' && value) {
       const phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
@@ -239,7 +230,6 @@ Project Inquiry Details:
 Name: ${data.fullName}
 Email: ${data.email}
 Phone: ${data.phone || 'Not provided'}
-Project Type: ${data.projectType}
 
 Description:
 ${data.description}

@@ -7,7 +7,7 @@ export class Hero {
     this.hero = document.querySelector('.hero');
     this.heroContent = document.querySelector('.hero-content');
     this.heroBackground = document.querySelector('.hero-background');
-    this.ctaButtons = document.querySelectorAll('.hero-actions .btn');
+    this.ctaButtons = document.querySelectorAll('.hero-actions .btn, .hero-cta-button');
     this.heroSlides = document.querySelectorAll('.hero-slide');
     this.currentSlide = 0;
 
@@ -83,10 +83,13 @@ export class Hero {
   scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
-      const offsetTop = section.offsetTop - 80; // Account for fixed navbar
+      // Get navbar height dynamically
+      const navbar = document.getElementById('navbar') || document.querySelector('.navbar');
+      const navbarHeight = navbar ? navbar.offsetHeight : 80;
+      const offsetTop = section.offsetTop - navbarHeight;
 
       window.scrollTo({
-        top: offsetTop,
+        top: Math.max(0, offsetTop), // Ensure we don't scroll to negative position
         behavior: 'smooth'
       });
     }
@@ -101,22 +104,9 @@ export class Hero {
   }
 
   initParallax() {
-    if (!this.heroBackground) {
-      return;
-    }
-
-    const handleParallax = () => {
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
-
-      if (this.heroBackground) {
-        this.heroBackground.style.transform = `translateY(${rate}px)`;
-      }
-    };
-
-    // Only apply parallax if user hasn't requested reduced motion
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      window.addEventListener('scroll', handleParallax);
+    // Parallax effect disabled - keep hero background static on scroll
+    if (this.heroBackground) {
+      this.heroBackground.style.transform = '';
     }
   }
 
@@ -144,14 +134,8 @@ export class Hero {
   }
 
   handleScroll() {
-    const scrolled = window.pageYOffset;
-    const heroHeight = this.hero ? this.hero.offsetHeight : 0;
-
-    // Fade out hero content as user scrolls
-    if (this.heroContent && scrolled > heroHeight * 0.5) {
-      const opacity = Math.max(0, 1 - (scrolled - heroHeight * 0.5) / (heroHeight * 0.5));
-      this.heroContent.style.opacity = opacity;
-    } else if (this.heroContent) {
+    // Keep hero content visible - no fade effect on scroll
+    if (this.heroContent) {
       this.heroContent.style.opacity = '1';
     }
   }

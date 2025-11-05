@@ -3,14 +3,15 @@
    ======================================== */
 
 .contact {
-  height: 100vh;
-  padding: 0;
+  min-height: 100vh;
+  padding: var(--spacing-xl, 3rem) 0;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  margin-bottom: var(--spacing-xl, 3rem);
 }
 
 .contact-content {

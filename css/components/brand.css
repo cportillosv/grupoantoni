@@ -43,27 +43,19 @@
   overflow: hidden;
   width: 100%;
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .brand-carousel {
   display: flex;
-  animation: scroll 20s linear infinite;
-  gap: var(--spacing-xxl);
+  gap: var(--spacing-xl);
   width: max-content;
-  padding: 0 var(--spacing-lg);
-  cursor: grab;
-  user-select: none;
+  animation: brandScroll 30s linear infinite;
+  will-change: transform;
 }
 
-.brand-carousel:active {
-  cursor: grabbing;
-}
-
-.brand-carousel:hover {
-  animation-play-state: paused;
-}
-
-@keyframes scroll {
+@keyframes brandScroll {
   0% {
     transform: translateX(0);
   }
@@ -74,16 +66,18 @@
 }
 
 .brand-logo {
-  flex: 0 0 auto;
-  width: 280px;
+  flex-shrink: 0;
+  width: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   transition: all var(--transition-normal);
-  padding: var(--spacing-lg);
-  border-radius: 12px;
+  padding: var(--spacing-xl);
+  border-radius: 16px;
+  background: transparent;
+  box-shadow: none;
 }
 
 .brand-link {
@@ -99,24 +93,31 @@
 
 .brand-link:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .brand-logo:hover .brand-link {
   transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .brand-logo .logo-img {
-  width: 320px;
-  height: 320px;
+  width: auto;
+  height: 200px;
+  max-width: 220px;
   object-fit: contain;
-  margin-bottom: var(--spacing-md);
+  margin: 0 auto var(--spacing-md) auto;
+  display: block;
   transition: all var(--transition-normal);
 }
 
+.brand-logo:hover {
+  transform: translateY(-8px);
+  box-shadow: none;
+}
+
 .brand-logo:hover .logo-img {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .logo-text {
@@ -146,14 +147,6 @@
 
 /* Responsive Design */
 @media (max-width: 991.98px) {
-  .brand-carousel {
-    gap: var(--spacing-xl);
-  }
-
-  .brand-logo {
-    width: 240px;
-  }
-
   .brand-title {
     font-size: var(--font-size-5xl);
   }
@@ -163,119 +156,7 @@
   }
 }
 
-@media (max-width: 767.98px) {
-  .brand {
-    padding: var(--spacing-xxl) 0;
-    height: 100vh;
-  }
-
-  .brand-carousel {
-    gap: 0;
-    padding: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: none;
-  }
-
-  .brand-carousel-container {
-    overflow: visible;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 1rem;
-  }
-
-  .brand-logo {
-    width: 100%;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-xl);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    background: #ffffff;
-  }
-
-  .brand-title {
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-lg);
-  }
-
-  .brand-separator {
-    width: 120px;
-    margin-bottom: var(--spacing-lg);
-  }
-
-  .brand-logo .logo-img {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-    margin-bottom: var(--spacing-lg);
-  }
-
-  .logo-main {
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .logo-sub {
-    font-size: var(--font-size-sm);
-    text-align: center;
-  }
-
-  /* Hide other logos in mobile - show only one at a time */
-  .brand-logo:not(:first-child) {
-    display: none;
-  }
-}
-
-/* Extra small mobile devices */
-@media (max-width: 575.98px) {
-  .brand {
-    height: 100vh;
-    padding: var(--spacing-xl) 0;
-  }
-
-  .brand-carousel-container {
-    padding: 0 1rem;
-  }
-
-  .brand-logo {
-    width: 100%;
-    height: 350px;
-    padding: var(--spacing-lg);
-  }
-
-  .brand-title {
-    font-size: var(--font-size-3xl);
-    margin-bottom: var(--spacing-md);
-  }
-
-  .brand-separator {
-    width: 100px;
-    margin-bottom: var(--spacing-md);
-  }
-
-  .brand-logo .logo-img {
-    width: 150px;
-    height: 150px;
-    margin-bottom: var(--spacing-md);
-  }
-
-  .logo-main {
-    font-size: var(--font-size-xl);
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .logo-sub {
-    font-size: var(--font-size-xs);
-  }
-}
+/* Mobile styles are now handled in mobile-responsive.css */
 
 /* Print Styles */
 @media print {

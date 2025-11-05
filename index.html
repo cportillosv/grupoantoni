@@ -79,9 +79,37 @@
       <ul class="nav-menu" role="menubar">
         <li role="none"><a href="#home" class="nav-link active" role="menuitem">HOME</a></li>
         <li role="none"><a href="#about" class="nav-link" role="menuitem">ABOUT</a></li>
-        <li role="none"><a href="#projects" class="nav-link" role="menuitem">PROJECTS</a></li>
+        <li role="none" class="nav-item-dropdown">
+          <a href="#projects" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
+            PROJECTS
+            <span class="dropdown-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li role="none"><a href="/projects/residential.html" class="dropdown-link" role="menuitem">Residential</a>
+            </li>
+            <li role="none"><a href="/projects/commercial.html" class="dropdown-link" role="menuitem">Commercial</a>
+            </li>
+            <li role="none"><a href="/projects/tourism.html" class="dropdown-link" role="menuitem">Tourism</a></li>
+            <li role="none"><a href="/projects/urban.html" class="dropdown-link" role="menuitem">Urban</a></li>
+          </ul>
+        </li>
         <li role="none"><a href="#team" class="nav-link" role="menuitem">TEAM</a></li>
-        <li role="none"><a href="#brand" class="nav-link" role="menuitem">OUR BRAND</a></li>
+        <li role="none" class="nav-item-dropdown">
+          <a href="#brand" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
+            OUR BRAND
+            <span class="dropdown-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li role="none"><a href="/brand/importadora.html" class="dropdown-link" role="menuitem">Importadora
+                Ofi-Hogar</a></li>
+            <li role="none"><a href="/brand/square.html" class="dropdown-link" role="menuitem">Square</a></li>
+            <li role="none"><a href="/brand/capital.html" class="dropdown-link" role="menuitem">Capital Management</a>
+            </li>
+            <li role="none"><a href="/brand/foundation.html" class="dropdown-link" role="menuitem">Antoni Foundation</a>
+            </li>
+            <li role="none"><a href="/brand/novaterra.html" class="dropdown-link" role="menuitem">Novaterra</a></li>
+          </ul>
+        </li>
         <li role="none"><a href="#contact" class="nav-link" role="menuitem">CONTACT</a></li>
       </ul>
       <div class="nav-social">
@@ -125,41 +153,29 @@
       <div class="hero-background">
         <div class="hero-slideshow">
           <div class="hero-slide active">
-            <img src="/img/homeback.jpeg" alt="Modern architectural space with clean lines and natural lighting"
-              loading="eager" width="1920" height="1080" />
-          </div>
-          <div class="hero-slide">
-            <img src="/img/condominio.png" alt="Romana Condos - Residential development" loading="lazy" width="1920"
+            <img
+              src="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_0 (1).png"
+              alt="Contemporary multi-story residential complex with green roofs" loading="eager" width="1920"
               height="1080" />
           </div>
           <div class="hero-slide">
-            <img src="/img/villa.png" alt="Antoni Village - Contemporary residential community" loading="lazy"
-              width="1920" height="1080" />
+            <img
+              src="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2.png"
+              alt="Modern luxury residential building with glass facades" loading="lazy" width="1920" height="1080" />
           </div>
           <div class="hero-slide">
-            <img src="/img/patioOP.png" alt="Mountain Bungalows - Sustainable mountain retreat" loading="lazy"
-              width="1920" height="1080" />
+            <img src="/img/FACHADA EN PERSPETIVA.png" alt="Modern two-story residential building with minimalist design"
+              loading="lazy" width="1920" height="1080" />
           </div>
         </div>
         <div class="hero-overlay"></div>
       </div>
       <div class="hero-content">
-        <!--<h1 id="hero-title" class="hero-title">Spaces with purpose,<br>designed to inspire.</h1> -->
-      </div>
-    </section>
-
-    <!-- Quote Section -->
-    <section id="quote" class="quote-section" aria-labelledby="quote-title">
-      <div class="quote-background">
-        <img src="/img/condominio.png" alt="Modern architectural design" loading="lazy" width="1920" height="1080" />
-        <div class="quote-overlay"></div>
-      </div>
-      <div class="quote-content">
-        <blockquote class="quote-text">
-          "Architecture should speak of its time and place,<br />
-          yet strive for timelessness."
-          <cite class="quote-author">— Frank Gehry</cite>
-        </blockquote>
+        <h1 id="hero-title" class="hero-title-subtle">Spaces with purpose,<br>designed to inspire.</h1>
+        <div class="hero-cta">
+          <p class="hero-cta-text">Ready to take the first step?</p>
+          <a href="#contact" class="btn btn-primary hero-cta-button">Get Started</a>
+        </div>
       </div>
     </section>
 
@@ -236,6 +252,22 @@
       </div>
     </section>
 
+    <!-- Quote Section -->
+    <section id="quote" class="quote-section" aria-labelledby="quote-title">
+      <div class="quote-background">
+        <img src="/img/PERSPECTIVAS_720Foto-enhanced.png" alt="Modern residential complex aerial view" loading="lazy"
+          width="1920" height="1080" />
+        <div class="quote-overlay"></div>
+      </div>
+      <div class="quote-content">
+        <blockquote class="quote-text">
+          "Architecture should speak of its time and place,<br />
+          yet strive for timelessness."
+          <cite class="quote-author">— Frank Gehry</cite>
+        </blockquote>
+      </div>
+    </section>
+
     <!-- Projects Section -->
     <section id="projects" class="projects" aria-labelledby="projects-title">
       <div class="container">
@@ -252,8 +284,8 @@
           <!-- Project 1: Romana Condos -->
           <div class="project-item" data-animate="fade-up">
             <div class="project-image">
-              <img src="/img/condominio.png" alt="Romana Condos - Modern residential complex with ocean views"
-                loading="lazy" />
+              <img src="/img/PERSPECTIVAS_720Foto-enhanced.png"
+                alt="Romana Condos - Modern residential complex aerial view" loading="lazy" />
             </div>
             <div class="project-content">
               <h3 class="project-name">Romana Condos</h3>
@@ -270,7 +302,7 @@
           <!-- Project 2: Mountain Bungalows -->
           <div class="project-item project-item-reverse" data-animate="fade-up" data-delay="100">
             <div class="project-image">
-              <img src="/img/patioOP.png" alt="Mountain Bungalows - Sustainable mountain retreat with panoramic views"
+              <img src="/img/OJALA.jpg" alt="Mountain Bungalows - Modern mountain cabin retreat in lush forest"
                 loading="lazy" />
             </div>
             <div class="project-content">
@@ -279,23 +311,6 @@
               <p class="project-description">
                 A set of villas for AirBnb in the Tatón mountains with spectacular views of the
                 San José de Ocoa Valley — a private client project.
-              </p>
-              <a href="#" class="project-link">Learn more →</a>
-            </div>
-          </div>
-
-          <!-- Project 3: Antoni Village -->
-          <div class="project-item" data-animate="fade-up" data-delay="200">
-            <div class="project-image">
-              <img src="/img/villa.png" alt="Antoni Village - Exclusive residential community with luxury amenities"
-                loading="lazy" />
-            </div>
-            <div class="project-content">
-              <h3 class="project-name">Antoni Village</h3>
-              <p class="project-location">Location — La Romana, Dominican Republic</p>
-              <p class="project-description">
-                Contemporary residential community integrated into nature, featuring spacious
-                homes, terraces, and excellent natural lighting and ventilation.
               </p>
               <a href="#" class="project-link">Learn more →</a>
             </div>
@@ -438,11 +453,6 @@
                 <img src="/assets/images/brand/Importadora.png" alt="Antoni Importadora" class="logo-img" />
               </a>
             </div>
-            <div class="brand-logo" data-brand="consultants">
-              <a href="#home" class="brand-link">
-                <img src="/assets/images/brand/antoni-logo.png" alt="Grupo Antoni A/E Consultants" class="logo-img" />
-              </a>
-            </div>
             <div class="brand-logo" data-brand="square">
               <a href="under-construction.html" class="brand-link">
                 <img src="/assets/images/brand/Square.png" alt="Antoni Square" class="logo-img" />
@@ -467,11 +477,6 @@
             <div class="brand-logo" data-brand="importadora">
               <a href="under-construction.html" class="brand-link">
                 <img src="/assets/images/brand/Importadora.png" alt="Antoni Importadora" class="logo-img" />
-              </a>
-            </div>
-            <div class="brand-logo" data-brand="consultants">
-              <a href="#home" class="brand-link">
-                <img src="/assets/images/brand/antoni-logo.png" alt="Grupo Antoni A/E Consultants" class="logo-img" />
               </a>
             </div>
             <div class="brand-logo" data-brand="square">
@@ -530,32 +535,12 @@
               </div>
 
               <div class="form-group">
-                <label for="confirmEmail" class="form-label">Confirm Email <span class="required">*</span></label>
-                <input type="email" id="confirmEmail" name="confirmEmail" class="form-input"
-                  placeholder="Retype your email" required aria-describedby="confirmEmail-error" />
-                <div id="confirmEmail-error" class="form-error" role="alert"></div>
-              </div>
-
-              <div class="form-group">
                 <label for="phone" class="form-label">Phone number (opcional)</label>
                 <input type="tel" id="phone" name="phone" class="form-input" placeholder="+_ (___) ___-____"
                   aria-describedby="phone-help" />
                 <div id="phone-help" class="form-help">
                   Optional - We'll use this to contact you directly
                 </div>
-              </div>
-
-              <div class="form-group">
-                <label for="projectType" class="form-label">Project type <span class="required">*</span></label>
-                <select id="projectType" name="projectType" class="form-select" required
-                  aria-describedby="projectType-error">
-                  <option value="">Select an option...</option>
-                  <option value="residential">Residential</option>
-                  <option value="commercial">Commercial</option>
-                  <option value="urban">Urban</option>
-                  <option value="other">Other</option>
-                </select>
-                <div id="projectType-error" class="form-error" role="alert"></div>
               </div>
 
               <div class="form-group">
