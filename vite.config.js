@@ -14,7 +14,17 @@ export default defineConfig(({ mode }) => ({
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html')
+        main: resolve(__dirname, 'index.html'),
+        'projects/residential': resolve(__dirname, 'projects/residential.html'),
+        'projects/commercial': resolve(__dirname, 'projects/commercial.html'),
+        'projects/tourism': resolve(__dirname, 'projects/tourism.html'),
+        'projects/urban': resolve(__dirname, 'projects/urban.html'),
+        'brand/importadora': resolve(__dirname, 'brand/importadora.html'),
+        'brand/square': resolve(__dirname, 'brand/square.html'),
+        'brand/capital': resolve(__dirname, 'brand/capital.html'),
+        'brand/foundation': resolve(__dirname, 'brand/foundation.html'),
+        'brand/novaterra': resolve(__dirname, 'brand/novaterra.html'),
+        'brand/consultants': resolve(__dirname, 'brand/consultants.html')
       },
       output: {
         manualChunks: {
