@@ -279,42 +279,6 @@ export class Projects {
             <li>Minimal environmental impact design</li>
           </ul>
         `
-      },
-      'antoni-village': {
-        title: 'Antoni Village',
-        location: 'La Romana, Dominican Republic',
-        image: '/img/villa.png',
-        imageAlt: 'Antoni Village - Exclusive residential community with luxury amenities',
-        description: `
-          <p>Exclusive residential community featuring luxury villas and world-class amenities.
-          This master-planned development represents the pinnacle of luxury living in the
-          Dominican Republic.</p>
-          <ul>
-            <li>25 luxury villas</li>
-            <li>Golf course and country club</li>
-            <li>Private marina and beach club</li>
-            <li>24/7 security and concierge services</li>
-            <li>Custom design options for each villa</li>
-          </ul>
-        `
-      },
-      'private-residence': {
-        title: 'Private Residence',
-        location: 'San José de Ocoa, Dominican Republic',
-        image: '/img/patio.png',
-        imageAlt: 'Private Residence - Custom luxury home with contemporary design',
-        description: `
-          <p>Custom luxury residence showcasing contemporary design and premium finishes.
-          This private home represents our ability to create unique, personalized spaces that
-          reflect our clients' vision.</p>
-          <ul>
-            <li>Custom architectural design</li>
-            <li>Premium materials and finishes</li>
-            <li>Smart home automation</li>
-            <li>Landscaped gardens and outdoor living spaces</li>
-            <li>Energy-efficient and sustainable features</li>
-          </ul>
-        `
       }
     };
 

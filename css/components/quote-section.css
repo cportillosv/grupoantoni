@@ -4,12 +4,14 @@
 
 .quote-section {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   background-color: #f8f9fa;
+  margin-bottom: var(--spacing-xl, 3rem);
+  padding: var(--spacing-xl, 3rem) 0;
 }
 
 .quote-background {
@@ -72,6 +74,7 @@
   .quote-section {
     height: 50vh;
     min-height: 350px;
+    margin-bottom: var(--spacing-lg, 2rem);
   }
 
   .quote-content {
@@ -91,6 +94,7 @@
   .quote-section {
     height: 40vh;
     min-height: 300px;
+    margin-bottom: var(--spacing-lg, 2rem);
   }
 
   .quote-content {

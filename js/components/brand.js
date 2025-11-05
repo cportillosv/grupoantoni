@@ -20,8 +20,13 @@ export class Brand {
   }
 
   init() {
-    this.setupCarousel();
-    this.setupDragHandlers();
+    // Detectar si es móvil
+    const isMobile = window.innerWidth <= 767.98;
+
+    if (!isMobile) {
+      this.setupCarousel();
+      this.setupDragHandlers();
+    }
     this.setupClickHandlers();
   }
 
