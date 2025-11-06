@@ -30,16 +30,23 @@ export class Navbar {
 
     // Handle dropdown menus (Projects and Brand)
     const dropdownItems = document.querySelectorAll('.nav-item-dropdown');
+    const isMobile = () => window.innerWidth <= 991.98;
+
     dropdownItems.forEach(dropdownItem => {
       const dropdownLink = dropdownItem.querySelector('.nav-link');
       if (dropdownLink) {
-        dropdownLink.addEventListener('click', e => {
+        // Use touchstart for mobile to avoid double-tap issue, click for desktop
+        const handleDropdownToggle = e => {
           // On mobile, prevent default to show dropdown
-          if (window.innerWidth <= 991.98) {
+          if (isMobile()) {
             e.preventDefault();
+            e.stopPropagation(); // Prevent event bubbling to click outside handler
+
             const dropdownMenu = dropdownItem.querySelector('.dropdown-menu');
             if (dropdownMenu) {
-              // Close other dropdowns
+              const isActive = dropdownMenu.classList.contains('active');
+
+              // Close other dropdowns first
               dropdownItems.forEach(item => {
                 if (item !== dropdownItem) {
                   const otherMenu = item.querySelector('.dropdown-menu');
@@ -52,11 +59,19 @@ export class Navbar {
                   }
                 }
               });
-              dropdownMenu.classList.toggle('active');
-              dropdownLink.setAttribute('aria-expanded', dropdownMenu.classList.contains('active'));
+
+              // Toggle current dropdown
+              dropdownMenu.classList.toggle('active', !isActive);
+              dropdownLink.setAttribute('aria-expanded', !isActive ? 'true' : 'false');
             }
           }
-        });
+        };
+
+        // Add both touchstart and click handlers for better mobile support
+        if (isMobile()) {
+          dropdownLink.addEventListener('touchstart', handleDropdownToggle, { passive: false });
+        }
+        dropdownLink.addEventListener('click', handleDropdownToggle);
       }
     });
 
@@ -67,20 +82,27 @@ export class Navbar {
       }
     });
 
-    // Close dropdowns when clicking outside
+    // Close dropdowns when clicking outside (with delay to avoid conflicts)
+    let closeTimeout;
     document.addEventListener('click', e => {
-      dropdownItems.forEach(dropdownItem => {
-        if (!dropdownItem.contains(e.target)) {
-          const dropdownMenu = dropdownItem.querySelector('.dropdown-menu');
-          const dropdownLink = dropdownItem.querySelector('.nav-link');
-          if (dropdownMenu) {
-            dropdownMenu.classList.remove('active');
-            if (dropdownLink) {
-              dropdownLink.setAttribute('aria-expanded', 'false');
+      // Clear any pending close
+      clearTimeout(closeTimeout);
+
+      // Small delay to allow dropdown toggle to complete first
+      closeTimeout = setTimeout(() => {
+        dropdownItems.forEach(dropdownItem => {
+          if (!dropdownItem.contains(e.target)) {
+            const dropdownMenu = dropdownItem.querySelector('.dropdown-menu');
+            const dropdownLink = dropdownItem.querySelector('.nav-link');
+            if (dropdownMenu && dropdownMenu.classList.contains('active')) {
+              dropdownMenu.classList.remove('active');
+              if (dropdownLink) {
+                dropdownLink.setAttribute('aria-expanded', 'false');
+              }
             }
           }
-        }
-      });
+        });
+      }, 50); // Small delay to prevent immediate closing
     });
 
     // Close menu when clicking outside

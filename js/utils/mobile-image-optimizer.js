@@ -18,20 +18,22 @@ export class MobileImageOptimizer {
       return; // Only optimize on mobile
     }
 
-    // Delay initialization slightly to let critical content load first
+    // Start optimization immediately but prioritize critical content
+    // Setup lazy loading first, then optimize existing images
+    this.setupLazyLoading();
+
+    // Delay optimization of existing images slightly to let critical content load
     if ('requestIdleCallback' in window) {
       requestIdleCallback(
         () => {
-          this.setupLazyLoading();
           this.optimizeExistingImages();
         },
-        { timeout: 1000 }
+        { timeout: 300 } // Reduced from 1000ms for faster startup
       );
     } else {
       setTimeout(() => {
-        this.setupLazyLoading();
         this.optimizeExistingImages();
-      }, 100);
+      }, 50); // Reduced from 100ms
     }
 
     this.handleResize();
@@ -59,7 +61,7 @@ export class MobileImageOptimizer {
           // Process load queue with priority
           this.processLoadQueue();
         }
-      }, 200); // Increased delay for better performance
+      }, 100); // Reduced delay for faster image loading after scroll
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -82,8 +84,10 @@ export class MobileImageOptimizer {
       }))
       .sort((a, b) => a.distance - b.distance);
 
-    // Load closest images first, with delay between each
+    // Load closest images first, with minimal delay between each
     sortedImages.forEach((item, index) => {
+      // Load first 3 images immediately, then stagger the rest
+      const delay = index < 3 ? 0 : (index - 3) * 30; // Reduced from 100ms to 30ms
       setTimeout(() => {
         if (!item.img.classList.contains('lazy-loaded')) {
           this.prepareImage(item.img);
@@ -91,7 +95,7 @@ export class MobileImageOptimizer {
             this.imageObserver.observe(item.img);
           }
         }
-      }, index * 100); // Stagger loading to prevent blocking
+      }, delay);
     });
   }
 
@@ -103,9 +107,9 @@ export class MobileImageOptimizer {
       return;
     }
 
-    // Very aggressive rootMargin for mobile - only load when very close to viewport
-    // This reduces initial load time significantly
-    const rootMargin = '50px 0px'; // Load images only 50px before they enter viewport
+    // Aggressive rootMargin for mobile - load when close to viewport
+    // Increased from 50px to 100px for better perceived performance
+    const rootMargin = '100px 0px'; // Load images 100px before they enter viewport
 
     this.imageObserver = new IntersectionObserver(
       entries => {
@@ -192,17 +196,17 @@ export class MobileImageOptimizer {
         // Critical images load immediately
         this.loadImage(img);
       } else if ('requestIdleCallback' in window) {
-        // Non-critical images use idle callback
+        // Non-critical images use idle callback with shorter timeout
         requestIdleCallback(
           () => {
             this.loadImage(img);
           },
-          { timeout: 2000 }
+          { timeout: 500 } // Reduced from 2000ms to 500ms for faster loading
         );
       } else {
         setTimeout(() => {
           this.loadImage(img);
-        }, 200);
+        }, 100); // Reduced from 200ms
       }
     }
   }
@@ -274,6 +278,8 @@ export class MobileImageOptimizer {
 
       if (!isAboveFold && index > 2) {
         // Delay processing of images that are far down the page
+        // Process first few images immediately, then stagger the rest
+        const delay = index < 5 ? 0 : (index - 5) * 20; // Reduced from 50ms to 20ms
         setTimeout(() => {
           if (!this.optimizedImages.has(img)) {
             this.prepareImage(img);
@@ -281,7 +287,15 @@ export class MobileImageOptimizer {
               this.imageObserver.observe(img);
             }
           }
-        }, index * 50); // Stagger loading
+        }, delay);
+      } else if (isAboveFold) {
+        // Images above fold should be processed immediately
+        if (!this.optimizedImages.has(img)) {
+          this.prepareImage(img);
+          if (this.imageObserver) {
+            this.imageObserver.observe(img);
+          }
+        }
       }
     });
   }
