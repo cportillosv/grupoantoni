@@ -29,7 +29,7 @@
 .nav-logo {
   display: flex;
   align-items: center;
-  margin-left: -45px;
+  margin-left: -60px;
   flex-shrink: 0;
 }
 
@@ -508,7 +508,7 @@
   }
 
   .nav-logo {
-    margin-left: -15px;
+    margin-left: -25px;
   }
 }
 

@@ -8,15 +8,16 @@ export const translations = {
     // Navigation
     nav: {
       home: 'HOME',
-      about: 'ABOUT',
+      about: 'ABOUT US',
       projects: 'PROJECTS',
       team: 'TEAM',
       brand: 'OUR BRAND',
       contact: 'CONTACT',
-      residential: 'Residential',
-      commercial: 'Commercial',
-      tourism: 'Tourism',
-      urban: 'Urban'
+      residential: 'Residencial',
+      vivienda: 'Vivienda',
+      tourism: 'Turismo',
+      hospitalario: 'Hospitalario',
+      maharishiVastu: 'Maharishi Vastu'
     },
     // Hero Section
     hero: {
@@ -145,7 +146,7 @@ export const translations = {
       address: 'Address',
       navigation: 'Navigation',
       home: 'Home',
-      about: 'About',
+      about: 'About Us',
       projects: 'Projects',
       contact: 'Contact',
       copyright: '© 2025 Antoni Group – All rights reserved',
@@ -158,6 +159,159 @@ export const translations = {
     social: {
       comingSoon: "We're working on this!",
       stayTuned: 'Stay tuned for updates.'
+    },
+    // Project Pages
+    projectPages: {
+      residential: {
+        title:
+          'Residential <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Projects</span>',
+        subtitle:
+          'Creating homes that reflect lifestyle, comfort, and modern architectural excellence. Our residential projects combine innovative design with functional living spaces.',
+        backToProjects: 'Back to Projects →'
+      },
+      commercial: {
+        title:
+          'Commercial <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Projects</span>',
+        subtitle:
+          'Designing and constructing commercial spaces that drive business success. Our commercial projects combine functionality, aesthetics, and efficiency to create environments that inspire productivity and growth.',
+        comingSoon:
+          'We are currently developing new commercial projects. Our expertise includes office buildings, retail spaces, and mixed-use developments.',
+        backToProjects: 'Back to Projects →'
+      },
+      tourism: {
+        title:
+          'Tourism <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Projects</span>',
+        subtitle:
+          'Creating exceptional tourism experiences through innovative architecture. Our tourism projects blend natural beauty with sustainable design to create memorable destinations.',
+        backToProjects: 'Back to Projects →'
+      },
+      urban: {
+        title:
+          'Urban <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Projects</span>',
+        subtitle:
+          'Shaping cities through innovative urban planning and architecture. Our urban projects focus on sustainable development, community integration, and creating vibrant, livable spaces.',
+        comingSoon:
+          'We are currently developing new urban projects. Our expertise includes urban planning, infrastructure development, and sustainable city design.',
+        backToProjects: 'Back to Projects →'
+      },
+      vivienda: {
+        title:
+          'Vivienda <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Projects</span>',
+        subtitle:
+          'Designing private homes that reflect personal style and lifestyle. Our residential projects combine functionality, comfort, and architectural excellence.',
+        backToProjects: 'Back to Projects →',
+        projects: {
+          casaElvira: {
+            name: 'Casa Elvira Santos',
+            location: 'San José de Ocoa, Dominican Republic',
+            area: '335.88 m²',
+            description:
+              'This project is a two-level home with 335.88 m², designed to offer functionality and flow. On the first level, the living room and dining room integrate with a contemporary kitchen. The second level features four bedrooms, balconies, and terraces for connection with the environment. Additionally, it includes a covered marquee, strategic bathrooms, and other elements that guarantee comfort and aesthetics.'
+          },
+          antoniVilla: {
+            name: 'Antoni Villa San Juan',
+            location: 'Rio San Juan, Dominican Republic',
+            area: '222.0 m²',
+            description:
+              'Modern two-level villa with contemporary tropical architectural design. Its first level presents an open plan that integrates living room, dining room, and kitchen with large windows that connect to the exterior and bedrooms with shared bathroom. The second level features a master suite and large exterior terrace with BBQ area. It combines warm materials such as wood and stone, with clean lines and open terraces that maximize natural light and the interior-exterior relationship.'
+          },
+          villaLaCosta: {
+            name: 'Villa La Costa',
+            location: 'Rio San Juan, Dominican Republic',
+            area: '568.0 m²',
+            description:
+              'Private villa located in Río San Juan, with impressive sea views and a contemporary design with clean lines and overlapping volumes. Its architecture combines concrete, wood, and glass, generating a fluid connection between interior and exterior. The large windows and panoramic terraces maximize natural light and the coastal landscape, offering an environment of luxury, comfort, and harmony with nature.'
+          }
+        }
+      },
+      hospitalario: {
+        title:
+          'Hospitalario <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Projects</span>',
+        subtitle:
+          'Healthcare architecture focused on functionality, patient comfort, and medical efficiency. Our hospital projects integrate modern design with specialized healthcare needs.',
+        backToProjects: 'Back to Projects →',
+        projects: {
+          centroCirugia: {
+            name: 'Centro de Cirugía EGS - Facade Remodelation',
+            location: 'Gazcue, Santo Domingo, Dominican Republic',
+            area: 'N/A',
+            description:
+              'This remodeling consists of the revitalization of the facade of this surgery center in order to give it a more contemporary image that matches the prestige that this center has acquired over time.'
+          }
+        }
+      },
+      maharishiVastu: {
+        title:
+          'Maharishi Vastu <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Projects</span>',
+        subtitle:
+          'Architecture inspired by Vastu Shastra principles, seeking balance between energy, nature, and well-being. Our Vastu projects integrate ancient wisdom with modern comfort.',
+        backToProjects: 'Back to Projects →',
+        projects: {
+          vastuShastra: {
+            name: 'Vastu Shastra',
+            location: 'N/A',
+            area: 'N/A',
+            description:
+              'Vastu is inspired by the principles of Vastu Shastra architecture, seeking balance between energy, nature, and well-being. Its orientation takes advantage of sunlight and cross ventilation, promoting interior harmony. The symmetrical design and elevated ceiling symbolize spiritual connection and positive circulation of prana. Natural materials and integration with the tropical environment reinforce its essence: a home that unites modern comfort with ancestral wisdom.'
+          }
+        }
+      }
+    },
+    // Individual Projects
+    projectDetails: {
+      residential: {
+        antoniResidences: {
+          name: 'Antoni Residences',
+          location: 'La Romana, Dominican Republic',
+          area: '540 m²',
+          description:
+            'This residential complex presents a contemporary design with materials such as wood, concrete, and glass. It is an apartment complex, integrated into the natural environment, offering privacy, natural light, and cross ventilation. Each apartment features spacious areas, balconies, and exterior areas, creating an exclusive and welcoming environment, ideal for those seeking comfort. Includes recreational spaces for all types of families and a common social area with pool.'
+        },
+        remodelacionFachada: {
+          name: 'Private Residential Facade Remodelation',
+          location: 'Samaná, Dominican Republic',
+          area: 'N/A',
+          description:
+            'This project features contemporary tropical design that integrates natural materials such as bamboo, wood, and coral stone. It stands out for its pergolas, terraces, and large windows that connect interior and exterior. Tropical gardens and palm trees surround the home, providing freshness and harmony. Its modern and sustainable style creates an elegant environment, ideal for enjoying the Caribbean climate with comfort and connection with nature.'
+        },
+        luzDelTropico: {
+          name: 'Residencial Vertical "Luz del Trópico"',
+          location: 'Boca Chica, Dominican Republic',
+          area: '350 m²',
+          description:
+            'Located in an urban area with warm climate, the Luz del Trópico residence combines modern elegance and spatial efficiency. Its vertical three-level volumetry is distinguished by clean lines, large windows, and lattices that regulate natural light. The facade mixes neutral tones with contemporary textures, highlighting the balance between aesthetics and functionality. Gardens and green parking reinforce its sustainable approach, integrating harmoniously with the tropical environment.'
+        },
+        torreSelvaUrbana1: {
+          name: 'Torre Selva Urbana',
+          location: 'N/A',
+          area: 'N/A',
+          description:
+            'Torre Selva Urbana is a contemporary residential building that fuses elegance and sustainability. Its glass and concrete facade is balanced with vertical green walls that integrate nature into the urban environment. The large windows allow natural lighting and panoramic views, while noble materials and tropical landscaping create a modern, ecological, and sophisticated atmosphere.'
+        },
+        torreSelvaUrbana2: {
+          name: 'Torre Selva Urbana',
+          location: 'Rio San Juan, Dominican Republic',
+          area: 'N/A',
+          description:
+            'They fuse the warmth of natural materials with the modern elegance of glass and concrete. Their open and tropical design prioritizes connection with the environment, integrating large terraces, panoramic windows, and elevated gardens. Wood provides texture and harmony, while glass frames the natural views, creating a contemporary and luminous environment.'
+        },
+        loftsAntoni: {
+          name: 'Lofts Antoni',
+          location: 'Juan Dolio, Dominican Republic',
+          area: '54-120 m²',
+          description:
+            "Set of two-level lofts in a private complex, designed for families seeking a second home near the city. They feature modern architecture, with clean lines, large windows, and terraces that favor interior-exterior integration. The project is located in a prestigious area with nearby beaches and offers common social areas with pool, BBQ, and children's area."
+        }
+      },
+      tourism: {
+        bungalowMontana: {
+          name: 'Mountain Bungalow',
+          location: 'San José de Ocoa, Dominican Republic',
+          area: '64-150 m²',
+          description:
+            'Accommodations in the San José de Ocoa valley with 3 types of bungalows (64-150 m²). They include living room, kitchen, dining room, balcony with jacuzzi, bedrooms, laundry area, private parking, and elevated water tank. Also features an administrative unit. Designed with two-slope roofs and materials that integrate with nature, they offer beautiful views of the valley landscape. The project also includes an administrative unit for its management and maintenance.'
+        }
+      }
     }
   },
   es: {
@@ -167,12 +321,13 @@ export const translations = {
       about: 'NOSOTROS',
       projects: 'PROYECTOS',
       team: 'EQUIPO',
-      brand: 'NUESTRA MARCA',
+      brand: 'NUESTRAS MARCAS',
       contact: 'CONTACTO',
       residential: 'Residencial',
-      commercial: 'Comercial',
+      vivienda: 'Vivienda',
       tourism: 'Turismo',
-      urban: 'Urbano'
+      hospitalario: 'Hospitalario',
+      maharishiVastu: 'Maharishi Vastu'
     },
     // Hero Section
     hero: {
@@ -314,6 +469,159 @@ export const translations = {
     social: {
       comingSoon: '¡Estamos trabajando en esto!',
       stayTuned: 'Mantente al tanto de las actualizaciones.'
+    },
+    // Project Pages
+    projectPages: {
+      residential: {
+        title:
+          'Proyectos <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Residenciales</span>',
+        subtitle:
+          'Creando hogares que reflejan estilo de vida, comodidad y excelencia arquitectónica moderna. Nuestros proyectos residenciales combinan diseño innovador con espacios de vida funcionales.',
+        backToProjects: 'Volver a Proyectos →'
+      },
+      commercial: {
+        title:
+          'Proyectos <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Comerciales</span>',
+        subtitle:
+          'Diseñando y construyendo espacios comerciales que impulsan el éxito empresarial. Nuestros proyectos comerciales combinan funcionalidad, estética y eficiencia para crear entornos que inspiran productividad y crecimiento.',
+        comingSoon:
+          'Actualmente estamos desarrollando nuevos proyectos comerciales. Nuestra experiencia incluye edificios de oficinas, espacios comerciales y desarrollos de uso mixto.',
+        backToProjects: 'Volver a Proyectos →'
+      },
+      tourism: {
+        title:
+          'Proyectos <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Turísticos</span>',
+        subtitle:
+          'Creando experiencias turísticas excepcionales a través de arquitectura innovadora. Nuestros proyectos turísticos combinan belleza natural con diseño sostenible para crear destinos memorables.',
+        backToProjects: 'Volver a Proyectos →'
+      },
+      urban: {
+        title:
+          'Proyectos <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Urbanos</span>',
+        subtitle:
+          'Moldeando ciudades a través de planificación urbana e innovación arquitectónica. Nuestros proyectos urbanos se enfocan en desarrollo sostenible, integración comunitaria y creación de espacios vibrantes y habitables.',
+        comingSoon:
+          'Actualmente estamos desarrollando nuevos proyectos urbanos. Nuestra experiencia incluye planificación urbana, desarrollo de infraestructura y diseño de ciudades sostenibles.',
+        backToProjects: 'Volver a Proyectos →'
+      },
+      vivienda: {
+        title:
+          'Proyectos <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Vivienda</span>',
+        subtitle:
+          'Diseñando hogares privados que reflejan estilo personal y estilo de vida. Nuestros proyectos de vivienda combinan funcionalidad, comodidad y excelencia arquitectónica.',
+        backToProjects: 'Volver a Proyectos →',
+        projects: {
+          casaElvira: {
+            name: 'Casa Elvira Santos',
+            location: 'San José de Ocoa, República Dominicana',
+            area: '335.88 m²',
+            description:
+              'Este proyecto es una vivienda de dos niveles con 335.88 m², diseñada para ofrecer funcionalidad y fluidez. En el primer nivel, la sala y el comedor se integran con una cocina contemporánea. El segundo nivel cuenta con cuatro dormitorios, balcones y terrazas para conexión con el entorno. Además, incluye marquesina techada, baños estratégicos y otros elementos que garantizan comodidad y estética.'
+          },
+          antoniVilla: {
+            name: 'Antoni Villa San Juan',
+            location: 'Rio San Juan, República Dominicana',
+            area: '222.0 m²',
+            description:
+              'Villa moderna de dos niveles con diseño arquitectónico tropical contemporáneo. Su primer nivel presenta una planta libre que integra sala, comedor y cocina con amplios ventanales que conectan al exterior y dormitorios con baño compartido. El segundo nivel cuenta con una master suite y terraza exterior amplia con área de bbq. Combina materiales cálidos como madera y piedra, con líneas limpias y terrazas abiertas que maximizan la luz natural y la relación interior-exterior.'
+          },
+          villaLaCosta: {
+            name: 'Villa La Costa',
+            location: 'Rio San Juan, República Dominicana',
+            area: '568.0 m²',
+            description:
+              'Villa privada ubicada en Río San Juan, con impresionantes vistas al mar y un diseño contemporáneo de líneas limpias y volúmenes superpuestos. Su arquitectura combina concreto, madera y vidrio, generando una conexión fluida entre interior y exterior. Los amplios ventanales y terrazas panorámicas aprovechan al máximo la luz natural y el paisaje costero, ofreciendo un ambiente de lujo, confort y armonía con la naturaleza.'
+          }
+        }
+      },
+      hospitalario: {
+        title:
+          'Proyectos <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Hospitalarios</span>',
+        subtitle:
+          'Arquitectura de salud enfocada en funcionalidad, comodidad del paciente y eficiencia médica. Nuestros proyectos hospitalarios integran diseño moderno con necesidades especializadas de atención médica.',
+        backToProjects: 'Volver a Proyectos →',
+        projects: {
+          centroCirugia: {
+            name: 'Centro de Cirugía EGS - Remodelación de Fachada',
+            location: 'Gazcue, Santo Domingo, República Dominicana',
+            area: 'N/A',
+            description:
+              'Esta remodelación consiste en la revitalización de la fachada de este centro de cirugía con el fin de brindarle una imagen más contemporánea que vaya acorde al prestigio que este centro ha adquirido con el paso del tiempo.'
+          }
+        }
+      },
+      maharishiVastu: {
+        title:
+          'Proyectos <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Maharishi Vastu</span>',
+        subtitle:
+          'Arquitectura inspirada en los principios de Vastu Shastra, buscando equilibrio entre energía, naturaleza y bienestar. Nuestros proyectos Vastu integran sabiduría ancestral con confort moderno.',
+        backToProjects: 'Volver a Proyectos →',
+        projects: {
+          vastuShastra: {
+            name: 'Vastu Shastra',
+            location: 'N/A',
+            area: 'N/A',
+            description:
+              'Vastu se inspira en los principios de la arquitectura Vastu Shastra, buscando equilibrio entre energía, naturaleza y bienestar. Su orientación aprovecha la luz solar y la ventilación cruzada, promoviendo armonía interior. El diseño simétrico y el techo elevado simbolizan conexión espiritual y circulación positiva del prana. Los materiales naturales y la integración con el entorno tropical refuerzan su esencia: una vivienda que une confort moderno con sabiduría ancestral.'
+          }
+        }
+      }
+    },
+    // Proyectos Individuales
+    projectDetails: {
+      residential: {
+        antoniResidences: {
+          name: 'Antoni Residences',
+          location: 'La Romana, República Dominicana',
+          area: '540 m²',
+          description:
+            'Este conjunto residencial presenta un diseño contemporáneo con materiales como madera, concreto y vidrio. Es un complejo de apartamentos, integradas al entorno natural, ofrecen privacidad, luz natural y ventilación cruzada. Cada apartamento cuenta con espacios amplios, balcones y áreas exteriores, creando un ambiente exclusivo y acogedor, ideal para quienes buscan confort. Incluye espacios recreativos para todo tipo de familia y área social común con piscina.'
+        },
+        remodelacionFachada: {
+          name: 'Remodelación de Fachada Residencial Privado',
+          location: 'Samaná, República Dominicana',
+          area: 'N/A',
+          description:
+            'Este proyecto de diseño tropical contemporáneo que integra materiales naturales como bambú, madera y piedra coralina. Destacan sus pérgolas, terrazas y amplias ventanas que conectan interior y exterior. Los jardines tropicales y palmeras rodean la vivienda, aportando frescura y armonía. Su estilo moderno y sostenible crea un ambiente elegante, ideal para disfrutar del clima caribeño con confort y conexión con la naturaleza.'
+        },
+        luzDelTropico: {
+          name: 'Residencial Vertical "Luz del Trópico"',
+          location: 'Boca Chica, República Dominicana',
+          area: '350 m²',
+          description:
+            'Ubicada en una zona urbana de clima cálido, la residencia Luz del Trópico combina elegancia moderna y eficiencia espacial. Su volumetría vertical de tres niveles se distingue por líneas limpias, grandes ventanales y celosías que regulan la luz natural. La fachada mezcla tonos neutros con texturas contemporáneas, resaltando el equilibrio entre estética y funcionalidad. Los jardines y parqueos verdes refuerzan su enfoque sostenible, integrándose armoniosamente con el entorno tropical.'
+        },
+        torreSelvaUrbana1: {
+          name: 'Torre Selva Urbana',
+          location: 'N/A',
+          area: 'N/A',
+          description:
+            'La Torre Selva Urbana es un edificio residencial de diseño contemporáneo que fusiona elegancia y sostenibilidad. Su fachada de vidrio y concreto se equilibra con muros verdes verticales que integran la naturaleza al entorno urbano. Los amplios ventanales permiten iluminación natural y vistas panorámicas, mientras los materiales nobles y el paisajismo tropical crean una atmósfera moderna, ecológica y sofisticada.'
+        },
+        torreSelvaUrbana2: {
+          name: 'Torre Selva Urbana',
+          location: 'Rio San Juan, República Dominicana',
+          area: 'N/A',
+          description:
+            'Fusionan la calidez de los materiales naturales con la elegancia moderna del vidrio y el concreto. Su diseño abierto y tropical prioriza la conexión con el entorno, integrando amplias terrazas, ventanales panorámicos y jardines elevados. La madera aporta textura y armonía, mientras el cristal enmarca las vistas naturales, creando un ambiente contemporáneo y luminoso.'
+        },
+        loftsAntoni: {
+          name: 'Lofts Antoni',
+          location: 'Juan Dolio, República Dominicana',
+          area: '54-120 m²',
+          description:
+            'Conjunto de lofts de dos niveles en complejo privado, diseñado para familias que buscan una segunda vivienda cerca de la ciudad. Presentan arquitectura moderna, con líneas limpias, amplios ventanales y terrazas que favorecen la integración interior-exterior. El proyecto se ubica en una zona prestigiosa con playas cercanas y ofrece áreas sociales comunes con piscina, BBQ y zona infantil.'
+        }
+      },
+      tourism: {
+        bungalowMontana: {
+          name: 'Bungaló de Montaña',
+          location: 'San José de Ocoa, República Dominicana',
+          area: '64-150 m²',
+          description:
+            'Alojamientos en el valle de San José de Ocoa con 3 tipos de bungalós (64-150 m²). Incluyen sala, cocina, comedor, balcón con picuzzi, dormitorios, área de lavado, parqueo privado y tanque elevado para agua. También cuenta con unidad administrativa. Diseñados con techos inclinados a dos aguas y materiales que se integran con la naturaleza, ofrecen hermosas vistas al paisaje del valle. El proyecto cuenta además con una unidad administrativa para su gestión y mantenimiento.'
+        }
+      }
     }
   }
 };

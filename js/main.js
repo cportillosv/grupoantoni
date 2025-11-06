@@ -366,9 +366,22 @@ class App {
   }
 
   /**
-   * Initialize lazy loading for images
+   * Initialize lazy loading for images (desktop only)
    */
   initLazyLoading() {
+    // Skip lazy loading on mobile - images load immediately
+    const isMobile = window.innerWidth <= 767.98;
+    if (isMobile) {
+      // Load all images with data-src immediately on mobile
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+        img.setAttribute('loading', 'eager');
+      });
+      return;
+    }
+
+    // Desktop: use lazy loading
     if ('IntersectionObserver' in window) {
       const imageObserver = new IntersectionObserver(
         entries => {

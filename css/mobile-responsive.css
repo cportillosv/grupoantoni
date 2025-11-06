@@ -256,14 +256,21 @@
     border-radius: 2px !important;
   }
 
+  .mission-card .card-divider,
+  .vision-card .card-divider,
   .values-card .card-divider {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     width: 6rem !important;
-    height: 0.1875rem !important;
+    height: 0.25rem !important;
+    min-height: 0.25rem !important;
     background-color: #4f8ce3 !important;
     margin: 0 auto 1rem auto !important;
+    box-shadow: 0 0 8px rgba(79, 140, 227, 0.6) !important;
+    border-radius: 2px !important;
+    position: relative !important;
+    z-index: 10 !important;
   }
 
   .card-text {

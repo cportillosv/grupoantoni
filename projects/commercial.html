@@ -23,27 +23,64 @@
           <img src="/img/ANTONI.png" alt="Antoni logo" class="logo-img" />
         </a>
       </div>
+      <div class="nav-separator">|</div>
       <ul class="nav-menu" role="menubar">
-        <li role="none"><a href="/index.html#home" class="nav-link" role="menuitem">HOME</a></li>
-        <li role="none"><a href="/index.html#about" class="nav-link" role="menuitem">ABOUT</a></li>
+        <li role="none"><a href="/index.html#home" class="nav-link" role="menuitem" data-i18n="nav.home">HOME</a></li>
+        <li role="none"><a href="/index.html#about" class="nav-link" role="menuitem" data-i18n="nav.about">ABOUT</a>
+        </li>
         <li role="none" class="nav-item-dropdown">
-          <a href="/index.html#projects" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
+          <a href="/index.html#projects" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false"
+            data-i18n="nav.projects">
             PROJECTS
             <span class="dropdown-arrow">▼</span>
           </a>
           <ul class="dropdown-menu" role="menu">
-            <li role="none"><a href="/projects/residential.html" class="dropdown-link" role="menuitem">Residential</a>
+            <li role="none"><a href="/projects/maharishi-vastu.html" class="dropdown-link" role="menuitem"
+                data-i18n="nav.maharishiVastu">Maharishi Vastu</a></li>
+            <li role="none"><a href="/projects/residential.html" class="dropdown-link" role="menuitem"
+                data-i18n="nav.residential">Residencial</a>
             </li>
-            <li role="none"><a href="/projects/commercial.html" class="dropdown-link active"
-                role="menuitem">Commercial</a></li>
-            <li role="none"><a href="/projects/tourism.html" class="dropdown-link" role="menuitem">Tourism</a></li>
-            <li role="none"><a href="/projects/urban.html" class="dropdown-link" role="menuitem">Urban</a></li>
+            <li role="none"><a href="/projects/vivienda.html" class="dropdown-link" role="menuitem"
+                data-i18n="nav.vivienda">Vivienda</a>
+            </li>
+            <li role="none"><a href="/projects/tourism.html" class="dropdown-link" role="menuitem"
+                data-i18n="nav.tourism">Turismo</a></li>
+            <li role="none"><a href="/projects/hospitalario.html" class="dropdown-link" role="menuitem"
+                data-i18n="nav.hospitalario">Hospitalario</a></li>
           </ul>
         </li>
-        <li role="none"><a href="/index.html#team" class="nav-link" role="menuitem">TEAM</a></li>
-        <li role="none"><a href="/index.html#brand" class="nav-link" role="menuitem">OUR BRAND</a></li>
-        <li role="none"><a href="/index.html#contact" class="nav-link" role="menuitem">CONTACT</a></li>
+        <li role="none"><a href="/index.html#team" class="nav-link" role="menuitem" data-i18n="nav.team">TEAM</a></li>
+        <li role="none" class="nav-item-dropdown">
+          <a href="/index.html#brand" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false"
+            data-i18n="nav.brand">
+            OUR BRAND
+            <span class="dropdown-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li role="none"><a href="/brand/importadora.html" class="dropdown-link" role="menuitem">Importadora
+                Ofi-Hogar</a></li>
+            <li role="none"><a href="/brand/square.html" class="dropdown-link" role="menuitem">Square</a></li>
+            <li role="none"><a href="/brand/capital.html" class="dropdown-link" role="menuitem">Capital Management</a>
+            </li>
+            <li role="none"><a href="/brand/foundation.html" class="dropdown-link" role="menuitem">Antoni Foundation</a>
+            </li>
+            <li role="none"><a href="/brand/novaterra.html" class="dropdown-link" role="menuitem">Novaterra</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="/index.html#contact" class="nav-link" role="menuitem"
+            data-i18n="nav.contact">CONTACT</a></li>
+        <li role="none" class="nav-lang-switch-mobile">
+          <div class="nav-lang-switch">
+            <button class="lang-switch-btn" id="langSwitchMobile" aria-label="Switch language"
+              title="Cambiar idioma / Switch language">
+              <span class="lang-code" data-i18n-lang="en">🇬🇧</span>
+              <span class="lang-separator">/</span>
+              <span class="lang-code" data-i18n-lang="es">🇪🇸</span>
+            </button>
+          </div>
+        </li>
       </ul>
+      <div class="nav-separator">|</div>
       <div class="nav-social">
         <a href="#" class="social-link linkedin" aria-label="LinkedIn">
           <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -70,6 +107,15 @@
           </svg>
         </a>
       </div>
+      <div class="nav-separator">|</div>
+      <div class="nav-lang-switch">
+        <button class="lang-switch-btn" id="langSwitch" aria-label="Switch language"
+          title="Cambiar idioma / Switch language">
+          <span class="lang-code" data-i18n-lang="en">🇬🇧</span>
+          <span class="lang-separator">/</span>
+          <span class="lang-code" data-i18n-lang="es">🇪🇸</span>
+        </button>
+      </div>
       <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
         <span class="hamburger"></span>
         <span class="hamburger"></span>
@@ -85,10 +131,12 @@
       style="padding: 8rem 0 4rem; margin-top: 80px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
       <div class="container">
         <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-          <h1 style="font-size: 3.5rem; font-weight: 400; margin-bottom: 1.5rem; color: #1a1a1a; line-height: 1.2;">
+          <h1 style="font-size: 3.5rem; font-weight: 400; margin-bottom: 1.5rem; color: #1a1a1a; line-height: 1.2;"
+            data-i18n-html="projectPages.commercial.title">
             Commercial <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Projects</span>
           </h1>
-          <p style="font-size: 1.25rem; color: #6b7280; line-height: 1.7; max-width: 36rem; margin: 0 auto;">
+          <p style="font-size: 1.25rem; color: #6b7280; line-height: 1.7; max-width: 36rem; margin: 0 auto;"
+            data-i18n="projectPages.commercial.subtitle">
             Designing and constructing commercial spaces that drive business success. Our commercial projects combine
             functionality, aesthetics, and efficiency to create environments that inspire productivity and growth.
           </p>
@@ -101,12 +149,14 @@
       <div class="container">
         <div class="projects-list">
           <div style="text-align: center; padding: 4rem 0;">
-            <p style="font-size: 1.125rem; color: #6b7280; line-height: 1.7; max-width: 600px; margin: 0 auto 2rem;">
+            <p style="font-size: 1.125rem; color: #6b7280; line-height: 1.7; max-width: 600px; margin: 0 auto 2rem;"
+              data-i18n="projectPages.commercial.comingSoon">
               We are currently developing new commercial projects. Our expertise includes office buildings, retail
               spaces, and mixed-use developments.
             </p>
             <a href="/index.html#projects"
-              style="color: #4f8ce3; font-weight: 600; font-size: 1.125rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; padding: 0.75rem 1.5rem; border: 2px solid #4f8ce3; border-radius: 0.5rem; width: fit-content;">
+              style="color: #4f8ce3; font-weight: 600; font-size: 1.125rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; padding: 0.75rem 1.5rem; border: 2px solid #4f8ce3; border-radius: 0.5rem; width: fit-content;"
+              data-i18n="projectPages.commercial.backToProjects">
               Back to Projects →
             </a>
           </div>
@@ -120,19 +170,20 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
-          <h3 class="footer-title">Ready to Meet?</h3>
+          <h3 class="footer-title" data-i18n="footer.readyToMeet">Ready to Meet?</h3>
           <div class="footer-contact">
-            <p><strong>Phone:</strong> <a href="tel:+18298930121">+1 (829) 893-0121</a></p>
+            <p><strong data-i18n="footer.phone">Phone:</strong> <a href="tel:+18298930121">+1 (829) 893-0121</a></p>
             <p>
-              <strong>Email:</strong>
+              <strong data-i18n="footer.email">Email:</strong>
               <a href="mailto:info@grupoantoni.com">info@grupoantoni.com</a>
             </p>
-            <p><strong>Hours:</strong> Monday to Friday, 9:00am – 6:00pm</p>
+            <p><strong data-i18n="footer.hours">Hours:</strong> <span data-i18n="footer.hoursValue">Monday to Friday,
+                9:00am – 6:00pm</span></p>
           </div>
         </div>
 
         <div class="footer-section">
-          <h4 class="footer-subtitle">Address</h4>
+          <h4 class="footer-subtitle" data-i18n="footer.address">Address</h4>
           <address class="footer-address">
             <p>San Juan Bautista No. 125, Suite 201</p>
             <p>Renacimiento,</p>
@@ -142,13 +193,13 @@
         </div>
 
         <div class="footer-section">
-          <h4 class="footer-subtitle">Navigation</h4>
+          <h4 class="footer-subtitle" data-i18n="footer.navigation">Navigation</h4>
           <nav class="footer-nav" aria-label="Footer navigation">
             <ul>
-              <li><a href="/index.html#home">Home</a></li>
-              <li><a href="/index.html#about">About</a></li>
-              <li><a href="/index.html#projects">Projects</a></li>
-              <li><a href="/index.html#contact">Contact</a></li>
+              <li><a href="/index.html#home" data-i18n="footer.home">Home</a></li>
+              <li><a href="/index.html#about" data-i18n="footer.about">About</a></li>
+              <li><a href="/index.html#projects" data-i18n="footer.projects">Projects</a></li>
+              <li><a href="/index.html#contact" data-i18n="footer.contact">Contact</a></li>
             </ul>
           </nav>
         </div>
@@ -156,16 +207,16 @@
 
       <div class="footer-bottom">
         <div class="footer-legal">
-          <p>&copy; 2025 Antoni Group – All rights reserved</p>
+          <p data-i18n="footer.copyright">&copy; 2025 Antoni Group – All rights reserved</p>
           <div class="footer-links">
-            <a href="#" class="footer-link">Terms of Service</a>
-            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link" data-i18n="footer.terms">Terms of Service</a>
+            <a href="#" class="footer-link" data-i18n="footer.privacy">Privacy Policy</a>
           </div>
         </div>
 
         <blockquote class="footer-quote">
-          <p>"Architecture should speak of its time and place, but yearn for timelessness."</p>
-          <cite>— Frank Gehry</cite>
+          <p data-i18n="footer.quote">"Architecture should speak of its time and place, but yearn for timelessness."</p>
+          <cite data-i18n="footer.quoteAuthor">— Frank Gehry</cite>
         </blockquote>
       </div>
     </div>

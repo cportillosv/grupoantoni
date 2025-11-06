@@ -370,12 +370,15 @@ export class Projects {
       return;
     }
 
+    const isMobile = window.innerWidth <= 767.98;
+    const loadingAttr = isMobile ? 'eager' : 'lazy';
+
     const card = document.createElement('article');
     card.className = 'project-card';
     card.innerHTML = `
       <div class="project-image">
         <img src="${projectData.image}" alt="${projectData.imageAlt}"
-             loading="lazy" width="400" height="300">
+             loading="${loadingAttr}" width="400" height="300">
       </div>
       <div class="project-content">
         <h3 class="project-title">${projectData.title}</h3>
