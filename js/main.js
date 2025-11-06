@@ -14,6 +14,8 @@ import { Contact } from './components/contact.js';
 import { Footer } from './components/footer.js';
 import { ScrollAnimations } from './utils/scroll-animations.js';
 import { Analytics } from './utils/analytics.js';
+import { MobileImageOptimizer } from './utils/mobile-image-optimizer.js';
+import { i18n } from './utils/i18n.js';
 
 // ========================================
 // MAIN APPLICATION CLASS
@@ -40,6 +42,10 @@ class App {
       // Initialize analytics
       Analytics.init();
 
+      // Initialize i18n (internationalization)
+      i18n.init();
+      this.setupLanguageSwitch();
+
       // Initialize components
       this.navbar = new Navbar();
       this.hero = new Hero();
@@ -54,8 +60,16 @@ class App {
       // Initialize scroll animations
       this.scrollAnimations = new ScrollAnimations();
 
+      // Initialize mobile image optimizer
+      this.mobileImageOptimizer = new MobileImageOptimizer();
+      this.mobileImageOptimizer.init();
+      this.mobileImageOptimizer.preloadCriticalImages();
+
       // Initialize global event listeners
       this.initGlobalEventListeners();
+
+      // Initialize social media popup
+      this.initSocialMediaPopup();
 
       // Initialize lazy loading
       this.initLazyLoading();
@@ -207,6 +221,68 @@ class App {
   }
 
   /**
+   * Initialize social media popup
+   */
+  initSocialMediaPopup() {
+    const socialLinks = document.querySelectorAll('.social-link');
+    const popup = document.getElementById('socialPopup');
+    const popupOverlay = popup?.querySelector('.social-popup-overlay');
+    const popupClose = popup?.querySelector('.social-popup-close');
+
+    if (!popup) {
+      console.warn('Social popup element not found');
+      return;
+    }
+
+    // Show popup function
+    const showPopup = e => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (popup) {
+        popup.setAttribute('aria-hidden', 'false');
+        // Focus trap: focus on close button
+        if (popupClose) {
+          setTimeout(() => popupClose.focus(), 100);
+        }
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    // Hide popup function
+    const hidePopup = () => {
+      if (popup) {
+        popup.setAttribute('aria-hidden', 'true');
+        // Restore body scroll
+        document.body.style.overflow = '';
+      }
+    };
+
+    // Attach click handlers to all social links
+    socialLinks.forEach(link => {
+      link.addEventListener('click', showPopup);
+    });
+
+    // Close popup when clicking overlay
+    if (popupOverlay) {
+      popupOverlay.addEventListener('click', hidePopup);
+    }
+
+    // Close popup when clicking close button
+    if (popupClose) {
+      popupClose.addEventListener('click', hidePopup);
+    }
+
+    // Close popup on Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && popup.getAttribute('aria-hidden') === 'false') {
+        hidePopup();
+      }
+    });
+  }
+
+  /**
    * Handle reduced motion preference
    */
   handleReducedMotion(mediaQuery) {
@@ -318,6 +394,47 @@ class App {
         imageObserver.observe(img);
       });
     }
+  }
+
+  /**
+   * Setup language switch button
+   */
+  setupLanguageSwitch() {
+    const langSwitch = document.getElementById('langSwitch');
+    const langSwitchMobile = document.getElementById('langSwitchMobile');
+
+    const updateLanguageSwitch = (button, newLang) => {
+      if (button) {
+        const langCodes = button.querySelectorAll('[data-i18n-lang]');
+        langCodes.forEach(code => {
+          if (code.getAttribute('data-i18n-lang') === newLang) {
+            code.classList.add('active');
+          } else {
+            code.classList.remove('active');
+          }
+        });
+      }
+    };
+
+    const handleLanguageSwitch = button => {
+      if (button) {
+        button.addEventListener('click', () => {
+          const newLang = i18n.toggleLanguage();
+          // Update both switches if they exist
+          updateLanguageSwitch(langSwitch, newLang);
+          updateLanguageSwitch(langSwitchMobile, newLang);
+        });
+      }
+    };
+
+    handleLanguageSwitch(langSwitch);
+    handleLanguageSwitch(langSwitchMobile);
+
+    // Subscribe to language changes to update both switches
+    i18n.subscribe(lang => {
+      updateLanguageSwitch(langSwitch, lang);
+      updateLanguageSwitch(langSwitchMobile, lang);
+    });
   }
 
   /**

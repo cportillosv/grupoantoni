@@ -101,6 +101,30 @@
     display: none;
   }
 
+  .nav-lang-switch {
+    display: none !important;
+  }
+
+  .nav-lang-switch-mobile {
+    display: block;
+    width: 100%;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+  }
+
+  .nav-lang-switch-mobile .nav-lang-switch {
+    display: flex !important;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .nav-lang-switch-mobile .lang-switch-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    width: auto;
+  }
+
   .nav-toggle {
     display: block;
   }
@@ -935,6 +959,143 @@
 .mobile-device *:focus {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
+}
+
+/* ========================================
+   MOBILE IMAGE OPTIMIZATION
+   ======================================== */
+@media (max-width: 767.98px) {
+  /* Project Images Optimization */
+  .project-image img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    will-change: transform;
+    transform: translateZ(0);
+    /* Force GPU acceleration */
+    content-visibility: auto;
+  }
+
+  /* About Card Images Optimization */
+  .card-background img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    image-rendering: -webkit-optimize-contrast;
+    will-change: transform;
+    transform: translateZ(0);
+    /* Force GPU acceleration */
+    content-visibility: auto;
+  }
+
+  /* Team Images Optimization */
+  .member-photo img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: top center;
+    image-rendering: -webkit-optimize-contrast;
+    will-change: transform;
+    transform: translateZ(0);
+    /* Force GPU acceleration */
+    content-visibility: auto;
+  }
+
+  /* Lazy loading placeholder styles */
+  img[loading='lazy']:not(.lazy-loaded) {
+    background-color: #f0f0f0;
+    background-image: linear-gradient(90deg, #f0f0f0 0px, #e0e0e0 40px, #f0f0f0 80px);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    min-height: 200px;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Reduce image quality hints for mobile */
+  img[fetchpriority='low'] {
+    content-visibility: auto;
+  }
+
+  /* Optimize image container sizes */
+  .project-image {
+    max-width: 100%;
+    overflow: hidden;
+    contain: layout style paint;
+  }
+
+  .card-background {
+    max-width: 100%;
+    overflow: hidden;
+    contain: layout style paint;
+  }
+
+  .member-photo {
+    max-width: 100%;
+    overflow: hidden;
+    contain: layout style paint;
+  }
+
+  /* Reduce initial image sizes for faster loading */
+  .project-image img {
+    max-height: 300px;
+    width: 100%;
+    height: auto;
+  }
+
+  .card-background img {
+    max-height: 400px;
+    width: 100%;
+    height: auto;
+  }
+
+  .member-photo img {
+    max-height: 200px;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Force smaller image dimensions on mobile */
+  .project-image {
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  .card-background {
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  .member-photo {
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  /* Optimize image loading with better compression hints */
+  img[loading='lazy'] {
+    image-rendering: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+
+  /* Reduce image quality for faster loading */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
 /* Print styles */

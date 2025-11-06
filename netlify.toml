@@ -1,0 +1,56 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+# Redirecciones para páginas HTML (sin .html en la URL)
+[[redirects]]
+  from = "/projects/residential"
+  to = "/projects/residential.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects/commercial"
+  to = "/projects/commercial.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects/tourism"
+  to = "/projects/tourism.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects/urban"
+  to = "/projects/urban.html"
+  status = 200
+
+[[redirects]]
+  from = "/brand/importadora"
+  to = "/brand/importadora.html"
+  status = 200
+
+[[redirects]]
+  from = "/brand/square"
+  to = "/brand/square.html"
+  status = 200
+
+[[redirects]]
+  from = "/brand/capital"
+  to = "/brand/capital.html"
+  status = 200
+
+[[redirects]]
+  from = "/brand/foundation"
+  to = "/brand/foundation.html"
+  status = 200
+
+[[redirects]]
+  from = "/brand/novaterra"
+  to = "/brand/novaterra.html"
+  status = 200
+
+# Fallback para SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+

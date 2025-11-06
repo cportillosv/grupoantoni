@@ -76,26 +76,33 @@
           <img src="/img/ANTONI.png" alt="Antoni logo" class="logo-img" />
         </a>
       </div>
+      <div class="nav-separator">|</div>
       <ul class="nav-menu" role="menubar">
-        <li role="none"><a href="#home" class="nav-link active" role="menuitem">HOME</a></li>
-        <li role="none"><a href="#about" class="nav-link" role="menuitem">ABOUT</a></li>
+        <li role="none"><a href="#home" class="nav-link active" role="menuitem" data-i18n="nav.home">HOME</a></li>
+        <li role="none"><a href="#about" class="nav-link" role="menuitem" data-i18n="nav.about">ABOUT</a></li>
         <li role="none" class="nav-item-dropdown">
-          <a href="#projects" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
+          <a href="#projects" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false"
+            data-i18n="nav.projects">
             PROJECTS
             <span class="dropdown-arrow">▼</span>
           </a>
           <ul class="dropdown-menu" role="menu">
-            <li role="none"><a href="/projects/residential.html" class="dropdown-link" role="menuitem">Residential</a>
+            <li role="none"><a href="/projects/residential.html" class="dropdown-link" role="menuitem"
+                data-i18n="nav.residential">Residential</a>
             </li>
-            <li role="none"><a href="/projects/commercial.html" class="dropdown-link" role="menuitem">Commercial</a>
+            <li role="none"><a href="/projects/commercial.html" class="dropdown-link" role="menuitem"
+                data-i18n="nav.commercial">Commercial</a>
             </li>
-            <li role="none"><a href="/projects/tourism.html" class="dropdown-link" role="menuitem">Tourism</a></li>
-            <li role="none"><a href="/projects/urban.html" class="dropdown-link" role="menuitem">Urban</a></li>
+            <li role="none"><a href="/projects/tourism.html" class="dropdown-link" role="menuitem"
+                data-i18n="nav.tourism">Tourism</a></li>
+            <li role="none"><a href="/projects/urban.html" class="dropdown-link" role="menuitem"
+                data-i18n="nav.urban">Urban</a></li>
           </ul>
         </li>
-        <li role="none"><a href="#team" class="nav-link" role="menuitem">TEAM</a></li>
+        <li role="none"><a href="#team" class="nav-link" role="menuitem" data-i18n="nav.team">TEAM</a></li>
         <li role="none" class="nav-item-dropdown">
-          <a href="#brand" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
+          <a href="#brand" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false"
+            data-i18n="nav.brand">
             OUR BRAND
             <span class="dropdown-arrow">▼</span>
           </a>
@@ -110,8 +117,19 @@
             <li role="none"><a href="/brand/novaterra.html" class="dropdown-link" role="menuitem">Novaterra</a></li>
           </ul>
         </li>
-        <li role="none"><a href="#contact" class="nav-link" role="menuitem">CONTACT</a></li>
+        <li role="none"><a href="#contact" class="nav-link" role="menuitem" data-i18n="nav.contact">CONTACT</a></li>
+        <li role="none" class="nav-lang-switch-mobile">
+          <div class="nav-lang-switch">
+            <button class="lang-switch-btn" id="langSwitchMobile" aria-label="Switch language"
+              title="Cambiar idioma / Switch language">
+              <span class="lang-code" data-i18n-lang="en">🇬🇧</span>
+              <span class="lang-separator">/</span>
+              <span class="lang-code" data-i18n-lang="es">🇪🇸</span>
+            </button>
+          </div>
+        </li>
       </ul>
+      <div class="nav-separator">|</div>
       <div class="nav-social">
         <a href="#" class="social-link linkedin" aria-label="LinkedIn">
           <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -138,6 +156,15 @@
           </svg>
         </a>
       </div>
+      <div class="nav-separator">|</div>
+      <div class="nav-lang-switch">
+        <button class="lang-switch-btn" id="langSwitch" aria-label="Switch language"
+          title="Cambiar idioma / Switch language">
+          <span class="lang-code" data-i18n-lang="en">🇬🇧</span>
+          <span class="lang-separator">/</span>
+          <span class="lang-code" data-i18n-lang="es">🇪🇸</span>
+        </button>
+      </div>
       <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
         <span class="hamburger"></span>
         <span class="hamburger"></span>
@@ -154,14 +181,14 @@
         <div class="hero-slideshow">
           <div class="hero-slide active">
             <img
-              src="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_0 (1).png"
-              alt="Contemporary multi-story residential complex with green roofs" loading="eager" width="1920"
-              height="1080" />
+              src="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2.png"
+              alt="Modern luxury residential building with glass facades" loading="eager" width="1920" height="1080" />
           </div>
           <div class="hero-slide">
             <img
-              src="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2.png"
-              alt="Modern luxury residential building with glass facades" loading="lazy" width="1920" height="1080" />
+              src="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_0 (1).png"
+              alt="Contemporary multi-story residential complex with green roofs" loading="lazy" width="1920"
+              height="1080" />
           </div>
           <div class="hero-slide">
             <img src="/img/FACHADA EN PERSPETIVA.png" alt="Modern two-story residential building with minimalist design"
@@ -171,10 +198,11 @@
         <div class="hero-overlay"></div>
       </div>
       <div class="hero-content">
-        <h1 id="hero-title" class="hero-title-subtle">Spaces with purpose,<br>designed to inspire.</h1>
+        <h1 id="hero-title" class="hero-title-subtle" data-i18n-html="hero.title">Spaces with purpose,<br>designed to
+          inspire.</h1>
         <div class="hero-cta">
-          <p class="hero-cta-text">Ready to take the first step?</p>
-          <a href="#contact" class="btn btn-primary hero-cta-button">Get Started</a>
+          <p class="hero-cta-text" data-i18n="hero.ctaText">Ready to take the first step?</p>
+          <a href="#contact" class="btn btn-primary hero-cta-button" data-i18n="hero.ctaButton">Get Started</a>
         </div>
       </div>
     </section>
@@ -184,10 +212,10 @@
       <div class="container">
         <!-- Header -->
         <div class="about-header">
-          <h2 id="about-title" class="about-title">
+          <h2 id="about-title" class="about-title" data-i18n-html="about.title">
             What <span class="about-title-highlight">defines</span> us.
           </h2>
-          <p class="about-subtitle">A firm mission, a clear vision, solid values.</p>
+          <p class="about-subtitle" data-i18n="about.subtitle">A firm mission, a clear vision, solid values.</p>
         </div>
 
         <!-- Cards Grid -->
@@ -195,13 +223,14 @@
           <!-- Mission Card -->
           <div class="about-card mission-card" data-animate="fade-up">
             <div class="card-background">
-              <img src="/img/about/mission-bg.png" alt="Mission background" loading="lazy" />
+              <img src="/img/about/mission-bg.png" alt="Mission background" loading="lazy" decoding="async"
+                fetchpriority="low" />
               <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-              <h3 class="card-title">Mission</h3>
+              <h3 class="card-title" data-i18n="about.mission.title">Mission</h3>
               <div class="card-divider"></div>
-              <p class="card-text">
+              <p class="card-text" data-i18n="about.mission.text">
                 We are a company specialized in design and construction, committed to delivering
                 innovative, bespoke solutions that combine creativity, functionality, and
                 efficiency. We focus on understanding our clients' needs to ensure high-quality
@@ -213,13 +242,14 @@
           <!-- Vision Card -->
           <div class="about-card vision-card" data-animate="fade-up" data-delay="100">
             <div class="card-background">
-              <img src="/img/about/vision-bg.png" alt="Vision background" loading="lazy" />
+              <img src="/img/about/vision-bg.png" alt="Vision background" loading="lazy" decoding="async"
+                fetchpriority="low" />
               <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-              <h3 class="card-title">Vision</h3>
+              <h3 class="card-title" data-i18n="about.vision.title">Vision</h3>
               <div class="card-divider"></div>
-              <p class="card-text">
+              <p class="card-text" data-i18n="about.vision.text">
                 We aim to become a benchmark in our industry, driving national development with
                 innovative and viable solutions in the regional, urban, and architectural fields,
                 while upholding high standards of professionalism, respecting the environment, and
@@ -231,13 +261,14 @@
           <!-- Values Card -->
           <div class="about-card values-card" data-animate="fade-up" data-delay="200">
             <div class="card-background">
-              <img src="/img/about/values-bg.png" alt="Values background" loading="lazy" />
+              <img src="/img/about/values-bg.png" alt="Values background" loading="lazy" decoding="async"
+                fetchpriority="low" />
               <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-              <h3 class="card-title">Values</h3>
+              <h3 class="card-title" data-i18n="about.values.title">Values</h3>
               <div class="card-divider"></div>
-              <div class="values-list">
+              <div class="values-list" data-i18n-values="about.values.items">
                 <span class="value-item">Integrity</span>
                 <span class="value-item">Excellence</span>
                 <span class="value-item">Flexibility</span>
@@ -260,10 +291,10 @@
         <div class="quote-overlay"></div>
       </div>
       <div class="quote-content">
-        <blockquote class="quote-text">
+        <blockquote class="quote-text" data-i18n-html="quote.text">
           "Architecture should speak of its time and place,<br />
           yet strive for timelessness."
-          <cite class="quote-author">— Frank Gehry</cite>
+          <cite class="quote-author" data-i18n="quote.author">— Frank Gehry</cite>
         </blockquote>
       </div>
     </section>
@@ -272,10 +303,10 @@
     <section id="projects" class="projects" aria-labelledby="projects-title">
       <div class="container">
         <header class="projects-header">
-          <h2 id="projects-title" class="projects-title">
+          <h2 id="projects-title" class="projects-title" data-i18n-html="projects.title">
             Our <span class="projects-title-highlight">projects.</span>
           </h2>
-          <p class="projects-subtitle">
+          <p class="projects-subtitle" data-i18n="projects.subtitle">
             A selection of works that reflect our experience and commitment.
           </p>
         </header>
@@ -285,17 +316,20 @@
           <div class="project-item" data-animate="fade-up">
             <div class="project-image">
               <img src="/img/PERSPECTIVAS_720Foto-enhanced.png"
-                alt="Romana Condos - Modern residential complex aerial view" loading="lazy" />
+                alt="Romana Condos - Modern residential complex aerial view" loading="lazy" decoding="async"
+                fetchpriority="low" />
             </div>
             <div class="project-content">
-              <h3 class="project-name">Romana Condos</h3>
-              <p class="project-location">Location — La Romana, Dominican Republic</p>
-              <p class="project-description">
+              <h3 class="project-name" data-i18n="projects.romanaCondos.name">Romana Condos</h3>
+              <p class="project-location" data-i18n="projects.romanaCondos.location">Location — La Romana, Dominican
+                Republic</p>
+              <p class="project-description" data-i18n="projects.romanaCondos.description">
                 Residential development in La Romana featuring three modern buildings ranging from
                 70 m² to 95 m², with one- and two-bedroom apartments (four per floor), surrounded
                 by gardens, a central park, swimming pool, walking paths, and recreational areas.
               </p>
-              <a href="#" class="project-link">Learn more →</a>
+              <a href="/projects/residential.html" class="project-link" data-i18n="projects.romanaCondos.link">Learn
+                more →</a>
             </div>
           </div>
 
@@ -303,16 +337,18 @@
           <div class="project-item project-item-reverse" data-animate="fade-up" data-delay="100">
             <div class="project-image">
               <img src="/img/OJALA.jpg" alt="Mountain Bungalows - Modern mountain cabin retreat in lush forest"
-                loading="lazy" />
+                loading="lazy" decoding="async" fetchpriority="low" />
             </div>
             <div class="project-content">
-              <h3 class="project-name">Mountain Bungalows</h3>
-              <p class="project-location">Location — San José de Ocoa, Dominican Republic</p>
-              <p class="project-description">
+              <h3 class="project-name" data-i18n="projects.mountainBungalows.name">Mountain Bungalows</h3>
+              <p class="project-location" data-i18n="projects.mountainBungalows.location">Location — San José de Ocoa,
+                Dominican Republic</p>
+              <p class="project-description" data-i18n="projects.mountainBungalows.description">
                 A set of villas for AirBnb in the Tatón mountains with spectacular views of the
                 San José de Ocoa Valley — a private client project.
               </p>
-              <a href="#" class="project-link">Learn more →</a>
+              <a href="/projects/tourism.html" class="project-link" data-i18n="projects.mountainBungalows.link">Learn
+                more →</a>
             </div>
           </div>
         </div>
@@ -323,10 +359,10 @@
     <section id="team" class="team" aria-labelledby="team-title">
       <div class="container">
         <header class="section-header">
-          <h2 id="team-title" class="section-title">
+          <h2 id="team-title" class="section-title" data-i18n-html="team.title">
             Our team, <span class="highlight">strength.</span>
           </h2>
-          <p class="section-tagline">
+          <p class="section-tagline" data-i18n="team.tagline">
             We have highly trained professionals committed to delivering efficient solutions and
             excellent results in every project.
           </p>
@@ -342,12 +378,13 @@
             <article class="team-member featured" data-animate="fade-up">
               <div class="member-photo">
                 <img src="/img/Team/optimized-jpg/Miguel.jpg" alt="Miguel Saviñón Antoni, CEO" loading="lazy"
-                  decoding="async" width="200" height="200" />
+                  decoding="async" fetchpriority="low" width="200" height="200" />
               </div>
               <h3 class="member-name">
-                Miguel Saviñón Antoni, <span class="member-title">CEO, Intl Assoc. AIA, Senior Architect</span>
+                <span data-i18n="team.members.miguel.name">Miguel Saviñón Antoni,</span> <span class="member-title"
+                  data-i18n="team.members.miguel.title">CEO, Intl Assoc. AIA, Senior Architect</span>
               </h3>
-              <p class="member-bio">
+              <p class="member-bio" data-i18n="team.members.miguel.bio">
                 40 years of professional experience in projects of diverse typologies, including
                 educational, healthcare, residential, commercial, and recreational. Currently
                 pursuing an MBA in International Relations & Diplomacy in the United Kingdom.
@@ -357,12 +394,13 @@
             <article class="team-member featured" data-animate="fade-up" data-delay="100">
               <div class="member-photo">
                 <img src="/img/Team/optimized-jpg/Rafael.jpg" alt="Rafael Martinez Solimán, MS" loading="lazy"
-                  decoding="async" width="200" height="200" />
+                  decoding="async" fetchpriority="low" width="200" height="200" />
               </div>
               <h3 class="member-name">
-                Rafael Martinez Solimán, <span class="member-title">MS, Construction Manager</span>
+                <span data-i18n="team.members.rafael.name">Rafael Martinez Solimán,</span> <span class="member-title"
+                  data-i18n="team.members.rafael.title">MS, Construction Manager</span>
               </h3>
-              <p class="member-bio">
+              <p class="member-bio" data-i18n="team.members.rafael.bio">
                 25 years of professional experience in heavy construction (roads, ports, dams) and
                 mid- to high-rise buildings (6 to 20 floors), with expertise in design, budgeting,
                 planning, and construction.
@@ -373,13 +411,13 @@
               <div class="member-photo">
                 <img src="/img/Team/optimized-jpg/Zoraida.jpg"
                   alt="Arch. Zoraida Álvarez de la Cruz, MSc - Arquitecta Senior" loading="lazy" decoding="async"
-                  width="300" height="300" />
+                  fetchpriority="low" width="300" height="300" />
               </div>
               <h3 class="member-name">
-                Zoraida Álvarez de la Cruz,
-                <span class="member-title">MS, Senior Architect</span>
+                <span data-i18n="team.members.zoraida.name">Zoraida Álvarez de la Cruz,</span>
+                <span class="member-title" data-i18n="team.members.zoraida.title">MS, Senior Architect</span>
               </h3>
-              <p class="member-bio">
+              <p class="member-bio" data-i18n="team.members.zoraida.bio">
                 Senior architect with extensive experience in design and project management,
                 ensuring seamless execution and delivery of complex construction projects with
                 attention to detail and quality.
@@ -389,13 +427,13 @@
             <article class="team-member featured" data-animate="fade-up" data-delay="200">
               <div class="member-photo">
                 <img src="/img/Team/optimized-jpg/Frankelys.jpg" alt=" Frankelys Pérez de los Santos" loading="lazy"
-                  decoding="async" width="200" height="200" />
+                  decoding="async" fetchpriority="low" width="200" height="200" />
               </div>
               <h3 class="member-name">
-                Frankelys Pérez de los Santos,
-                <span class="member-title">CPA, Head of Accounting</span>
+                <span data-i18n="team.members.frankelys.name">Frankelys Pérez de los Santos,</span>
+                <span class="member-title" data-i18n="team.members.frankelys.title">CPA, Head of Accounting</span>
               </h3>
-              <p class="member-bio">
+              <p class="member-bio" data-i18n="team.members.frankelys.bio">
                 Financial specialist ensuring accurate accounting practices and financial
                 management for all construction projects and company operations.
               </p>
@@ -404,13 +442,13 @@
             <article class="team-member featured" data-animate="fade-up" data-delay="400">
               <div class="member-photo">
                 <img src="/img/Team/optimized-jpg/Edwin.jpg" alt=" Eng. Edwin Cadena Barranco, MSc" loading="lazy"
-                  decoding="async" width="300" height="300" />
+                  decoding="async" fetchpriority="low" width="300" height="300" />
               </div>
               <h3 class="member-name">
-                Edwin Cadena Barranco,
-                <span class="member-title">MS, Structural Engineer</span>
+                <span data-i18n="team.members.edwin.name">Edwin Cadena Barranco,</span>
+                <span class="member-title" data-i18n="team.members.edwin.title">MS, Structural Engineer</span>
               </h3>
-              <p class="member-bio">
+              <p class="member-bio" data-i18n="team.members.edwin.bio">
                 Structural engineer with extensive experience in building design and construction,
                 ensuring safety and structural integrity in all projects.
               </p>
@@ -419,10 +457,12 @@
             <article class="team-member featured" data-animate="fade-up" data-delay="500">
               <div class="member-photo">
                 <img src="/img/Team/optimized-jpg/Christopher.jpg" alt=" Christopher" loading="lazy" decoding="async"
-                  width="300" height="300" />
+                  fetchpriority="low" width="300" height="300" />
               </div>
-              <h3 class="member-name">Christopher, <span class="member-title">Project Architect</span></h3>
-              <p class="member-bio">
+              <h3 class="member-name"><span data-i18n="team.members.christopher.name">Christopher Sánchez Báez,</span>
+                <span class="member-title" data-i18n="team.members.christopher.title">Project Architect</span>
+              </h3>
+              <p class="member-bio" data-i18n="team.members.christopher.bio">
                 Licensed architect with 5 years of experience in the design and supervision of projects of a variety of
                 building types.
                 Currently pursuing a MS in Construction Administration.
@@ -441,8 +481,8 @@
     <section id="brand" class="brand" aria-labelledby="brand-title">
       <div class="container">
         <header class="brand-header">
-          <h2 id="brand-title" class="brand-title">
-            Our brand <span class="highlight">ecosystem.</span>
+          <h2 id="brand-title" class="brand-title" data-i18n-html="brand.title">
+            Our <span class="brand-title-highlight">brands.</span>
           </h2>
           <div class="brand-separator"></div>
         </header>
@@ -511,55 +551,61 @@
           <!-- Contact Form -->
           <div class="contact-form-section">
             <header class="contact-header">
-              <h2 id="contact-title" class="contact-title">
+              <h2 id="contact-title" class="contact-title" data-i18n-html="contact.title">
                 Ready to take <span class="contact-title-highlight">the first step?</span>
               </h2>
-              <p class="contact-subtitle">
+              <p class="contact-subtitle" data-i18n="contact.subtitle">
                 Fill out the form and our team will get in touch to guide you through your
                 project. You can also schedule a direct consultation or contact us via WhatsApp.
               </p>
             </header>
             <form class="contact-form" id="contactForm" novalidate>
               <div class="form-group">
-                <label for="fullName" class="form-label">Full name <span class="required">*</span></label>
+                <label for="fullName" class="form-label"><span data-i18n="contact.form.fullName">Full name</span> <span
+                    class="required">*</span></label>
                 <input type="text" id="fullName" name="fullName" class="form-input" placeholder="John Doe Schmo"
                   required aria-describedby="fullName-error" />
                 <div id="fullName-error" class="form-error" role="alert"></div>
               </div>
 
               <div class="form-group">
-                <label for="email" class="form-label">Email <span class="required">*</span></label>
+                <label for="email" class="form-label"><span data-i18n="contact.form.email">Email</span> <span
+                    class="required">*</span></label>
                 <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required
                   aria-describedby="email-error" />
                 <div id="email-error" class="form-error" role="alert"></div>
               </div>
 
               <div class="form-group">
-                <label for="phone" class="form-label">Phone number (opcional)</label>
-                <input type="tel" id="phone" name="phone" class="form-input" placeholder="+_ (___) ___-____"
+                <label for="phone" class="form-label" data-i18n="contact.form.phone">Phone number (optional)</label>
+                <input type="tel" id="phone" name="phone" class="form-input"
+                  data-i18n-placeholder="contact.form.phonePlaceholder" placeholder="+_ (___) ___-____"
                   aria-describedby="phone-help" />
-                <div id="phone-help" class="form-help">
+                <div id="phone-help" class="form-help" data-i18n="contact.form.phoneHelp">
                   Optional - We'll use this to contact you directly
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="description" class="form-label">Brief description</label>
+                <label for="description" class="form-label" data-i18n="contact.form.description">Brief
+                  description</label>
                 <textarea id="description" name="description" class="form-textarea" rows="5"
+                  data-i18n-placeholder="contact.form.descriptionPlaceholder"
                   placeholder="Add a more detailed description or comments..."
                   aria-describedby="description-error description-help"></textarea>
-                <div id="description-help" class="form-help">280-1000 characters</div>
+                <div id="description-help" class="form-help" data-i18n="contact.form.descriptionHelp">280-1000
+                  characters</div>
                 <div id="description-error" class="form-error" role="alert"></div>
               </div>
 
               <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="submit" class="btn btn-primary" data-i18n="contact.form.submit">Send Message</button>
                 <a href="https://wa.me/18298930121" target="_blank" rel="noopener" class="btn btn-whatsapp">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path
                       d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
                   </svg>
-                  Chat on WhatsApp
+                  <span data-i18n="contact.form.whatsapp">Chat on WhatsApp</span>
                 </a>
               </div>
             </form>
@@ -581,19 +627,20 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
-          <h3 class="footer-title">Ready to Meet?</h3>
+          <h3 class="footer-title" data-i18n="footer.readyToMeet">Ready to Meet?</h3>
           <div class="footer-contact">
-            <p><strong>Phone:</strong> <a href="tel:+18298930121">+1 (829) 893-0121</a></p>
+            <p><strong data-i18n="footer.phone">Phone:</strong> <a href="tel:+18298930121">+1 (829) 893-0121</a></p>
             <p>
-              <strong>Email:</strong>
+              <strong data-i18n="footer.email">Email:</strong>
               <a href="mailto:info@grupoantoni.com">info@grupoantoni.com</a>
             </p>
-            <p><strong>Hours:</strong> Monday to Friday, 9:00am – 6:00pm</p>
+            <p><strong data-i18n="footer.hours">Hours:</strong> <span data-i18n="footer.hoursValue">Monday to Friday,
+                9:00am – 6:00pm</span></p>
           </div>
         </div>
 
         <div class="footer-section">
-          <h4 class="footer-subtitle">Address</h4>
+          <h4 class="footer-subtitle" data-i18n="footer.address">Address</h4>
           <address class="footer-address">
             <p>San Juan Bautista No. 125, Suite 201</p>
             <p>Renacimiento,</p>
@@ -604,13 +651,13 @@
 
 
         <div class="footer-section">
-          <h4 class="footer-subtitle">Navigation</h4>
+          <h4 class="footer-subtitle" data-i18n="footer.navigation">Navigation</h4>
           <nav class="footer-nav" aria-label="Footer navigation">
             <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#home" data-i18n="footer.home">Home</a></li>
+              <li><a href="#about" data-i18n="footer.about">About</a></li>
+              <li><a href="#projects" data-i18n="footer.projects">Projects</a></li>
+              <li><a href="#contact" data-i18n="footer.contact">Contact</a></li>
             </ul>
           </nav>
         </div>
@@ -618,20 +665,31 @@
 
       <div class="footer-bottom">
         <div class="footer-legal">
-          <p>&copy; 2025 Antoni Group – All rights reserved</p>
+          <p data-i18n="footer.copyright">&copy; 2025 Antoni Group – All rights reserved</p>
           <div class="footer-links">
-            <a href="#" class="footer-link">Terms of Service</a>
-            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link" data-i18n="footer.terms">Terms of Service</a>
+            <a href="#" class="footer-link" data-i18n="footer.privacy">Privacy Policy</a>
           </div>
         </div>
 
         <blockquote class="footer-quote">
-          <p>"Architecture should speak of its time and place, but yearn for timelessness."</p>
-          <cite>— Frank Gehry</cite>
+          <p data-i18n="footer.quote">"Architecture should speak of its time and place, but yearn for timelessness."</p>
+          <cite data-i18n="footer.quoteAuthor">— Frank Gehry</cite>
         </blockquote>
       </div>
     </div>
   </footer>
+
+  <!-- Social Media Popup -->
+  <div id="socialPopup" class="social-popup" role="dialog" aria-labelledby="socialPopupTitle" aria-hidden="true">
+    <div class="social-popup-overlay"></div>
+    <div class="social-popup-content">
+      <button class="social-popup-close" aria-label="Close popup">&times;</button>
+      <h3 id="socialPopupTitle" class="social-popup-title" data-i18n="social.comingSoon">We're working on this!</h3>
+      <p class="social-popup-message" data-i18n="social.stayTuned">Stay tuned for updates.</p>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script type="module" src="/js/main.js"></script>
 </body>
