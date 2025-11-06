@@ -19,6 +19,9 @@ export default defineConfig(({ mode }) => ({
         'projects/commercial': resolve(__dirname, 'projects/commercial.html'),
         'projects/tourism': resolve(__dirname, 'projects/tourism.html'),
         'projects/urban': resolve(__dirname, 'projects/urban.html'),
+        'projects/vivienda': resolve(__dirname, 'projects/vivienda.html'),
+        'projects/hospitalario': resolve(__dirname, 'projects/hospitalario.html'),
+        'projects/maharishi-vastu': resolve(__dirname, 'projects/maharishi-vastu.html'),
         'brand/importadora': resolve(__dirname, 'brand/importadora.html'),
         'brand/square': resolve(__dirname, 'brand/square.html'),
         'brand/capital': resolve(__dirname, 'brand/capital.html'),
@@ -70,12 +73,6 @@ export default defineConfig(({ mode }) => ({
           }
           return `assets/[name]-[hash].${ext}`;
         }
-      }
-    },
-    terserOptions: {
-      compress: {
-        drop_console: mode === 'production',
-        drop_debugger: mode === 'production'
       }
     }
   },
