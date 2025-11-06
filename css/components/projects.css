@@ -228,6 +228,15 @@
   .project-description {
     font-size: 0.875rem;
   }
+
+  .project-content {
+    text-align: center;
+  }
+
+  .project-link {
+    margin: 0 auto;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 480px) {
