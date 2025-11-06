@@ -24,6 +24,21 @@
   status = 200
 
 [[redirects]]
+  from = "/projects/vivienda"
+  to = "/projects/vivienda.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects/hospitalario"
+  to = "/projects/hospitalario.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects/maharishi-vastu"
+  to = "/projects/maharishi-vastu.html"
+  status = 200
+
+[[redirects]]
   from = "/brand/importadora"
   to = "/brand/importadora.html"
   status = 200
