@@ -25,47 +25,134 @@ export class MobileImageOptimizer {
   }
 
   /**
-   * Load all images immediately on mobile (no lazy loading)
+   * Load images intelligently on mobile: critical first, then progressive
+   * AGGRESSIVE: Only load images when user scrolls to them
    */
   loadAllImagesImmediately() {
-    // Get all images in the document
-    const allImages = document.querySelectorAll('img');
+    // CRITICAL: Load ONLY hero and logo images first - nothing else!
+    const criticalImages = document.querySelectorAll(
+      '.hero-slide.active img, .hero-slide:first-child img, .logo-img, .nav-logo img'
+    );
 
-    allImages.forEach(img => {
-      // Remove lazy loading attribute and set to eager
-      if (img.hasAttribute('loading') && img.getAttribute('loading') === 'lazy') {
-        img.setAttribute('loading', 'eager');
-      } else if (!img.hasAttribute('loading')) {
-        img.setAttribute('loading', 'eager');
-      }
-
-      // Remove fetchpriority to allow normal priority
-      img.removeAttribute('fetchpriority');
-
-      // If image has data-src, load it immediately
+    criticalImages.forEach(img => {
+      img.setAttribute('loading', 'eager');
+      img.setAttribute('fetchpriority', 'high');
       if (img.dataset.src) {
         img.src = img.dataset.src;
         img.removeAttribute('data-src');
       }
-
-      // If image was prepared for lazy loading, restore original src
-      if (img.dataset.originalSrc) {
-        img.src = img.dataset.originalSrc;
-        img.removeAttribute('data-original-src');
-        img.classList.add('lazy-loaded');
-        img.style.backgroundColor = '';
-        img.style.minHeight = '';
-        img.style.opacity = '1';
-      }
-
-      // Ensure image is visible and remove any lazy loading styles
-      img.style.opacity = '1';
-      img.style.transition = '';
-      img.style.backgroundColor = '';
-      img.style.minHeight = '';
-
       this.optimizedImages.add(img);
     });
+
+    // AGGRESSIVE LAZY LOADING: Force ALL other images to lazy load
+    // Only load when user scrolls close to them (50px margin, not 200px)
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+
+              // Only load when actually visible or very close
+              img.setAttribute('loading', 'lazy');
+
+              // Keep fetchpriority low for non-critical images
+              if (
+                !img.hasAttribute('fetchpriority') ||
+                img.getAttribute('fetchpriority') !== 'high'
+              ) {
+                img.setAttribute('fetchpriority', 'low');
+              }
+
+              // Mark image as loading
+              img.classList.add('loading');
+
+              // If image has data-src, load it
+              if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                img.classList.add('lazy-loaded');
+              } else if (img.dataset.originalSrc) {
+                // Restore original src if it was stored
+                img.src = img.dataset.originalSrc;
+                img.removeAttribute('data-original-src');
+                img.classList.add('lazy-loaded');
+              } else if (img.src && !img.complete) {
+                // Image has src but hasn't loaded yet - trigger load
+                img.classList.add('lazy-loaded');
+              } else if (img.complete) {
+                // Image already loaded
+                img.classList.add('lazy-loaded');
+              }
+
+              // Ensure image is visible when loaded
+              img.onload = () => {
+                img.style.opacity = '1';
+                img.classList.remove('loading');
+                img.classList.add('lazy-loaded');
+              };
+
+              img.onerror = () => {
+                img.style.opacity = '1';
+                img.classList.remove('loading');
+              };
+
+              // If already loaded, show immediately
+              if (img.complete && img.naturalHeight !== 0) {
+                img.style.opacity = '1';
+                img.classList.remove('loading');
+              } else {
+                img.style.opacity = '0';
+              }
+
+              this.optimizedImages.add(img);
+              imageObserver.unobserve(img);
+            }
+          });
+        },
+        {
+          // VERY AGGRESSIVE: Only load when image is 20px away
+          // This prevents loading images that are far from viewport
+          rootMargin: '20px 0px',
+          threshold: 0.2 // Need 20% visibility - more strict
+        }
+      );
+
+      // Force ALL non-critical images to lazy loading
+      const allImages = document.querySelectorAll('img');
+      allImages.forEach(img => {
+        // Skip already processed critical images
+        if (!this.optimizedImages.has(img)) {
+          // Force lazy loading on all non-critical images
+          img.setAttribute('loading', 'lazy');
+          img.setAttribute('fetchpriority', 'low');
+
+          // Store original src in data attribute if not already stored
+          if (img.src && !img.dataset.originalSrc && !img.dataset.src) {
+            img.dataset.originalSrc = img.src;
+          }
+
+          // Observe the image - it will load when it enters viewport
+          imageObserver.observe(img);
+        }
+      });
+
+      this.imageObserver = imageObserver;
+    } else {
+      // Fallback: load all images if IntersectionObserver not supported
+      const allImages = document.querySelectorAll('img');
+      allImages.forEach(img => {
+        if (!this.optimizedImages.has(img)) {
+          img.setAttribute('loading', 'lazy');
+          img.setAttribute('fetchpriority', 'low');
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+          }
+          this.optimizedImages.add(img);
+        }
+      });
+    }
   }
 
   /**

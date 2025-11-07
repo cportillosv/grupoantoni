@@ -36,34 +36,25 @@ class App {
 
   async initializeApp() {
     try {
-      // Extract logo color and set CSS variables
-      await this.extractLogoAccentColor();
+      const isMobile = window.innerWidth <= 767.98;
 
-      // Initialize analytics
-      Analytics.init();
+      // CRITICAL: Initialize only essential components first for mobile
+      this.navbar = new Navbar();
+      this.hero = new Hero();
 
-      // Initialize i18n (internationalization)
+      // Initialize i18n (internationalization) - needed for content
       i18n.init();
       this.setupLanguageSwitch();
 
-      // Initialize components
-      this.navbar = new Navbar();
-      this.hero = new Hero();
-      this.about = new About();
-      this.services = new Services();
-      this.projects = new Projects();
-      this.brand = new Brand();
-      this.team = new Team();
-      this.contact = new Contact();
-      this.footer = new Footer();
+      // Initialize mobile image optimizer FIRST on mobile
+      if (isMobile) {
+        this.mobileImageOptimizer = new MobileImageOptimizer();
+        this.mobileImageOptimizer.init();
+        this.mobileImageOptimizer.preloadCriticalImages();
+      }
 
-      // Initialize scroll animations
-      this.scrollAnimations = new ScrollAnimations();
-
-      // Initialize mobile image optimizer
-      this.mobileImageOptimizer = new MobileImageOptimizer();
-      this.mobileImageOptimizer.init();
-      this.mobileImageOptimizer.preloadCriticalImages();
+      // Initialize lazy loading (mobile-optimized)
+      this.initLazyLoading();
 
       // Initialize global event listeners
       this.initGlobalEventListeners();
@@ -71,8 +62,81 @@ class App {
       // Initialize social media popup
       this.initSocialMediaPopup();
 
-      // Initialize lazy loading
-      this.initLazyLoading();
+      // DEFER non-critical components on mobile
+      if (isMobile) {
+        // Use requestIdleCallback or setTimeout to defer non-critical components
+        const deferInit = (callback, delay = 0) => {
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(callback, { timeout: delay + 100 });
+          } else {
+            setTimeout(callback, delay);
+          }
+        };
+
+        // Initialize critical components immediately
+        this.footer = new Footer();
+
+        // Defer non-critical components
+        deferInit(() => {
+          this.about = new About();
+        }, 100);
+
+        deferInit(() => {
+          this.services = new Services();
+        }, 200);
+
+        deferInit(() => {
+          this.projects = new Projects();
+        }, 300);
+
+        deferInit(() => {
+          this.brand = new Brand();
+        }, 400);
+
+        deferInit(() => {
+          this.team = new Team();
+        }, 500);
+
+        deferInit(() => {
+          this.contact = new Contact();
+        }, 600);
+
+        deferInit(() => {
+          this.scrollAnimations = new ScrollAnimations();
+        }, 700);
+
+        // Defer analytics and logo color extraction (very heavy)
+        deferInit(() => {
+          Analytics.init();
+        }, 1000);
+
+        deferInit(() => {
+          this.extractLogoAccentColor().catch(() => {
+            // Silently fail if logo color extraction fails
+          });
+        }, 1500);
+      } else {
+        // Desktop: initialize everything normally
+        // Extract logo color and set CSS variables
+        this.extractLogoAccentColor().catch(() => {
+          // Silently fail if logo color extraction fails
+        });
+
+        // Initialize analytics
+        Analytics.init();
+
+        // Initialize components
+        this.about = new About();
+        this.services = new Services();
+        this.projects = new Projects();
+        this.brand = new Brand();
+        this.team = new Team();
+        this.contact = new Contact();
+        this.footer = new Footer();
+
+        // Initialize scroll animations
+        this.scrollAnimations = new ScrollAnimations();
+      }
 
       console.log('Antoni app initialized successfully');
     } catch (error) {
@@ -82,10 +146,20 @@ class App {
 
   /**
    * Extract dominant color from logo and set CSS variables
+   * Optimized: Uses requestIdleCallback on mobile to avoid blocking
    */
   async extractLogoAccentColor() {
     try {
       const logoUrl = '/img/ANTONI.png';
+
+      // On mobile, use a lighter approach or skip entirely
+      const isMobile = window.innerWidth <= 767.98;
+      if (isMobile) {
+        // On mobile, use fallback colors immediately to avoid blocking
+        // Color extraction can happen later if needed
+        return;
+      }
+
       const color = await this.getImageDominantColor(logoUrl);
 
       if (color) {
@@ -366,22 +440,18 @@ class App {
   }
 
   /**
-   * Initialize lazy loading for images (desktop only)
+   * Initialize lazy loading for images (optimized for mobile)
    */
   initLazyLoading() {
-    // Skip lazy loading on mobile - images load immediately
     const isMobile = window.innerWidth <= 767.98;
+
+    // On mobile, MobileImageOptimizer handles image loading
+    // This function only handles desktop lazy loading
     if (isMobile) {
-      // Load all images with data-src immediately on mobile
-      document.querySelectorAll('img[data-src]').forEach(img => {
-        img.src = img.dataset.src;
-        img.removeAttribute('data-src');
-        img.setAttribute('loading', 'eager');
-      });
-      return;
+      return; // MobileImageOptimizer handles this
     }
 
-    // Desktop: use lazy loading
+    // Desktop: use lazy loading with IntersectionObserver
     if ('IntersectionObserver' in window) {
       const imageObserver = new IntersectionObserver(
         entries => {
