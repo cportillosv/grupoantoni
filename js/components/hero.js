@@ -116,6 +116,13 @@ export class Hero {
       return;
     }
 
+    // Skip typewriter effect on mobile for faster rendering
+    const isMobile = window.innerWidth <= 767.98;
+    if (isMobile) {
+      title.style.opacity = '1';
+      return;
+    }
+
     const text = title.textContent;
     title.textContent = '';
     title.style.opacity = '1';
