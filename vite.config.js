@@ -79,7 +79,12 @@ export default defineConfig(({ mode }) => ({
   server: {
     port: 3001,
     open: true,
-    cors: true
+    cors: true,
+    hmr: {
+      protocol: 'ws',
+      host: 'localhost',
+      port: 3001
+    }
   },
   preview: {
     port: 4173,

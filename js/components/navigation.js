@@ -138,7 +138,8 @@ export class Navigation {
     this.isMenuOpen = true;
     this.mobileMenu.classList.add('active');
     this.menuToggle.setAttribute('aria-expanded', 'true');
-    this.menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+    this.menuToggle.innerHTML =
+      '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
 
     // Prevent body scroll
     document.body.style.overflow = 'hidden';
@@ -159,7 +160,8 @@ export class Navigation {
     this.isMenuOpen = false;
     this.mobileMenu.classList.remove('active');
     this.menuToggle.setAttribute('aria-expanded', 'false');
-    this.menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    this.menuToggle.innerHTML =
+      '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
 
     // Restore body scroll
     document.body.style.overflow = '';

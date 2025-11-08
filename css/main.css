@@ -2,29 +2,25 @@
    GRUPO ANTONI - MAIN STYLES
    ======================================== */
 
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-/* Import Font Awesome */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+/* Google Fonts and Font Awesome are loaded in HTML head - removed from here to prevent render blocking */
 
 /* Import utility styles first */
-@import 'utils/reset.css';
-@import 'utils/typography.css';
-@import 'utils/responsive.css';
-@import 'mobile-responsive.css';
+@import './utils/reset.css';
+@import './utils/typography.css';
+@import './utils/responsive.css';
+@import './mobile-responsive.css';
 
 /* Import component styles */
-@import 'components/header.css';
-@import 'components/hero.css';
-@import 'components/quote.css';
-@import 'components/quote-section.css';
-@import 'components/projects.css';
-@import 'components/about.css';
-@import 'components/brand.css';
-@import 'components/team.css';
-@import 'components/contact.css';
-@import 'components/footer.css';
+@import './components/header.css';
+@import './components/hero.css';
+@import './components/quote.css';
+@import './components/quote-section.css';
+@import './components/projects.css';
+@import './components/about.css';
+@import './components/brand.css';
+@import './components/team.css';
+@import './components/contact.css';
+@import './components/footer.css';
 
 /* ========================================
    ROOT VARIABLES

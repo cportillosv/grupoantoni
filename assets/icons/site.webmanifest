@@ -1,0 +1,17 @@
+{
+  "name": "Grupo Antoni",
+  "short_name": "Antoni",
+  "description": "Grupo Antoni - Arquitectura y Construcción",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4a90e2",
+  "icons": [
+    {
+      "src": "/img/ANTONI.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
