@@ -1,6 +1,7 @@
 /* ========================================
    PERFORMANCE UTILITY
    ======================================== */
+/* eslint-disable indent */
 
 export class Performance {
   constructor() {
@@ -262,11 +263,8 @@ export class Performance {
       userAgent: navigator.userAgent,
       connection: navigator.connection
         ? {
-            // eslint-disable-next-line indent
             effectiveType: navigator.connection.effectiveType,
-            // eslint-disable-next-line indent
             downlink: navigator.connection.downlink,
-            // eslint-disable-next-line indent
             rtt: navigator.connection.rtt
           }
         : null

@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv="x-dns-prefetch-control" content="on" />
+  <meta name="theme-color" content="#4a90e2" />
+  <meta name="color-scheme" content="light" />
   <title>Grupo Antoni — Arquitectura y Construcción | República Dominicana</title>
   <meta name="description"
     content="Grupo Antoni: Empresa líder en arquitectura y construcción en República Dominicana. Diseñamos y construimos espacios innovadores con tecnología de punta. Servicios profesionales de arquitectura, ingeniería y construcción." />
@@ -13,7 +16,9 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://grupoantoni.com/" />
 
-  <!-- Preconnect to external domains -->
+  <!-- Preconnect to external domains - Optimized for mobile -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -45,12 +50,27 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/img/ANTONI.png" />
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts - Optimized: Preload critical, defer others -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
+  <!-- Preload critical resources -->
+  <link rel="preload"
+    href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2"
+    as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="/img/hero-optimized.jpg" as="image" fetchpriority="high" />
+  <link rel="preload" href="/img/ANTONI.png" as="image" fetchpriority="high" />
+  <!-- Defer non-critical fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print"
+    onload="this.onload=null;this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  </noscript>
+  <!-- Dancing Script - Load only when needed (below fold) -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet"
+    media="print" onload="this.onload=null;this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet" />
+  </noscript>
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -74,7 +94,11 @@
     <nav class="nav-container" role="navigation" aria-label="Main navigation">
       <div class="nav-logo">
         <a href="#home" class="logo-link" aria-label="Antoni homepage">
-          <img src="/img/ANTONI.png" alt="Antoni logo" class="logo-img" />
+          <picture>
+            <source type="image/webp" srcset="/img/ANTONI-optimized.webp" />
+            <img src="/img/ANTONI.png" alt="Antoni logo" class="logo-img" loading="eager" fetchpriority="high"
+              width="200" height="60" />
+          </picture>
         </a>
       </div>
       <div class="nav-separator">|</div>
@@ -183,9 +207,14 @@
       <div class="hero-background">
         <div class="hero-slideshow">
           <div class="hero-slide active">
-            <img
-              src="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2.png"
-              alt="Modern luxury residential building with glass facades" loading="eager" width="1920" height="1080" />
+            <picture>
+              <source type="image/webp"
+                srcset="/img/hero-800w.webp 800w, /img/hero-1200w.webp 1200w, /img/hero-1920w.webp 1920w"
+                sizes="100vw" />
+              <img src="/img/hero-optimized.jpg" alt="Modern luxury residential building with glass facades"
+                loading="eager" fetchpriority="high" width="1920" height="1080" decoding="async" sizes="100vw"
+                style="aspect-ratio: 16/9; object-fit: cover;" />
+            </picture>
           </div>
           <div class="hero-slide">
             <img
@@ -226,8 +255,11 @@
           <!-- Mission Card -->
           <div class="about-card mission-card" data-animate="fade-up">
             <div class="card-background">
-              <img src="/img/about/mission-bg.png" alt="Mission background" loading="lazy" decoding="async"
-                fetchpriority="low" />
+              <picture>
+                <source type="image/webp" srcset="/img/about/mission-bg-optimized.webp" />
+                <img src="/img/about/mission-bg.png" alt="Mission background" loading="lazy" decoding="async"
+                  fetchpriority="low" width="800" height="600" style="aspect-ratio: 4/3; object-fit: cover;" />
+              </picture>
               <div class="card-overlay"></div>
             </div>
             <div class="card-content">
@@ -245,8 +277,11 @@
           <!-- Vision Card -->
           <div class="about-card vision-card" data-animate="fade-up" data-delay="100">
             <div class="card-background">
-              <img src="/img/about/vision-bg.png" alt="Vision background" loading="lazy" decoding="async"
-                fetchpriority="low" />
+              <picture>
+                <source type="image/webp" srcset="/img/about/vision-bg-optimized.webp" />
+                <img src="/img/about/vision-bg.png" alt="Vision background" loading="lazy" decoding="async"
+                  fetchpriority="low" width="800" height="600" style="aspect-ratio: 4/3; object-fit: cover;" />
+              </picture>
               <div class="card-overlay"></div>
             </div>
             <div class="card-content">
@@ -264,8 +299,11 @@
           <!-- Values Card -->
           <div class="about-card values-card" data-animate="fade-up" data-delay="200">
             <div class="card-background">
-              <img src="/img/about/values-bg.png" alt="Values background" loading="lazy" decoding="async"
-                fetchpriority="low" />
+              <picture>
+                <source type="image/webp" srcset="/img/about/values-bg-optimized.webp" />
+                <img src="/img/about/values-bg.png" alt="Values background" loading="lazy" decoding="async"
+                  fetchpriority="low" width="800" height="600" style="aspect-ratio: 4/3; object-fit: cover;" />
+              </picture>
               <div class="card-overlay"></div>
             </div>
             <div class="card-content">
@@ -289,8 +327,12 @@
     <!-- Quote Section -->
     <section id="quote" class="quote-section" aria-labelledby="quote-title">
       <div class="quote-background">
-        <img src="/img/PERSPECTIVAS_720Foto-enhanced.png" alt="Modern residential complex aerial view" loading="lazy"
-          width="1920" height="1080" />
+        <picture>
+          <source type="image/webp" srcset="/img/PERSPECTIVAS-800w.webp 800w, /img/PERSPECTIVAS-1200w.webp 1200w"
+            sizes="100vw" />
+          <img src="/img/PERSPECTIVAS-optimized.jpg" alt="Modern residential complex aerial view" loading="lazy"
+            width="1920" height="1080" decoding="async" sizes="100vw" style="aspect-ratio: 16/9; object-fit: cover;" />
+        </picture>
         <div class="quote-overlay"></div>
       </div>
       <div class="quote-content">
@@ -318,9 +360,14 @@
           <!-- Project 1: Romana Condos -->
           <div class="project-item" data-animate="fade-up">
             <div class="project-image">
-              <img src="/img/PERSPECTIVAS_720Foto-enhanced.png"
-                alt="Romana Condos - Modern residential complex aerial view" loading="lazy" decoding="async"
-                fetchpriority="low" />
+              <picture>
+                <source type="image/webp"
+                  srcset="/img/PERSPECTIVAS-400w.webp 400w, /img/PERSPECTIVAS-800w.webp 800w, /img/PERSPECTIVAS-1200w.webp 1200w"
+                  sizes="(max-width: 768px) 100vw, 800px" />
+                <img src="/img/PERSPECTIVAS-optimized.jpg" alt="Romana Condos - Modern residential complex aerial view"
+                  loading="lazy" decoding="async" fetchpriority="low" width="800" height="600"
+                  sizes="(max-width: 768px) 100vw, 800px" style="aspect-ratio: 4/3; object-fit: cover;" />
+              </picture>
             </div>
             <div class="project-content">
               <h3 class="project-name" data-i18n="projects.romanaCondos.name">Romana Condos</h3>
@@ -339,8 +386,13 @@
           <!-- Project 2: Mountain Bungalows -->
           <div class="project-item project-item-reverse" data-animate="fade-up" data-delay="100">
             <div class="project-image">
-              <img src="/img/OJALA.jpg" alt="Mountain Bungalows - Modern mountain cabin retreat in lush forest"
-                loading="lazy" decoding="async" fetchpriority="low" />
+              <picture>
+                <source type="image/webp" srcset="/img/OJALA-optimized.webp" sizes="(max-width: 768px) 100vw, 800px" />
+                <img src="/img/OJALA-optimized.jpg"
+                  alt="Mountain Bungalows - Modern mountain cabin retreat in lush forest" loading="lazy"
+                  decoding="async" fetchpriority="low" width="800" height="600" sizes="(max-width: 768px) 100vw, 800px"
+                  style="aspect-ratio: 4/3; object-fit: cover;" />
+              </picture>
             </div>
             <div class="project-content">
               <h3 class="project-name" data-i18n="projects.mountainBungalows.name">Mountain Bungalows</h3>
@@ -623,7 +675,12 @@
           <!-- Contact Image -->
           <div class="contact-image-section">
             <div class="contact-image">
-              <img src="/img/patioOP.png" alt="Modern interior design" loading="lazy" />
+              <picture>
+                <source type="image/webp" srcset="/img/patioOP-optimized.webp" />
+                <img src="/img/patioOP-optimized.jpg" alt="Modern interior design" loading="lazy" decoding="async"
+                  fetchpriority="low" width="600" height="400" sizes="(max-width: 768px) 100vw, 600px"
+                  style="aspect-ratio: 3/2; object-fit: cover;" />
+              </picture>
             </div>
           </div>
         </div>
@@ -694,8 +751,24 @@
     </div>
   </div>
 
-  <!-- Scripts -->
-  <script type="module" src="/js/main.js"></script>
+  <!-- Scripts - Defer for faster initial render -->
+  <script type="module" src="/js/main.js" defer></script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('/sw.js')
+          .then(registration => {
+            console.log('Service Worker registered:', registration.scope);
+          })
+          .catch(error => {
+            console.log('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
 </body>
 
 </html>
