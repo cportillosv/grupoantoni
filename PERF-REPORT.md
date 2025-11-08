@@ -284,17 +284,22 @@
 
 ### Mejoras Adicionales (Baja Prioridad)
 
-9. **Monitorización Web Vitals**
-   - Google Analytics 4 con Web Vitals
-   - Real User Monitoring (RUM)
+9. **✅ Monitorización Web Vitals**
+   - Implementado en `js/utils/analytics.js`
+   - Tracking automático de LCP, FID, CLS, FCP, TTFB
+   - Integrado con Google Analytics 4
+   - Se inicializa después de 2s para no bloquear carga inicial
 
 10. **Critical CSS automatizado**
     - Script para extraer CSS crítico automáticamente
     - Integrar en build process
 
-11. **Image optimization pipeline**
-    - Script para convertir todas las imágenes a WebP
-    - Generar múltiples tamaños automáticamente
+11. **✅ Image optimization pipeline**
+
+- Script completo: `scripts/optimize-all-images.js`
+- Genera WebP en múltiples tamaños (400w, 800w, 1200w, 1920w)
+- Crea JPEG fallback automáticamente
+- Uso: `npm run optimize:images`
 
 ---
 
@@ -322,11 +327,18 @@
 - [x] Service Worker implementado (sw.js)
 - [x] Headers de caché configurados
 
+### ✅ Completado Reciente
+
+- [x] Optimizar más imágenes del proyecto (About, Logo, Contact)
+- [x] Implementar monitorización Web Vitals en Analytics (LCP, FID, CLS, FCP, TTFB)
+- [x] Crear script completo de optimización (optimize-all-images.js)
+- [x] Agregar preload de recursos críticos adicionales
+
 ### 🔄 Pendiente
 
 - [ ] CDN para imágenes (recomendado para producción)
-- [ ] Optimizar más imágenes del proyecto
-- [ ] Implementar monitorización Web Vitals en producción
+- [ ] Optimizar imágenes restantes del proyecto (usar `npm run optimize:images`)
+- [ ] Configurar alertas de Web Vitals en Google Analytics
 
 ---
 
