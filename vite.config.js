@@ -31,9 +31,7 @@ export default defineConfig(({ mode }) => ({
       },
       output: {
         manualChunks: {
-          // Vendor chunks
-          'vendor-aos': ['aos'],
-          'vendor-swiper': ['swiper'],
+          // Vendor chunks removed (AOS and Swiper not used)
           // Component chunks
           'components-core': [
             './js/components/navbar.js',
@@ -99,7 +97,6 @@ export default defineConfig(({ mode }) => ({
     }
   },
   optimizeDeps: {
-    include: ['aos', 'swiper'],
     exclude: ['@rollup/plugin-visualizer']
   },
   plugins: [

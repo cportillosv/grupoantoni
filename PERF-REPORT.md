@@ -2,7 +2,7 @@
 
 ## Grupo Antoni Landing Page
 
-**Fecha:** 2025-01-XX  
+**Fecha:** 2025-01-XX
 **Objetivo:** TTFB < 1.5s, LCP < 2.5s, Lighthouse Performance > 95
 
 ---
@@ -15,8 +15,9 @@
 - **LCP:** ~3.5-4.5s (estimado)
 - **FCP:** ~2.0-2.5s (estimado)
 - **CLS:** ~0.1-0.15 (estimado)
-- **Tamaño JS:** ~150-200KB (gzip)
+- **Tamaño JS:** ~150-200KB (gzip
 - **Tamaño CSS:** ~80-120KB (gzip)
+- **Tamaño Imágenes:** ~3-4MB total (OJALA.jpg: 2.3MB)
 - **Requests:** ~25-35 recursos
 - **Lighthouse Performance:** ~65-75 (estimado)
 
@@ -28,8 +29,10 @@
 - **CLS:** < 0.05 (mejora ~60%)
 - **Tamaño JS:** ~100-130KB (gzip) - reducción ~35%
 - **Tamaño CSS:** ~50-70KB (gzip) - reducción ~40%
+- **Tamaño Imágenes:** ~1-1.5MB total - reducción ~60-70%
+  - OJALA.jpg: 2.3MB → 217KB JPEG / 252KB WebP (reducción ~90%)
 - **Requests:** ~18-25 recursos - reducción ~30%
-- **Lighthouse Performance:** 90-95+ (objetivo)
+- **Lighthouse Performance:** 90-95+ (objetivo alcanzable)
 
 ---
 
@@ -246,21 +249,22 @@
    />
    ```
 
-3. **Eliminar AOS y Swiper si no se usan**
+3. **✅ Eliminar AOS y Swiper**
+   - Completado: Dependencias removidas de package.json
+   - Configuración de Vite actualizada
 
-   ```bash
-   npm uninstall aos swiper
-   ```
+4. **✅ Configurar compresión Brotli/Gzip en servidor**
+   - `nginx.conf` creado con Brotli y Gzip configurados
+   - `.htaccess` creado con mod_deflate y expires
+   - Ver `DEPLOYMENT-GUIDE.md` para instrucciones
 
-4. **Configurar compresión Brotli/Gzip en servidor**
-   - Nginx: `brotli on; brotli_comp_level 6;`
-   - Apache: Habilitar mod_deflate
+### ✅ Completado (Media Prioridad)
 
-### Importante (Media Prioridad)
-
-5. **Service Worker para cache estático**
-   - Cachear CSS/JS/Imágenes estáticas
-   - Estrategia: Cache First para assets
+5. **✅ Service Worker para cache estático**
+   - `sw.js` creado con estrategias:
+     - Cache First para imágenes, CSS, JS, fuentes
+     - Network First para HTML
+   - Registrado en `index.html`
 
 6. **CDN para imágenes**
    - Usar Cloudinary, Imgix, o similar
@@ -308,16 +312,21 @@
 - [x] Scripts con defer
 - [x] Componentes diferidos en móvil
 
+### ✅ Completado Adicional
+
+- [x] Convertir imágenes a WebP/AVIF
+- [x] Generar srcset para imágenes grandes (Hero, PERSPECTIVAS, OJALA)
+- [x] Comprimir OJALA.jpg (2.3MB → 217KB JPEG, 252KB WebP)
+- [x] Eliminar AOS/Swiper (dependencias removidas)
+- [x] Configurar Brotli/Gzip en servidor (nginx.conf y .htaccess)
+- [x] Service Worker implementado (sw.js)
+- [x] Headers de caché configurados
+
 ### 🔄 Pendiente
 
-- [ ] Convertir imágenes a WebP/AVIF
-- [ ] Generar srcset para imágenes grandes
-- [ ] Comprimir OJALA.jpg (< 300KB)
-- [ ] Eliminar AOS/Swiper si no se usan
-- [ ] Configurar Brotli/Gzip en servidor
-- [ ] Service Worker
-- [ ] CDN para imágenes
-- [ ] Headers de caché
+- [ ] CDN para imágenes (recomendado para producción)
+- [ ] Optimizar más imágenes del proyecto
+- [ ] Implementar monitorización Web Vitals en producción
 
 ---
 
