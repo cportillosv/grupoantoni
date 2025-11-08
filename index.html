@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta http-equiv="x-dns-prefetch-control" content="on" />
+  <meta name="theme-color" content="#4a90e2" />
+  <meta name="color-scheme" content="light" />
   <title>Grupo Antoni — Arquitectura y Construcción | República Dominicana</title>
   <meta name="description"
     content="Grupo Antoni: Empresa líder en arquitectura y construcción en República Dominicana. Diseñamos y construimos espacios innovadores con tecnología de punta. Servicios profesionales de arquitectura, ingeniería y construcción." />
@@ -50,24 +52,29 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/img/ANTONI.png" />
 
-  <!-- Google Fonts - Optimized for mobile -->
+  <!-- Google Fonts - Optimized: Preload critical, defer others -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"
-    media="print" onload="this.media='all'" />
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet" />
-  </noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
-    rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
-      rel="stylesheet" />
-  </noscript>
+  <!-- Preload critical font - Inter 400 regular -->
+  <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <!-- Defer non-critical fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" /></noscript>
+  <!-- Dancing Script - Load only when needed (below fold) -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet" /></noscript>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="/css/main.css" />
+  <!-- Critical CSS - Inline for instant render -->
+  <style>
+    /* ========================================
+       CRITICAL CSS - Above the Fold Only
+       ======================================== */
+    *,*::before,*::after{box-sizing:border-box}*{margin:0}html{scroll-behavior:smooth}body{min-height:100vh;line-height:1.5;text-rendering:optimizeSpeed;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}img,picture{max-width:100%;display:block}:root{--color-primary:#4a90e2;--bg-primary:#fff;--text-primary:#1a1a1a;--z-fixed:1000}.navbar{background:#fff;position:fixed;top:0;left:0;right:0;z-index:var(--z-fixed);box-shadow:0 2px 4px rgba(0,0,0,.1)}.nav-container{display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem 1rem 0;max-width:1400px;margin:0 auto;min-height:80px}.nav-logo{display:flex;align-items:center;margin-left:-60px;flex-shrink:0}.logo-img{height:60px;width:auto;max-width:200px;object-fit:contain}.nav-menu{display:flex;list-style:none;gap:2rem;margin:0;padding:0;align-items:center;flex:1;justify-content:center}.nav-link{color:#000;text-decoration:none;font-weight:500;font-size:15px;text-transform:uppercase;letter-spacing:.8px;padding:.5rem 0;font-family:Arial,sans-serif}.nav-link:hover{color:#0077b5}.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.5rem}.hamburger{display:block;width:25px;height:3px;background:#000;margin:5px 0;transition:all .3s}.hero{min-height:calc(100vh - 80px);position:relative;display:flex;align-items:flex-end;justify-content:center;text-align:center;margin-top:80px}.hero-background{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}.hero-slideshow{position:relative;width:100%;height:100%}.hero-slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.5s}.hero-slide.active{opacity:1;z-index:2}.hero-slide img{width:100%;height:100%;object-fit:cover;object-position:top center}.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(0,0,0,.1) 50%,rgba(0,0,0,.3) 75%,rgba(0,0,0,.7) 100%);z-index:3}.hero-content{position:relative;z-index:3;max-width:800px;padding:3rem;margin-bottom:3rem;color:#fff}.hero-title-subtle{font-size:2.5rem;font-weight:300;margin-bottom:2rem;line-height:1.3;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.5)}@media (max-width:767.98px){.nav-container{padding:.5rem 1rem;min-height:60px}.logo-img{height:40px;max-width:140px}.nav-menu{display:none;position:fixed;top:60px;left:0;right:0;background:#fff;flex-direction:column;padding:2rem 1rem;box-shadow:0 4px 20px rgba(0,0,0,.1);z-index:1000}.nav-menu.active{display:flex}.nav-toggle{display:block}.hero{margin-top:60px;min-height:calc(100vh - 60px)}.hero-title-subtle{font-size:1.75rem}}
+  </style>
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="/css/main.css" /></noscript>
 
   <!-- Analytics Configuration -->
   <script>
@@ -195,10 +202,16 @@
       <div class="hero-background">
         <div class="hero-slideshow">
           <div class="hero-slide active">
-            <img
+              <img
               src="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2.png"
-              alt="Modern luxury residential building with glass facades" loading="eager" fetchpriority="high"
-              width="1920" height="1080" />
+              alt="Modern luxury residential building with glass facades" 
+              loading="eager" 
+              fetchpriority="high"
+              width="1920" 
+              height="1080"
+              decoding="async"
+              sizes="100vw"
+              style="aspect-ratio: 16/9; object-fit: cover;" />
           </div>
           <div class="hero-slide">
             <img
@@ -302,8 +315,15 @@
     <!-- Quote Section -->
     <section id="quote" class="quote-section" aria-labelledby="quote-title">
       <div class="quote-background">
-        <img src="/img/PERSPECTIVAS_720Foto-enhanced.png" alt="Modern residential complex aerial view" loading="lazy"
-          width="1920" height="1080" />
+        <img 
+          src="/img/PERSPECTIVAS_720Foto-enhanced.png" 
+          alt="Modern residential complex aerial view" 
+          loading="lazy"
+          width="1920" 
+          height="1080"
+          decoding="async"
+          sizes="100vw"
+          style="aspect-ratio: 16/9; object-fit: cover;" />
         <div class="quote-overlay"></div>
       </div>
       <div class="quote-content">
@@ -331,9 +351,16 @@
           <!-- Project 1: Romana Condos -->
           <div class="project-item" data-animate="fade-up">
             <div class="project-image">
-              <img src="/img/PERSPECTIVAS_720Foto-enhanced.png"
-                alt="Romana Condos - Modern residential complex aerial view" loading="lazy" decoding="async"
-                fetchpriority="low" width="800" height="600" />
+              <img 
+                src="/img/PERSPECTIVAS_720Foto-enhanced.png"
+                alt="Romana Condos - Modern residential complex aerial view" 
+                loading="lazy" 
+                decoding="async"
+                fetchpriority="low" 
+                width="800" 
+                height="600"
+                sizes="(max-width: 768px) 100vw, 800px"
+                style="aspect-ratio: 4/3; object-fit: cover;" />
             </div>
             <div class="project-content">
               <h3 class="project-name" data-i18n="projects.romanaCondos.name">Romana Condos</h3>
@@ -352,8 +379,16 @@
           <!-- Project 2: Mountain Bungalows -->
           <div class="project-item project-item-reverse" data-animate="fade-up" data-delay="100">
             <div class="project-image">
-              <img src="/img/OJALA.jpg" alt="Mountain Bungalows - Modern mountain cabin retreat in lush forest"
-                loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" />
+              <img 
+                src="/img/OJALA.jpg" 
+                alt="Mountain Bungalows - Modern mountain cabin retreat in lush forest"
+                loading="lazy" 
+                decoding="async" 
+                fetchpriority="low" 
+                width="800" 
+                height="600"
+                sizes="(max-width: 768px) 100vw, 800px"
+                style="aspect-ratio: 4/3; object-fit: cover;" />
             </div>
             <div class="project-content">
               <h3 class="project-name" data-i18n="projects.mountainBungalows.name">Mountain Bungalows</h3>
@@ -386,7 +421,9 @@
 
         <div class="team-carousel-container">
           <button class="carousel-nav prev" aria-label="Previous team member">
-            <i class="fas fa-chevron-left"></i>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
           </button>
 
           <div class="team-carousel">
@@ -487,7 +524,9 @@
           </div>
 
           <button class="carousel-nav next" aria-label="Next team member">
-            <i class="fas fa-chevron-right"></i>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+            </svg>
           </button>
         </div>
       </div>
@@ -630,7 +669,16 @@
           <!-- Contact Image -->
           <div class="contact-image-section">
             <div class="contact-image">
-              <img src="/img/patioOP.png" alt="Modern interior design" loading="lazy" />
+              <img 
+                src="/img/patioOP.png" 
+                alt="Modern interior design" 
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                width="600"
+                height="400"
+                sizes="(max-width: 768px) 100vw, 600px"
+                style="aspect-ratio: 3/2; object-fit: cover;" />
             </div>
           </div>
         </div>
@@ -687,11 +735,6 @@
             <a href="#" class="footer-link" data-i18n="footer.privacy">Privacy Policy</a>
           </div>
         </div>
-
-        <blockquote class="footer-quote">
-          <p data-i18n="footer.quote">"Architecture should speak of its time and place, but yearn for timelessness."</p>
-          <cite data-i18n="footer.quoteAuthor">— Frank Gehry</cite>
-        </blockquote>
       </div>
     </div>
   </footer>
