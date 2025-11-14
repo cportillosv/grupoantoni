@@ -156,6 +156,11 @@ export class Performance {
   }
 
   trackInteraction(type, element) {
+    // MOBILE-FIRST: Initialize interactions array if not exists
+    if (!this.interactions) {
+      this.interactions = [];
+    }
+
     // Track interaction for analytics
     const interaction = {
       type,

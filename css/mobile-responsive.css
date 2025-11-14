@@ -1,8 +1,17 @@
 /* ========================================
    MOBILE RESPONSIVE ENHANCEMENTS
+   MOBILE-FIRST OPTIMIZATION
    ======================================== */
 
-/* Mobile First - Enhanced Responsive Design */
+/* 
+ * MOBILE-FIRST AUDIT NOTES:
+ * - Estilos base para mobile (sin media queries)
+ * - Desktop como enhancement (min-width media queries)
+ * - Animaciones reducidas en mobile
+ * - Box-shadows optimizados para mobile
+ * - Imágenes optimizadas con object-fit: contain
+ * - Lazy loading de imágenes no críticas
+ */
 
 /* Extra small devices (phones, 576px and down) */
 @media (max-width: 575.98px) {

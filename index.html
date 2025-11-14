@@ -74,13 +74,15 @@
   
   <!-- Non-critical CSS - Loaded via main.js for Vite compatibility -->
 
-  <!-- Analytics Configuration -->
+  <!-- Analytics Configuration - MOBILE-FIRST: Deferred until user interaction -->
   <script>
+    // MOBILE-FIRST: Analytics config loaded but not initialized until user interaction
     window.__ANALYTICS__ = {
       GA_MEASUREMENT_ID: '',
       PIXEL_ID: '',
       CLARITY_ID: ''
     };
+    window.__ANALYTICS_LOADED__ = false;
   </script>
 </head>
 
@@ -946,14 +948,14 @@
     </div>
   </div>
 
-  <!-- Scripts - Defer for faster initial render -->
+  <!-- MOBILE-FIRST: Scripts optimized for minimal initial load -->
+  <!-- Main JS: defer ensures non-blocking, module for code splitting -->
   <script type="module" src="/js/main.js" defer></script>
   
-  <!-- Preload critical resources -->
-  <link rel="preload" href="/img/ANTONI.png" as="image" fetchpriority="high" />
-  <link rel="preload" href="/css/main.css" as="style" />
+  <!-- Preload critical resources for above-the-fold content -->
+  <link rel="preload" href="/img/optimized/ANTONI-optimized.png" as="image" fetchpriority="high" />
   
-  <!-- DNS prefetch for external resources -->
+  <!-- DNS prefetch for external resources (non-blocking) -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 </body>
