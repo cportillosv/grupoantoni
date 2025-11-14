@@ -13,6 +13,7 @@
     "format:check": "prettier --check .",
     "analyze": "vite build --mode analyze",
     "optimize:images": "node scripts/optimize-images.js",
+    "optimize:images:advanced": "node scripts/optimize-images-advanced.js",
     "optimize:images:legacy": "imagemin assets/images/**/*.{jpg,png,svg} --out-dir=assets/images/optimized",
     "serve": "http-server dist -p 8080",
     "deploy": "npm run build && npm run serve",

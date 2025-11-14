@@ -7,22 +7,22 @@
 /* Font Awesome removed - Using inline SVG icons instead for better performance */
 
 /* Import utility styles first */
-@import 'utils/reset.css';
-@import 'utils/typography.css';
-@import 'utils/responsive.css';
-@import 'mobile-responsive.css';
+@import './utils/reset.css';
+@import './utils/typography.css';
+@import './utils/responsive.css';
+@import './mobile-responsive.css';
 
 /* Import component styles */
-@import 'components/header.css';
-@import 'components/hero.css';
-@import 'components/quote.css';
-@import 'components/quote-section.css';
-@import 'components/projects.css';
-@import 'components/about.css';
-@import 'components/brand.css';
-@import 'components/team.css';
-@import 'components/contact.css';
-@import 'components/footer.css';
+@import './components/header.css';
+@import './components/hero.css';
+@import './components/quote.css';
+@import './components/quote-section.css';
+@import './components/projects.css';
+@import './components/about.css';
+@import './components/brand.css';
+@import './components/team.css';
+@import './components/contact.css';
+@import './components/footer.css';
 
 /* ========================================
    ROOT VARIABLES

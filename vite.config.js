@@ -79,7 +79,17 @@ export default defineConfig(({ mode }) => ({
   server: {
     port: 3001,
     open: true,
-    cors: true
+    cors: true,
+    watch: {
+      // Ignore certain files to reduce unnecessary reloads
+      ignored: ['**/node_modules/**', '**/.git/**', '**/dist/**', '**/*.log', '**/.DS_Store'],
+      // Reduce polling interval for better performance
+      usePolling: false
+    },
+    // Reduce HMR sensitivity
+    hmr: {
+      overlay: true
+    }
   },
   preview: {
     port: 4173,
@@ -89,13 +99,15 @@ export default defineConfig(({ mode }) => ({
     devSourcemap: true,
     postcss: {
       plugins: [
-        // eslint-disable-next-line global-require
+        /* eslint-disable global-require */
         require('autoprefixer'),
-        // eslint-disable-next-line global-require
-        require('cssnano')({
-          preset: 'default'
-        })
-      ]
+        // cssnano solo en producción, no en desarrollo
+        mode === 'production' &&
+          require('cssnano')({
+            preset: 'default'
+          })
+        /* eslint-enable global-require */
+      ].filter(Boolean)
     }
   },
   optimizeDeps: {

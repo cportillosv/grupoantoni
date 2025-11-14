@@ -2,6 +2,9 @@
    ANTONI - MAIN JAVASCRIPT
    ======================================== */
 
+// Import CSS - Vite will handle this automatically
+import '../css/main.css';
+
 // Import modules
 import { Navbar } from './components/navbar.js';
 import { Hero } from './components/hero.js';
@@ -16,6 +19,8 @@ import { ScrollAnimations } from './utils/scroll-animations.js';
 import { Analytics } from './utils/analytics.js';
 import { MobileImageOptimizer } from './utils/mobile-image-optimizer.js';
 import { i18n } from './utils/i18n.js';
+import { registerServiceWorker } from './utils/service-worker.js';
+import { LazyLoader } from './utils/lazy-loader.js';
 
 // ========================================
 // MAIN APPLICATION CLASS
@@ -46,6 +51,9 @@ class App {
       i18n.init();
       this.setupLanguageSwitch();
 
+      // Register Service Worker for offline support
+      registerServiceWorker();
+
       // Initialize mobile image optimizer FIRST on mobile
       if (isMobile) {
         this.mobileImageOptimizer = new MobileImageOptimizer();
@@ -53,7 +61,10 @@ class App {
         this.mobileImageOptimizer.preloadCriticalImages();
       }
 
-      // Initialize lazy loading (mobile-optimized)
+      // Initialize advanced lazy loading
+      this.lazyLoader = new LazyLoader();
+
+      // Initialize legacy lazy loading (mobile-optimized)
       this.initLazyLoading();
 
       // Initialize global event listeners

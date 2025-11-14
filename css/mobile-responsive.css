@@ -131,8 +131,8 @@
 
   /* Hero Section Mobile */
   .hero {
-    height: calc(100vh - 60px);
-    min-height: 500px;
+    height: 100vh;
+    min-height: 100vh;
     margin-top: 60px;
   }
 
@@ -144,6 +144,27 @@
 
   .hero-background img {
     object-position: top center;
+  }
+
+  /* Primera imagen del slide a 100vh en móvil */
+  .hero-background {
+    height: 100vh;
+  }
+
+  .hero-slideshow {
+    height: 100vh;
+  }
+
+  .hero-slide:first-child,
+  .hero-slide.active:first-child {
+    height: 100vh;
+  }
+
+  .hero-slide:first-child img,
+  .hero-slide.active:first-child img {
+    height: 100vh;
+    object-fit: cover;
+    object-position: center center;
   }
 
   .hero-content {
@@ -1019,6 +1040,7 @@
     max-width: 100%;
     height: auto;
     object-fit: cover;
+    object-position: center top;
     image-rendering: -webkit-optimize-contrast;
     will-change: transform;
     transform: translateZ(0);

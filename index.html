@@ -55,12 +55,12 @@
   <!-- Google Fonts - Optimized: Preload critical, defer others -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Preload critical font - Inter 400 regular -->
+  <!-- Preload critical font - Inter 400 regular with font-display: swap -->
   <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-  <!-- Defer non-critical fonts -->
+  <!-- Defer non-critical fonts with font-display: swap -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" /></noscript>
-  <!-- Dancing Script - Load only when needed (below fold) -->
+  <!-- Dancing Script - Load only when needed (below fold) with font-display: swap -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet" /></noscript>
 
@@ -72,9 +72,7 @@
     *,*::before,*::after{box-sizing:border-box}*{margin:0}html{scroll-behavior:smooth}body{min-height:100vh;line-height:1.5;text-rendering:optimizeSpeed;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}img,picture{max-width:100%;display:block}:root{--color-primary:#4a90e2;--bg-primary:#fff;--text-primary:#1a1a1a;--z-fixed:1000}.navbar{background:#fff;position:fixed;top:0;left:0;right:0;z-index:var(--z-fixed);box-shadow:0 2px 4px rgba(0,0,0,.1)}.nav-container{display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem 1rem 0;max-width:1400px;margin:0 auto;min-height:80px}.nav-logo{display:flex;align-items:center;margin-left:-60px;flex-shrink:0}.logo-img{height:60px;width:auto;max-width:200px;object-fit:contain}.nav-menu{display:flex;list-style:none;gap:2rem;margin:0;padding:0;align-items:center;flex:1;justify-content:center}.nav-link{color:#000;text-decoration:none;font-weight:500;font-size:15px;text-transform:uppercase;letter-spacing:.8px;padding:.5rem 0;font-family:Arial,sans-serif}.nav-link:hover{color:#0077b5}.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.5rem}.hamburger{display:block;width:25px;height:3px;background:#000;margin:5px 0;transition:all .3s}.hero{min-height:calc(100vh - 80px);position:relative;display:flex;align-items:flex-end;justify-content:center;text-align:center;margin-top:80px}.hero-background{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}.hero-slideshow{position:relative;width:100%;height:100%}.hero-slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.5s}.hero-slide.active{opacity:1;z-index:2}.hero-slide img{width:100%;height:100%;object-fit:cover;object-position:top center}.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(0,0,0,.1) 50%,rgba(0,0,0,.3) 75%,rgba(0,0,0,.7) 100%);z-index:3}.hero-content{position:relative;z-index:3;max-width:800px;padding:3rem;margin-bottom:3rem;color:#fff}.hero-title-subtle{font-size:2.5rem;font-weight:300;margin-bottom:2rem;line-height:1.3;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.5)}@media (max-width:767.98px){.nav-container{padding:.5rem 1rem;min-height:60px}.logo-img{height:40px;max-width:140px}.nav-menu{display:none;position:fixed;top:60px;left:0;right:0;background:#fff;flex-direction:column;padding:2rem 1rem;box-shadow:0 4px 20px rgba(0,0,0,.1);z-index:1000}.nav-menu.active{display:flex}.nav-toggle{display:block}.hero{margin-top:60px;min-height:calc(100vh - 60px)}.hero-title-subtle{font-size:1.75rem}}
   </style>
   
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="/css/main.css" /></noscript>
+  <!-- Non-critical CSS - Loaded via main.js for Vite compatibility -->
 
   <!-- Analytics Configuration -->
   <script>
@@ -92,7 +90,7 @@
     <nav class="nav-container" role="navigation" aria-label="Main navigation">
       <div class="nav-logo">
         <a href="#home" class="logo-link" aria-label="Antoni homepage">
-          <img src="/img/ANTONI.png" alt="Antoni logo" class="logo-img" loading="eager" fetchpriority="high" width="200"
+          <img src="/img/optimized/ANTONI-optimized.png" alt="Antoni logo" class="logo-img" loading="eager" fetchpriority="high" width="200"
             height="60" />
         </a>
       </div>
@@ -202,26 +200,116 @@
       <div class="hero-background">
         <div class="hero-slideshow">
           <div class="hero-slide active">
+            <picture>
+              <!-- SVG for mobile (max-width: 767.98px) -->
+              <source 
+                type="image/svg+xml"
+                media="(max-width: 767.98px)"
+                srcset="/img/1.svg" />
+              <!-- WebP format for desktop (min-width: 768px) -->
+              <source 
+                type="image/webp"
+                media="(min-width: 768px)"
+                srcset="/img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-tablet.webp 768w,
+                        /img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-desktop.webp 1200w,
+                        /img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-large.webp 1920w"
+                sizes="100vw" />
+              <!-- Fallback PNG (old browsers) -->
               <img
-              src="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2.png"
-              alt="Modern luxury residential building with glass facades" 
-              loading="eager" 
-              fetchpriority="high"
-              width="1920" 
-              height="1080"
-              decoding="async"
-              sizes="100vw"
-              style="aspect-ratio: 16/9; object-fit: cover;" />
+                src="/img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-optimized.png"
+                alt="Modern luxury residential building with glass facades" 
+                loading="eager" 
+                fetchpriority="high"
+                width="1920" 
+                height="1080"
+                decoding="async"
+                sizes="100vw"
+                class="hero-slide-image" />
+            </picture>
           </div>
           <div class="hero-slide">
-            <img
-              src="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_0 (1).png"
-              alt="Contemporary multi-story residential complex with green roofs" loading="lazy" width="1920"
-              height="1080" />
+            <picture>
+              <!-- SVG for mobile (max-width: 767.98px) -->
+              <source 
+                type="image/svg+xml"
+                media="(max-width: 767.98px)"
+                srcset="/img/2.svg" />
+              <!-- PNG for desktop (min-width: 768px) -->
+              <source 
+                type="image/png"
+                media="(min-width: 768px)"
+                srcset="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_0 (1).png" />
+              <!-- Fallback -->
+              <img
+                src="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_0 (1).png"
+                alt="Contemporary multi-story residential complex with green roofs" 
+                loading="lazy" 
+                width="1920"
+                height="1080"
+                decoding="async"
+                sizes="100vw"
+                class="hero-slide-image" />
+            </picture>
           </div>
           <div class="hero-slide">
-            <img src="/img/FACHADA EN PERSPETIVA.png" alt="Modern two-story residential building with minimalist design"
-              loading="lazy" width="1920" height="1080" />
+            <picture>
+              <!-- SVG for mobile (max-width: 767.98px) -->
+              <source 
+                type="image/svg+xml"
+                media="(max-width: 767.98px)"
+                srcset="/img/3.svg" />
+              <!-- AVIF format for desktop (min-width: 768px) -->
+              <source 
+                type="image/avif"
+                media="(min-width: 768px)"
+                srcset="/img/optimized/FACHADA EN PERSPETIVA-tablet.avif 768w,
+                        /img/optimized/FACHADA EN PERSPETIVA-desktop.webp 1200w"
+                sizes="100vw" />
+              <!-- WebP format fallback for desktop -->
+              <source 
+                type="image/webp"
+                media="(min-width: 768px)"
+                srcset="/img/optimized/FACHADA EN PERSPETIVA-tablet.webp 768w,
+                        /img/optimized/FACHADA EN PERSPETIVA-desktop.webp 1200w"
+                sizes="100vw" />
+              <!-- Fallback PNG (old browsers) -->
+              <img
+                src="/img/FACHADA EN PERSPETIVA.png"
+                alt="Modern two-story residential building with minimalist design"
+                loading="lazy"
+                width="1920"
+                height="1080"
+                decoding="async"
+                sizes="100vw"
+                class="hero-slide-image" />
+            </picture>
+          </div>
+          <div class="hero-slide">
+            <picture>
+              <!-- SVG for mobile (max-width: 767.98px) -->
+              <source 
+                type="image/svg+xml"
+                media="(max-width: 767.98px)"
+                srcset="/img/4.svg" />
+              <!-- Fallback for desktop (min-width: 768px) - using first slide image -->
+              <source 
+                type="image/webp"
+                media="(min-width: 768px)"
+                srcset="/img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-tablet.webp 768w,
+                        /img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-desktop.webp 1200w,
+                        /img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-large.webp 1920w"
+                sizes="100vw" />
+              <!-- Fallback PNG -->
+              <img
+                src="/img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-optimized.png"
+                alt="Luxury architectural design with modern aesthetics"
+                loading="lazy"
+                width="1920"
+                height="1080"
+                decoding="async"
+                sizes="100vw"
+                class="hero-slide-image" />
+            </picture>
           </div>
         </div>
         <div class="hero-overlay"></div>
@@ -252,8 +340,35 @@
           <!-- Mission Card -->
           <div class="about-card mission-card" data-animate="fade-up">
             <div class="card-background">
-              <img src="/img/about/mission-bg.png" alt="Mission background" loading="lazy" decoding="async"
-                fetchpriority="low" />
+              <picture>
+                <!-- AVIF format (best compression) -->
+                <source 
+                  type="image/avif"
+                  srcset="/img/optimized/about/mission-bg-mobile.avif 400w,
+                          /img/optimized/about/mission-bg-tablet.avif 768w,
+                          /img/optimized/about/mission-bg-desktop.avif 1200w,
+                          /img/optimized/about/mission-bg-large.avif 1920w"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                <!-- WebP format (fallback) -->
+                <source 
+                  type="image/webp"
+                  srcset="/img/optimized/about/mission-bg-mobile.webp 400w,
+                          /img/optimized/about/mission-bg-tablet.webp 768w,
+                          /img/optimized/about/mission-bg-desktop.webp 1200w,
+                          /img/optimized/about/mission-bg-large.webp 1920w"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                <!-- Fallback PNG (old browsers) -->
+                <img
+                  src="/img/optimized/about/mission-bg-optimized.png"
+                  alt="Mission background"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
+                  width="1920"
+                  height="1080"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style="aspect-ratio: 16/9; object-fit: cover;" />
+              </picture>
               <div class="card-overlay"></div>
             </div>
             <div class="card-content">
@@ -348,22 +463,49 @@
         </header>
 
         <div class="projects-list">
-          <!-- Project 1: Romana Condos -->
+          <!-- Project 1: Maharishi Vastu -->
           <div class="project-item" data-animate="fade-up">
             <div class="project-image">
               <img 
-                src="/img/PERSPECTIVAS_720Foto-enhanced.png"
-                alt="Romana Condos - Modern residential complex aerial view" 
+                src="/img/Vastu Shastra.png"
+                alt="Maharishi Vastu - Architecture inspired by Vastu Shastra principles" 
                 loading="lazy" 
                 decoding="async"
                 fetchpriority="low" 
                 width="800" 
                 height="600"
                 sizes="(max-width: 768px) 100vw, 800px"
-                style="aspect-ratio: 4/3; object-fit: cover;" />
+                style="aspect-ratio: auto; object-fit: contain;" />
             </div>
             <div class="project-content">
-              <h3 class="project-name" data-i18n="projects.romanaCondos.name">Romana Condos</h3>
+              <h3 class="project-name">Maharishi Vastu</h3>
+              <p class="project-location">Location — Various locations</p>
+              <p class="project-description">
+                Architecture inspired by the principles of Vastu Shastra, seeking balance between energy,
+                nature, and well-being. The orientation takes advantage of sunlight and cross ventilation, promoting
+                interior harmony. The symmetrical design and elevated ceiling symbolize spiritual connection and
+                positive circulation of prana.
+              </p>
+              <a href="/projects/maharishi-vastu.html" class="project-link">Learn more →</a>
+            </div>
+          </div>
+
+          <!-- Project 2: Residencial Antoní Romana -->
+          <div class="project-item project-item-reverse" data-animate="fade-up" data-delay="100">
+            <div class="project-image">
+              <img 
+                src="/img/PERSPECTIVAS_720Foto-enhanced.png"
+                alt="Residencial Antoní Romana - Modern residential complex aerial view" 
+                loading="lazy" 
+                decoding="async"
+                fetchpriority="low" 
+                width="800" 
+                height="600"
+                sizes="(max-width: 768px) 100vw, 800px"
+                style="aspect-ratio: auto; object-fit: contain;" />
+            </div>
+            <div class="project-content">
+              <h3 class="project-name" data-i18n="projects.romanaCondos.name">Residencial Antoní Romana</h3>
               <p class="project-location" data-i18n="projects.romanaCondos.location">Location — La Romana, Dominican
                 Republic</p>
               <p class="project-description" data-i18n="projects.romanaCondos.description">
@@ -376,8 +518,63 @@
             </div>
           </div>
 
-          <!-- Project 2: Mountain Bungalows -->
-          <div class="project-item project-item-reverse" data-animate="fade-up" data-delay="100">
+          <!-- Project 3: Casa Elvira Santos -->
+          <div class="project-item" data-animate="fade-up" data-delay="200">
+            <div class="project-image">
+              <img 
+                src="/img/CASA ELVIRA SANTOS.png"
+                alt="Casa Elvira Santos - Two-level home with contemporary design" 
+                loading="lazy" 
+                decoding="async"
+                fetchpriority="low" 
+                width="800" 
+                height="600"
+                sizes="(max-width: 768px) 100vw, 800px"
+                style="aspect-ratio: auto; object-fit: contain;" />
+            </div>
+            <div class="project-content">
+              <h3 class="project-name">Casa Elvira Santos</h3>
+              <p class="project-location">Location — San José de Ocoa, Dominican Republic</p>
+              <p class="project-description">
+                This project is a two-level home with 335.88 m², designed to offer functionality and flow. On the first level, 
+                the living room and dining room integrate with a contemporary kitchen. The second level features four bedrooms, 
+                balconies, and terraces for connection with the environment. Additionally, it includes a covered marquee, 
+                strategic bathrooms, and other elements that guarantee comfort and aesthetics.
+              </p>
+              <a href="/projects/vivienda.html" class="project-link">Learn more →</a>
+            </div>
+          </div>
+
+          <!-- Project 4: Villa Rios San Juan -->
+          <div class="project-item project-item-reverse" data-animate="fade-up" data-delay="300">
+            <div class="project-image">
+              <img 
+                src="/img/ANTONÍ VILLA SAN JUAN.png"
+                alt="Villa Rios San Juan - Modern two-level villa with contemporary tropical design" 
+                loading="lazy" 
+                decoding="async"
+                fetchpriority="low" 
+                width="800" 
+                height="600"
+                sizes="(max-width: 768px) 100vw, 800px"
+                style="aspect-ratio: auto; object-fit: contain;" />
+            </div>
+            <div class="project-content">
+              <h3 class="project-name">Villa Rios San Juan</h3>
+              <p class="project-location">Location — Rio San Juan, Dominican Republic</p>
+              <p class="project-description">
+                Modern two-level villa with contemporary tropical architectural design. Its first level presents an open plan 
+                that integrates living room, dining room, and kitchen with large windows that connect to the exterior and bedrooms 
+                with shared bathroom. The second level features a master suite and large exterior terrace with BBQ area. 
+                It combines warm materials such as wood and stone, with clean lines and open terraces that maximize natural light 
+                and the interior-exterior relationship.
+              </p>
+              <a href="/projects/vivienda.html" class="project-link">Learn more →</a>
+            </div>
+          </div>
+
+          <!-- Project 5: Mountain Bungalows -->
+          <div class="project-item" data-animate="fade-up" data-delay="400">
             <div class="project-image">
               <img 
                 src="/img/OJALA.jpg" 
@@ -388,7 +585,7 @@
                 width="800" 
                 height="600"
                 sizes="(max-width: 768px) 100vw, 800px"
-                style="aspect-ratio: 4/3; object-fit: cover;" />
+                style="aspect-ratio: auto; object-fit: contain;" />
             </div>
             <div class="project-content">
               <h3 class="project-name" data-i18n="projects.mountainBungalows.name">Mountain Bungalows</h3>
@@ -751,6 +948,14 @@
 
   <!-- Scripts - Defer for faster initial render -->
   <script type="module" src="/js/main.js" defer></script>
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="/img/ANTONI.png" as="image" fetchpriority="high" />
+  <link rel="preload" href="/css/main.css" as="style" />
+  
+  <!-- DNS prefetch for external resources -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 </body>
 
 </html>

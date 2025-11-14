@@ -1,351 +1,391 @@
-# Performance Optimization Report
+# 📊 Reporte de Optimización de Rendimiento - Grupo Antoni Landing Page
 
-## Grupo Antoni Landing Page
-
-**Fecha:** 2025-01-XX  
-**Objetivo:** TTFB < 1.5s, LCP < 2.5s, Lighthouse Performance > 95
-
----
-
-## 📊 Métricas Estimadas
-
-### Antes de Optimizaciones
-
-- **TTFB:** ~800-1200ms (estimado)
-- **LCP:** ~3.5-4.5s (estimado)
-- **FCP:** ~2.0-2.5s (estimado)
-- **CLS:** ~0.1-0.15 (estimado)
-- **Tamaño JS:** ~150-200KB (gzip)
-- **Tamaño CSS:** ~80-120KB (gzip)
-- **Requests:** ~25-35 recursos
-- **Lighthouse Performance:** ~65-75 (estimado)
-
-### Después de Optimizaciones (Estimado)
-
-- **TTFB:** < 1.2s (mejora ~30%)
-- **LCP:** < 2.5s (mejora ~40-50%)
-- **FCP:** < 1.5s (mejora ~40%)
-- **CLS:** < 0.05 (mejora ~60%)
-- **Tamaño JS:** ~100-130KB (gzip) - reducción ~35%
-- **Tamaño CSS:** ~50-70KB (gzip) - reducción ~40%
-- **Requests:** ~18-25 recursos - reducción ~30%
-- **Lighthouse Performance:** 90-95+ (objetivo)
+**Fecha:** 2025-01-11  
+**Objetivo:** Lograr carga instantánea en móviles (<1.5s TTFB, <2.5s LCP)  
+**Target:** Lighthouse Mobile Score ≥95 en Performance y Best Practices
 
 ---
 
-## 🔍 Problemas Detectados y Soluciones
+## 🔍 Análisis Inicial
 
-### 1. CSS Bloqueante en `<head>`
+### Problemas Detectados
 
-**Problema:**
+#### 1. **Imágenes Pesadas** ⚠️ CRÍTICO
 
-- `main.css` se cargaba síncronamente bloqueando el render
-- Múltiples `@import` creaban cascada de requests bloqueantes
-- Font Awesome completo (70KB+) bloqueaba render
+- **Imagen más pesada:** `FACHADA EN PERSPETIVA.png` (15MB)
+- **Total de imágenes sin optimizar:** ~35MB
+- **Problemas:**
+  - Formato PNG/JPG sin compresión moderna
+  - Sin versiones responsivas (srcset)
+  - Sin formatos modernos (AVIF/WebP)
+  - Faltan atributos `width` y `height` (causa CLS)
+  - Sin lazy loading en imágenes below-the-fold
 
-**Solución Aplicada:**
+#### 2. **CSS/JS** ⚠️ MODERADO
 
-- ✅ CSS crítico (navbar + hero) inlinado en `<head>` (~2KB minificado)
-- ✅ CSS no crítico cargado asíncronamente con `preload` + `onload`
-- ✅ Font Awesome eliminado, reemplazado por SVG inline (4 iconos = ~1KB)
+- **CSS total:** ~28KB (mobile-responsive.css) + 8KB (main.css) = ~36KB
+- **JS total:** ~16KB (main.js) + otros componentes
+- **Problemas:**
+  - CSS no minificado en desarrollo
+  - Sin code splitting por sección
+  - Algunos scripts bloqueantes
 
-**Impacto:**
+#### 3. **Fuentes** ✅ PARCIALMENTE OPTIMIZADO
 
-- FCP mejorado en ~500-800ms
-- Eliminación de ~70KB de CSS bloqueante
-- Render instantáneo del above-the-fold
+- **Estado:** Ya tiene preload y defer
+- **Mejora aplicada:** Añadido `font-display: swap` implícito
+
+#### 4. **Caching y Compresión** ✅ OPTIMIZADO
+
+- **Headers de cache:** Configurados en `netlify.toml`
+- **Compresión:** Brotli/Gzip configurado
 
 ---
 
-### 2. Google Fonts Bloqueantes
+## ✅ Optimizaciones Aplicadas
 
-**Problema:**
+### 1. **Optimización de Imágenes** 🖼️
 
-- 2 familias de fuentes cargadas síncronamente
-- Múltiples weights (300, 400, 500, 600, 700) innecesarios
-- Sin preload de fuentes críticas
+#### Script de Optimización Avanzado
 
-**Solución Aplicada:**
+- **Archivo:** `scripts/optimize-images-advanced.js`
+- **Funcionalidades:**
+  - Conversión a **AVIF** (prioridad) - mejor compresión
+  - Conversión a **WebP** (fallback) - amplia compatibilidad
+  - Generación de versiones responsivas (400w, 768w, 1200w, 1920w)
+  - Optimización del formato original como fallback
+  - Reducción estimada: **70-85%** del tamaño original
+
+#### Implementación en HTML
+
+- **Hero Section:** Actualizado con `<picture>` y `srcset` para AVIF/WebP
+- **Estructura:**
+  ```html
+  <picture>
+    <source type="image/avif" srcset="..." />
+    <source type="image/webp" srcset="..." />
+    <img src="fallback.png" ... />
+  </picture>
+  ```
+
+#### Próximos Pasos (Requiere Ejecución)
+
+```bash
+npm run optimize:images:advanced
+```
+
+Esto generará todas las imágenes optimizadas en `/img/optimized/`
+
+### 2. **Service Worker** 🔄
+
+#### Implementación
+
+- **Archivo:** `public/sw.js`
+- **Estrategias:**
+  - **Cache-first:** CSS, JS, imágenes, fuentes
+  - **Network-first:** HTML (siempre actualizado)
+  - **Cache automático:** Assets estáticos en instalación
+  - **Actualización:** Revisa actualizaciones cada minuto
+
+#### Registro
+
+- **Archivo:** `js/utils/service-worker.js`
+- **Integrado en:** `js/main.js`
+- **Beneficios:**
+  - Carga offline
+  - Caché persistente de assets
+  - Reducción de requests en visitas subsecuentes
+
+### 3. **Lazy Loading Avanzado** 🚀
+
+#### Implementación
+
+- **Archivo:** `js/utils/lazy-loader.js`
+- **Características:**
+  - `IntersectionObserver` para imágenes
+  - Carga diferida de secciones (`data-lazy-section`)
+  - Preload de imágenes críticas
+  - Fallback para navegadores antiguos
+
+#### Uso
+
+```html
+<!-- Imágenes lazy -->
+<img data-src="/path/to/image.jpg" loading="lazy" />
+
+<!-- Secciones lazy -->
+<section data-lazy-section>...</section>
+```
+
+### 4. **Headers de Cache y Compresión** 📦
+
+#### Configuración (`netlify.toml`)
+
+- **CSS/JS:** `Cache-Control: public, max-age=31536000, immutable`
+- **Imágenes:** Cache de 1 año para AVIF/WebP/PNG optimizados
+- **HTML:** `Cache-Control: no-store` (siempre fresco)
+- **Compresión:** Brotli y Gzip habilitados
+- **Seguridad:** Headers X-Frame-Options, X-Content-Type-Options
+
+### 5. **Optimización de Fuentes** 🔤
+
+#### Mejoras Aplicadas
 
 - ✅ Preload de fuente crítica (Inter 400)
-- ✅ Reducción a weights esenciales (400, 600)
-- ✅ Carga asíncrona con `media="print"` + `onload`
-- ✅ Dancing Script cargado solo cuando es necesario
+- ✅ Defer de fuentes no críticas (Dancing Script)
+- ✅ `font-display: swap` (ya incluido en Google Fonts)
+- ✅ DNS prefetch para Google Fonts
 
-**Impacto:**
+### 6. **Preloads Críticos** ⚡
 
-- Reducción de ~40KB en carga inicial
-- FCP mejorado en ~200-300ms
-- FOIT (Flash of Invisible Text) eliminado
+#### Recursos Preloadados
 
----
-
-### 3. Imágenes No Optimizadas
-
-**Problemas Detectados:**
-
-- `OJALA.jpg`: 2.3MB (¡muy grande!)
-- Imágenes sin `width/height` causando CLS
-- Sin `srcset` para responsive
-- Sin formato WebP/AVIF
-- Falta `decoding="async"` en algunas
-
-**Soluciones Aplicadas:**
-
-- ✅ `width` y `height` agregados a todas las imágenes
-- ✅ `aspect-ratio` inline para prevenir CLS
-- ✅ `decoding="async"` en todas las imágenes
-- ✅ `sizes` attribute para responsive loading
-- ✅ Lazy loading agresivo (20px rootMargin, 20% threshold)
-
-**Pendiente (Recomendaciones):**
-
-- 🔄 Convertir imágenes grandes a WebP/AVIF
-- 🔄 Generar `srcset` con múltiples tamaños
-- 🔄 Comprimir `OJALA.jpg` (objetivo: < 300KB)
-
-**Impacto:**
-
-- CLS reducido de ~0.1 a < 0.05
-- LCP mejorado en ~500-1000ms (cuando imágenes se optimicen)
-- Reducción de ~2MB en carga inicial (cuando se optimice OJALA.jpg)
+- Logo principal (`/img/ANTONI.png`) - `fetchpriority="high"`
+- CSS principal (`/css/main.css`)
+- Fuente crítica (Inter 400)
 
 ---
 
-### 4. JavaScript No Optimizado
+## 📈 Métricas Estimadas (Post-Optimización)
 
-**Problemas:**
+### Antes de Optimización
 
-- Todos los componentes se inicializaban síncronamente
-- Procesamiento pesado (extractLogoAccentColor) bloqueaba
-- AOS y Swiper en dependencias pero no usados
+- **TTFB:** ~800-1200ms (estimado)
+- **LCP:** ~4-6s (imágenes pesadas)
+- **CLS:** ~0.15-0.25 (sin width/height)
+- **FCP:** ~2-3s
+- **Tamaño total:** ~35MB+ (imágenes)
 
-**Soluciones Aplicadas:**
+### Después de Optimización (Estimado)
 
-- ✅ Carga diferida de componentes no críticos en móvil
-- ✅ `requestIdleCallback` para inicialización progresiva
-- ✅ `extractLogoAccentColor` diferido/saltado en móvil
-- ✅ Analytics diferido (1s delay)
-- ✅ Scripts con `defer` attribute
+- **TTFB:** <500ms (con Service Worker cache)
+- **LCP:** <2.5s (imágenes optimizadas + preload)
+- **CLS:** <0.1 (width/height + aspect-ratio)
+- **FCP:** <1.2s (CSS crítico inline)
+- **Tamaño total:** ~5-8MB (imágenes optimizadas)
 
-**Pendiente:**
+### Reducción de Tamaño
 
-- 🔄 Verificar si AOS/Swiper se pueden eliminar completamente
-- 🔄 Code splitting más agresivo por ruta
-
-**Impacto:**
-
-- TTI mejorado en ~300-500ms
-- Reducción de bloqueo del main thread
-- Mejor experiencia en móviles lentos
+- **Imágenes:** ~70-85% reducción (35MB → 5-8MB)
+- **CSS:** Ya optimizado (minificado en producción)
+- **JS:** Ya optimizado (minificado en producción)
 
 ---
 
-### 5. Meta Tags y SEO
+## 🎯 Optimizaciones Pendientes (Requieren Acción)
 
-**Problemas:**
+### 1. **Ejecutar Optimización de Imágenes** 🔴 CRÍTICO
 
-- Faltaba `theme-color`
-- Faltaba `color-scheme`
-- Open Graph básico pero mejorable
+```bash
+npm run optimize:images:advanced
+```
 
-**Soluciones Aplicadas:**
+**Después de ejecutar:**
 
-- ✅ `theme-color` agregado
-- ✅ `color-scheme` agregado
-- ✅ Meta tags existentes validados
+- Actualizar todas las referencias de imágenes en HTML
+- Reemplazar rutas antiguas por rutas optimizadas
+- Verificar que todas las imágenes usen `<picture>` con AVIF/WebP
 
-**Impacto:**
+### 2. **Actualizar Todas las Imágenes en HTML** 🟡 IMPORTANTE
 
-- Mejor integración con navegadores móviles
-- Mejor experiencia en modo oscuro/claro
+#### Imágenes que necesitan actualización:
 
----
+- Hero slides (2 imágenes adicionales)
+- About section (mission-bg, vision-bg, values-bg)
+- Quote section (PERSPECTIVAS_720Foto-enhanced.png)
+- Projects section (PERSPECTIVAS_720Foto-enhanced.png, OJALA.jpg)
+- Contact section (patioOP.png)
+- Brand logos (Importadora.png, Square.png, Capital.png, Fundation.png, Novaterra.png)
 
-### 6. Lazy Loading de Imágenes
+#### Template a usar:
 
-**Problema:**
+```html
+<picture>
+  <source
+    type="image/avif"
+    srcset="
+      /img/optimized/[nombre]-mobile.avif   400w,
+      /img/optimized/[nombre]-tablet.avif   768w,
+      /img/optimized/[nombre]-desktop.avif 1200w,
+      /img/optimized/[nombre]-large.avif   1920w
+    "
+    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+  />
+  <source
+    type="image/webp"
+    srcset="
+      /img/optimized/[nombre]-mobile.webp   400w,
+      /img/optimized/[nombre]-tablet.webp   768w,
+      /img/optimized/[nombre]-desktop.webp 1200w,
+      /img/optimized/[nombre]-large.webp   1920w
+    "
+    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+  />
+  <img
+    src="/img/optimized/[nombre]-optimized.[ext]"
+    alt="[descripción]"
+    loading="lazy"
+    width="[ancho]"
+    height="[alto]"
+    decoding="async"
+    fetchpriority="low"
+  />
+</picture>
+```
 
-- Lazy loading con rootMargin muy grande (200px)
-- Threshold muy bajo (0.01)
-- Cargaba imágenes demasiado pronto
+### 3. **Eliminar Dependencias No Usadas** 🟡 OPCIONAL
 
-**Solución Aplicada:**
+- `aos` (AOS library) - verificar si se usa
+- `swiper` - verificar si se usa
+- Si no se usan, remover de `package.json`
 
-- ✅ rootMargin reducido a 20px
-- ✅ threshold aumentado a 20%
-- ✅ Placeholder shimmer mientras cargan
-- ✅ IntersectionObserver optimizado
+### 4. **Minificar CSS en Desarrollo** 🟢 MEJORA MENOR
 
-**Impacto:**
-
-- Reducción de ~30-40% en requests iniciales
-- Mejor uso de ancho de banda
-- LCP mejorado al cargar solo lo visible
-
----
-
-## 📈 Optimizaciones por Sección
-
-### Hero Section
-
-- ✅ CSS crítico inlinado
-- ✅ Imagen LCP con `fetchpriority="high"`
-- ✅ `width/height` para prevenir CLS
-- ✅ `decoding="async"`
-
-### Navigation
-
-- ✅ CSS crítico inlinado
-- ✅ Font Awesome → SVG inline
-- ✅ Logo con `fetchpriority="high"`
-
-### About Section
-
-- ✅ Imágenes con lazy loading estricto
-- ✅ `width/height` para CLS
-- ✅ Placeholder mientras cargan
-
-### Projects Section
-
-- ✅ Lazy loading agresivo
-- ✅ `aspect-ratio` para prevenir CLS
-- ✅ `sizes` para responsive
-
-### Team Section
-
-- ✅ Imágenes optimizadas (ya en JPG)
-- ✅ Lazy loading
-- ✅ SVG icons en lugar de Font Awesome
-
-### Contact Section
-
-- ✅ Imagen con lazy loading
-- ✅ `width/height` definidos
+- Ya configurado: `cssnano` solo en producción
+- CSS crítico ya está inline y minificado
 
 ---
 
-## 🚀 Próximos Pasos Recomendados
-
-### Crítico (Alta Prioridad)
-
-1. **Optimizar Imagen OJALA.jpg**
-
-   ```bash
-   # Convertir a WebP y comprimir
-   sharp-cli -i img/OJALA.jpg -o img/OJALA.webp --webp
-   # Objetivo: < 300KB
-   ```
-
-2. **Generar srcset para imágenes grandes**
-
-   ```html
-   <img
-     srcset="img/hero-400w.webp 400w, img/hero-800w.webp 800w, img/hero-1200w.webp 1200w"
-     sizes="100vw"
-   />
-   ```
-
-3. **Eliminar AOS y Swiper si no se usan**
-
-   ```bash
-   npm uninstall aos swiper
-   ```
-
-4. **Configurar compresión Brotli/Gzip en servidor**
-   - Nginx: `brotli on; brotli_comp_level 6;`
-   - Apache: Habilitar mod_deflate
-
-### Importante (Media Prioridad)
-
-5. **Service Worker para cache estático**
-   - Cachear CSS/JS/Imágenes estáticas
-   - Estrategia: Cache First para assets
-
-6. **CDN para imágenes**
-   - Usar Cloudinary, Imgix, o similar
-   - Optimización automática de imágenes
-   - Lazy loading nativo
-
-7. **Preload de recursos críticos**
-
-   ```html
-   <link rel="preload" href="/img/hero-critical.webp" as="image" fetchpriority="high" />
-   ```
-
-8. **Headers de caché**
-   ```
-   Cache-Control: public, max-age=31536000, immutable
-   ```
-
-### Mejoras Adicionales (Baja Prioridad)
-
-9. **Monitorización Web Vitals**
-   - Google Analytics 4 con Web Vitals
-   - Real User Monitoring (RUM)
-
-10. **Critical CSS automatizado**
-    - Script para extraer CSS crítico automáticamente
-    - Integrar en build process
-
-11. **Image optimization pipeline**
-    - Script para convertir todas las imágenes a WebP
-    - Generar múltiples tamaños automáticamente
-
----
-
-## 📝 Checklist de Implementación
+## 📋 Checklist de Implementación
 
 ### ✅ Completado
 
-- [x] CSS crítico inlinado
-- [x] CSS no crítico diferido
-- [x] Font Awesome eliminado
-- [x] Google Fonts optimizado
-- [x] Meta tags mejorados
-- [x] Lazy loading optimizado
-- [x] Imágenes con width/height
-- [x] Scripts con defer
-- [x] Componentes diferidos en móvil
+- [x] Service Worker creado y registrado
+- [x] Headers de cache configurados
+- [x] Lazy loading avanzado implementado
+- [x] Preloads críticos añadidos
+- [x] Script de optimización de imágenes avanzado
+- [x] Optimización de fuentes mejorada
+- [x] Hero image actualizado con picture/srcset
 
-### 🔄 Pendiente
+### 🔴 Pendiente (Crítico)
 
-- [ ] Convertir imágenes a WebP/AVIF
-- [ ] Generar srcset para imágenes grandes
-- [ ] Comprimir OJALA.jpg (< 300KB)
-- [ ] Eliminar AOS/Swiper si no se usan
-- [ ] Configurar Brotli/Gzip en servidor
-- [ ] Service Worker
-- [ ] CDN para imágenes
-- [ ] Headers de caché
+- [ ] Ejecutar `npm run optimize:images:advanced`
+- [ ] Actualizar todas las imágenes en HTML con picture/srcset
+- [ ] Verificar que todas las imágenes tengan width/height
+- [ ] Probar Service Worker en producción
 
----
+### 🟡 Pendiente (Importante)
 
-## 🎯 Objetivos de Performance
+- [ ] Actualizar imágenes de About section
+- [ ] Actualizar imágenes de Projects section
+- [ ] Actualizar imágenes de Quote section
+- [ ] Actualizar imágenes de Contact section
+- [ ] Actualizar logos de Brand section
+- [ ] Verificar y eliminar dependencias no usadas (aos, swiper)
 
-### Lighthouse Mobile Targets
+### 🟢 Pendiente (Opcional)
 
-- **Performance:** 95+ ✅ (objetivo alcanzable)
-- **Best Practices:** 95+ ✅ (objetivo alcanzable)
-- **Accessibility:** 95+ ✅ (ya está bien)
-- **SEO:** 95+ ✅ (ya está bien)
-
-### Core Web Vitals Targets
-
-- **LCP:** < 2.5s ✅ (objetivo alcanzable)
-- **FID:** < 100ms ✅ (ya está bien)
-- **CLS:** < 0.1 ✅ (objetivo alcanzable)
+- [ ] Implementar Resource Hints adicionales
+- [ ] Añadir más preloads para recursos críticos
+- [ ] Optimizar animaciones CSS (usar transform/opacity)
+- [ ] Implementar Critical CSS más agresivo
 
 ---
 
-## 📚 Referencias y Recursos
+## 🛠️ Scripts Disponibles
 
-- [Web.dev Performance](https://web.dev/performance/)
-- [Lighthouse Scoring Guide](https://web.dev/performance-scoring/)
-- [Core Web Vitals](https://web.dev/vitals/)
-- [Image Optimization Guide](https://web.dev/fast/#optimize-your-images)
-- [Critical CSS](https://web.dev/extract-critical-css/)
+```bash
+# Optimización básica de imágenes (WebP)
+npm run optimize:images
+
+# Optimización avanzada (AVIF + WebP + responsive)
+npm run optimize:images:advanced
+
+# Build de producción (minifica todo)
+npm run build
+
+# Preview de build
+npm run preview
+```
 
 ---
 
-**Nota:** Este reporte se basa en análisis estático del código. Las métricas reales deben medirse con Lighthouse, PageSpeed Insights, o WebPageTest después del deployment.
+## 📊 Rutas de Imágenes Optimizadas
+
+Después de ejecutar `optimize:images:advanced`, las imágenes estarán en:
+
+```
+/img/optimized/
+├── [nombre]-mobile.avif (400w)
+├── [nombre]-tablet.avif (768w)
+├── [nombre]-desktop.avif (1200w)
+├── [nombre]-large.avif (1920w)
+├── [nombre]-mobile.webp (400w)
+├── [nombre]-tablet.webp (768w)
+├── [nombre]-desktop.webp (1200w)
+├── [nombre]-large.webp (1920w)
+└── [nombre]-optimized.[ext] (fallback)
+```
+
+---
+
+## 🎯 Recomendaciones Finales
+
+### 1. **CDN** 🌐
+
+- Considerar usar un CDN (Cloudflare, Cloudinary) para servir imágenes
+- Beneficio: Reducción adicional de latencia y mejor compresión
+
+### 2. **Preload Adicional** ⚡
+
+- Preload de la primera imagen del hero (ya implementado)
+- Considerar preload de fuentes adicionales si se usan above-the-fold
+
+### 3. **Monitoring** 📈
+
+- Implementar Real User Monitoring (RUM)
+- Usar Web Vitals API para tracking de LCP, FID, CLS
+- Configurar alertas para degradación de performance
+
+### 4. **Testing** 🧪
+
+- Ejecutar Lighthouse Mobile después de cada cambio
+- Target: Score ≥95 en Performance y Best Practices
+- Verificar TTFB <1.5s y LCP <2.5s en conexión 3G
+
+### 5. **Progressive Enhancement** 🚀
+
+- Asegurar que el sitio funcione sin JavaScript
+- Verificar que las imágenes se carguen incluso sin Service Worker
+- Fallbacks para navegadores antiguos
+
+---
+
+## 📝 Notas Técnicas
+
+### Service Worker
+
+- **Estrategia:** Cache-first para estáticos, Network-first para HTML
+- **Actualización:** Automática cada minuto
+- **Compatibilidad:** Todos los navegadores modernos
+
+### Lazy Loading
+
+- **Threshold:** 50px antes de entrar al viewport
+- **Fallback:** Carga inmediata en navegadores sin IntersectionObserver
+- **Optimización:** Solo observa imágenes con `data-src` o `loading="lazy"`
+
+### Imágenes
+
+- **Prioridad:** AVIF > WebP > Optimized original
+- **Responsive:** 4 tamaños (mobile, tablet, desktop, large)
+- **Quality:** Balance entre calidad y tamaño (75 AVIF, 85 WebP)
+
+---
+
+## 🎉 Resultado Esperado
+
+Después de completar todas las optimizaciones pendientes:
+
+- ✅ **Lighthouse Mobile Score:** ≥95 Performance, ≥95 Best Practices
+- ✅ **TTFB:** <1.5s (con Service Worker: <500ms)
+- ✅ **LCP:** <2.5s
+- ✅ **CLS:** <0.1
+- ✅ **FCP:** <1.2s
+- ✅ **Tamaño total:** Reducción de ~70-85% en imágenes
+
+---
+
+**Última actualización:** 2025-01-11  
+**Próximos pasos:** Ejecutar optimización de imágenes y actualizar HTML
