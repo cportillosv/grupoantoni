@@ -1,6 +1,7 @@
 [build]
   publish = "dist"
   command = "npm run build"
+  environment = { NODE_VERSION = "18" }
 
 # Redirecciones para páginas HTML (sin .html en la URL)
 [[redirects]]
@@ -63,11 +64,13 @@
   to = "/brand/novaterra.html"
   status = 200
 
-# Fallback para SPA
+# Fallback para SPA (debe ser el último redirect)
+# Solo redirige si el archivo no existe
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
 
 # Headers for performance optimization
 [[headers]]
@@ -118,9 +121,6 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
 
-# Compression
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Content-Encoding = "br, gzip"
+# Compression is handled automatically by Netlify
+# Do not set Content-Encoding header manually
 
