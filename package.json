@@ -12,7 +12,6 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "analyze": "vite build --mode analyze",
-<<<<<<< HEAD
     "optimize:images": "node scripts/optimize-images.js",
     "optimize:images:advanced": "node scripts/optimize-images-advanced.js",
     "optimize:images:legacy": "imagemin assets/images/**/*.{jpg,png,svg} --out-dir=assets/images/optimized",
