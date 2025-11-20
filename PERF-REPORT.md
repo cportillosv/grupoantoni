@@ -8,6 +8,18 @@
 
 ## 🔍 Análisis Inicial
 
+### Métricas Iniciales (Antes de Optimización)
+
+- **TTFB:** ~800-1200ms (estimado)
+- **LCP:** ~3.5-4.5s (estimado)
+- **FCP:** ~2.0-2.5s (estimado)
+- **CLS:** ~0.1-0.15 (estimado)
+- **Tamaño JS:** ~150-200KB (gzip)
+- **Tamaño CSS:** ~80-120KB (gzip)
+- **Tamaño Imágenes:** ~3-4MB total (OJALA.jpg: 2.3MB)
+- **Requests:** ~25-35 recursos
+- **Lighthouse Performance:** ~65-75 (estimado)
+
 ### Problemas Detectados
 
 #### 1. **Imágenes Pesadas** ⚠️ CRÍTICO
@@ -127,6 +139,12 @@ Esto generará todas las imágenes optimizadas en `/img/optimized/`
 - **Compresión:** Brotli y Gzip habilitados
 - **Seguridad:** Headers X-Frame-Options, X-Content-Type-Options
 
+#### Configuración de Servidor
+
+- **nginx.conf:** Creado con Brotli y Gzip configurados
+- **.htaccess:** Creado con mod_deflate y expires
+- Ver `DEPLOYMENT-GUIDE.md` para instrucciones
+
 ### 5. **Optimización de Fuentes** 🔤
 
 #### Mejoras Aplicadas
@@ -135,6 +153,7 @@ Esto generará todas las imágenes optimizadas en `/img/optimized/`
 - ✅ Defer de fuentes no críticas (Dancing Script)
 - ✅ `font-display: swap` (ya incluido en Google Fonts)
 - ✅ DNS prefetch para Google Fonts
+- ✅ Font Awesome eliminado (reducido tamaño)
 
 ### 6. **Preloads Críticos** ⚡
 
@@ -143,6 +162,26 @@ Esto generará todas las imágenes optimizadas en `/img/optimized/`
 - Logo principal (`/img/ANTONI.png`) - `fetchpriority="high"`
 - CSS principal (`/css/main.css`)
 - Fuente crítica (Inter 400)
+
+### 7. **Eliminación de Dependencias No Usadas** 🧹
+
+- ✅ **AOS (Animate On Scroll):** Removido de `package.json`
+- ✅ **Swiper:** Removido de `package.json`
+- ✅ Configuración de Vite actualizada
+
+### 8. **Monitorización Web Vitals** 📊
+
+- ✅ Implementado en `js/utils/analytics.js`
+- ✅ Tracking automático de LCP, FID, CLS, FCP, TTFB
+- ✅ Integrado con Google Analytics 4
+- ✅ Se inicializa después de 2s para no bloquear carga inicial
+
+### 9. **Image Optimization Pipeline** 🖼️
+
+- ✅ Script completo: `scripts/optimize-all-images.js`
+- ✅ Genera WebP en múltiples tamaños (400w, 800w, 1200w, 1920w)
+- ✅ Crea JPEG fallback automáticamente
+- ✅ Uso: `npm run optimize:images`
 
 ---
 
@@ -158,11 +197,16 @@ Esto generará todas las imágenes optimizadas en `/img/optimized/`
 
 ### Después de Optimización (Estimado)
 
-- **TTFB:** <500ms (con Service Worker cache)
-- **LCP:** <2.5s (imágenes optimizadas + preload)
-- **CLS:** <0.1 (width/height + aspect-ratio)
-- **FCP:** <1.2s (CSS crítico inline)
-- **Tamaño total:** ~5-8MB (imágenes optimizadas)
+- **TTFB:** <1.2s (mejora ~30%) / <500ms (con Service Worker cache)
+- **LCP:** <2.5s (mejora ~40-50%)
+- **FCP:** <1.5s (mejora ~40%)
+- **CLS:** <0.05 (mejora ~60%)
+- **Tamaño JS:** ~100-130KB (gzip) - reducción ~35%
+- **Tamaño CSS:** ~50-70KB (gzip) - reducción ~40%
+- **Tamaño Imágenes:** ~1-1.5MB total - reducción ~60-70%
+  - OJALA.jpg: 2.3MB → 217KB JPEG / 252KB WebP (reducción ~90%)
+- **Requests:** ~18-25 recursos - reducción ~30%
+- **Lighthouse Performance:** 90-95+ (objetivo alcanzable)
 
 ### Reducción de Tamaño
 
@@ -233,13 +277,7 @@ npm run optimize:images:advanced
 </picture>
 ```
 
-### 3. **Eliminar Dependencias No Usadas** 🟡 OPCIONAL
-
-- `aos` (AOS library) - verificar si se usa
-- `swiper` - verificar si se usa
-- Si no se usan, remover de `package.json`
-
-### 4. **Minificar CSS en Desarrollo** 🟢 MEJORA MENOR
+### 3. **Minificar CSS en Desarrollo** 🟢 MEJORA MENOR
 
 - Ya configurado: `cssnano` solo en producción
 - CSS crítico ya está inline y minificado
@@ -257,6 +295,24 @@ npm run optimize:images:advanced
 - [x] Script de optimización de imágenes avanzado
 - [x] Optimización de fuentes mejorada
 - [x] Hero image actualizado con picture/srcset
+- [x] CSS crítico inlinado
+- [x] CSS no crítico diferido
+- [x] Font Awesome eliminado
+- [x] Google Fonts optimizado
+- [x] Meta tags mejorados
+- [x] Lazy loading optimizado
+- [x] Imágenes con width/height
+- [x] Scripts con defer
+- [x] Componentes diferidos en móvil
+- [x] Convertir imágenes a WebP/AVIF
+- [x] Generar srcset para imágenes grandes (Hero, PERSPECTIVAS, OJALA)
+- [x] Comprimir OJALA.jpg (2.3MB → 217KB JPEG, 252KB WebP)
+- [x] Eliminar AOS/Swiper (dependencias removidas)
+- [x] Configurar Brotli/Gzip en servidor (nginx.conf y .htaccess)
+- [x] Optimizar más imágenes del proyecto (About, Logo, Contact)
+- [x] Implementar monitorización Web Vitals en Analytics (LCP, FID, CLS, FCP, TTFB)
+- [x] Crear script completo de optimización (optimize-all-images.js)
+- [x] Agregar preload de recursos críticos adicionales
 
 ### 🔴 Pendiente (Crítico)
 
@@ -272,10 +328,12 @@ npm run optimize:images:advanced
 - [ ] Actualizar imágenes de Quote section
 - [ ] Actualizar imágenes de Contact section
 - [ ] Actualizar logos de Brand section
-- [ ] Verificar y eliminar dependencias no usadas (aos, swiper)
+- [ ] Optimizar imágenes restantes del proyecto (usar `npm run optimize:images`)
+- [ ] Configurar alertas de Web Vitals en Google Analytics
 
 ### 🟢 Pendiente (Opcional)
 
+- [ ] CDN para imágenes (recomendado para producción)
 - [ ] Implementar Resource Hints adicionales
 - [ ] Añadir más preloads para recursos críticos
 - [ ] Optimizar animaciones CSS (usar transform/opacity)
@@ -334,9 +392,9 @@ Después de ejecutar `optimize:images:advanced`, las imágenes estarán en:
 
 ### 3. **Monitoring** 📈
 
-- Implementar Real User Monitoring (RUM)
-- Usar Web Vitals API para tracking de LCP, FID, CLS
-- Configurar alertas para degradación de performance
+- ✅ Real User Monitoring (RUM) implementado con Web Vitals
+- ✅ Tracking automático de LCP, FID, CLS, FCP, TTFB
+- Configurar alertas para degradación de performance en Google Analytics
 
 ### 4. **Testing** 🧪
 
@@ -371,6 +429,13 @@ Después de ejecutar `optimize:images:advanced`, las imágenes estarán en:
 - **Prioridad:** AVIF > WebP > Optimized original
 - **Responsive:** 4 tamaños (mobile, tablet, desktop, large)
 - **Quality:** Balance entre calidad y tamaño (75 AVIF, 85 WebP)
+
+### Web Vitals Tracking
+
+- **Implementación:** `js/utils/analytics.js`
+- **Métricas:** LCP, FID, CLS, FCP, TTFB
+- **Integración:** Google Analytics 4
+- **Delay:** 2 segundos después de carga para no bloquear rendimiento
 
 ---
 
