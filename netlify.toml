@@ -64,11 +64,13 @@
   to = "/brand/novaterra.html"
   status = 200
 
-# Fallback para SPA
+# Fallback para SPA (debe ser el último redirect)
+# Solo redirige si el archivo no existe
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
 
 # Headers for performance optimization
 [[headers]]
