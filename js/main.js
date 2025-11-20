@@ -20,17 +20,8 @@ import { Footer } from './components/footer.js';
 import { i18n } from './utils/i18n.js';
 import { LazyLoader } from './utils/lazy-loader.js';
 
-// NON-CRITICAL: Will be lazy loaded when sections enter viewport
-// import { About } from './components/about.js';
-// import { Services } from './components/services.js'; // REMOVED: Not used in HTML
-// import { Projects } from './components/projects.js';
-// import { Brand } from './components/brand.js';
-// import { Team } from './components/team.js';
-// import { Contact } from './components/contact.js';
-// import { ScrollAnimations } from './utils/scroll-animations.js';
-// import { Analytics } from './utils/analytics.js';
-// import { MobileImageOptimizer } from './utils/mobile-image-optimizer.js';
-// import { registerServiceWorker } from './utils/service-worker.js';
+// NON-CRITICAL: Components are lazy loaded when sections enter viewport
+// See lazy loading implementation below for dynamic imports
 
 // ========================================
 // MAIN APPLICATION CLASS

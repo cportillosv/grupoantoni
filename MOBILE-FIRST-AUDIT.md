@@ -14,12 +14,12 @@
 
 - ✅ **Services Component** (`js/components/services.js`)
   - **Estado:** NO se usa en HTML (no hay sección `#services`)
-  - **Acción:** Removido de imports, mantenido archivo por si se necesita en futuro
+  - **Acción:** ✅ ELIMINADO - Archivo removido del proyecto
   - **Impacto:** Reduce bundle inicial ~2-3KB
 
 - ✅ **Navigation Component** (`js/components/navigation.js`)
   - **Estado:** NO se usa (se usa `navbar.js` en su lugar)
-  - **Acción:** No importado, puede eliminarse si se confirma
+  - **Acción:** ✅ ELIMINADO - Archivo removido del proyecto
   - **Impacto:** No afecta bundle (no importado)
 
 ### 📦 Dependencias Innecesarias

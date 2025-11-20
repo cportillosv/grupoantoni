@@ -92,7 +92,7 @@ Esto generará todas las imágenes optimizadas en `/img/optimized/`
 
 #### Implementación
 
-- **Archivo:** `public/sw.js`
+- **Archivo:** `sw.js` (en root del proyecto)
 - **Estrategias:**
   - **Cache-first:** CSS, JS, imágenes, fuentes
   - **Network-first:** HTML (siempre actualizado)
