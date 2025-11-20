@@ -341,11 +341,24 @@
   transition: all var(--transition-fast);
 }
 
+.nav-toggle svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  display: block;
+}
+
 .nav-toggle:hover,
 .nav-toggle:focus {
   color: #4a90e2;
   background-color: rgba(74, 144, 226, 0.1);
   outline: none;
+}
+
+.nav-toggle:hover svg,
+.nav-toggle:focus svg {
+  stroke: #4a90e2;
 }
 
 .hamburger {

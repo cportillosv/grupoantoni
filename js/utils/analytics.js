@@ -23,8 +23,184 @@ export class Analytics {
     this.loadFacebookPixel();
     this.loadMicrosoftClarity();
 
+    // Initialize Web Vitals tracking (deferred to not block initial load)
+    if (typeof requestIdleCallback !== 'undefined') {
+      requestIdleCallback(() => this.initWebVitals(), { timeout: 2000 });
+    } else {
+      setTimeout(() => this.initWebVitals(), 2000);
+    }
+
     this.isInitialized = true;
     console.log('Analytics initialized');
+  }
+
+  /**
+   * Initialize Web Vitals tracking
+   */
+  initWebVitals() {
+    // Only load Web Vitals library if Google Analytics is configured
+    if (!this.config.GA_MEASUREMENT_ID) {
+      return;
+    }
+
+    // Use native Web Vitals API if available
+    if ('PerformanceObserver' in window) {
+      this.trackLCP();
+      this.trackFID();
+      this.trackCLS();
+      this.trackFCP();
+      this.trackTTFB();
+    }
+  }
+
+  /**
+   * Track Largest Contentful Paint (LCP)
+   */
+  trackLCP() {
+    try {
+      const observer = new PerformanceObserver(list => {
+        const entries = list.getEntries();
+        const lastEntry = entries[entries.length - 1];
+
+        this.trackEvent('web_vitals', {
+          event_category: 'Web Vitals',
+          event_label: 'LCP',
+          value: Math.round(lastEntry.startTime),
+          metric_name: 'LCP',
+          metric_value: lastEntry.startTime,
+          metric_id: lastEntry.id,
+          metric_delta: lastEntry.startTime
+        });
+      });
+
+      observer.observe({ entryTypes: ['largest-contentful-paint'] });
+    } catch (e) {
+      console.warn('LCP tracking failed:', e);
+    }
+  }
+
+  /**
+   * Track First Input Delay (FID)
+   */
+  trackFID() {
+    try {
+      const observer = new PerformanceObserver(list => {
+        const entries = list.getEntries();
+        entries.forEach(entry => {
+          const fid = entry.processingStart - entry.startTime;
+
+          this.trackEvent('web_vitals', {
+            event_category: 'Web Vitals',
+            event_label: 'FID',
+            value: Math.round(fid),
+            metric_name: 'FID',
+            metric_value: fid,
+            metric_id: entry.name,
+            metric_delta: fid
+          });
+        });
+      });
+
+      observer.observe({ entryTypes: ['first-input'] });
+    } catch (e) {
+      console.warn('FID tracking failed:', e);
+    }
+  }
+
+  /**
+   * Track Cumulative Layout Shift (CLS)
+   */
+  trackCLS() {
+    try {
+      let clsValue = 0;
+      const observer = new PerformanceObserver(list => {
+        const entries = list.getEntries();
+        entries.forEach(entry => {
+          if (!entry.hadRecentInput) {
+            clsValue += entry.value;
+          }
+        });
+
+        // Send CLS when page is hidden (unload)
+        if (document.visibilityState === 'hidden') {
+          this.trackEvent('web_vitals', {
+            event_category: 'Web Vitals',
+            event_label: 'CLS',
+            value: Math.round(clsValue * 1000) / 1000,
+            metric_name: 'CLS',
+            metric_value: clsValue,
+            metric_delta: clsValue
+          });
+        }
+      });
+
+      observer.observe({ entryTypes: ['layout-shift'] });
+
+      // Send final CLS on page unload
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden' && clsValue > 0) {
+          this.trackEvent('web_vitals', {
+            event_category: 'Web Vitals',
+            event_label: 'CLS',
+            value: Math.round(clsValue * 1000) / 1000,
+            metric_name: 'CLS',
+            metric_value: clsValue
+          });
+        }
+      });
+    } catch (e) {
+      console.warn('CLS tracking failed:', e);
+    }
+  }
+
+  /**
+   * Track First Contentful Paint (FCP)
+   */
+  trackFCP() {
+    try {
+      const observer = new PerformanceObserver(list => {
+        const entries = list.getEntries();
+        entries.forEach(entry => {
+          if (entry.name === 'first-contentful-paint') {
+            this.trackEvent('web_vitals', {
+              event_category: 'Web Vitals',
+              event_label: 'FCP',
+              value: Math.round(entry.startTime),
+              metric_name: 'FCP',
+              metric_value: entry.startTime
+            });
+          }
+        });
+      });
+
+      observer.observe({ entryTypes: ['paint'] });
+    } catch (e) {
+      console.warn('FCP tracking failed:', e);
+    }
+  }
+
+  /**
+   * Track Time to First Byte (TTFB)
+   */
+  trackTTFB() {
+    try {
+      window.addEventListener('load', () => {
+        const navigation = performance.getEntriesByType('navigation')[0];
+        if (navigation) {
+          const ttfb = navigation.responseStart - navigation.requestStart;
+
+          this.trackEvent('web_vitals', {
+            event_category: 'Web Vitals',
+            event_label: 'TTFB',
+            value: Math.round(ttfb),
+            metric_name: 'TTFB',
+            metric_value: ttfb
+          });
+        }
+      });
+    } catch (e) {
+      console.warn('TTFB tracking failed:', e);
+    }
   }
 
   loadGoogleAnalytics() {

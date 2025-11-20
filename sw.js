@@ -1,60 +1,49 @@
+/* eslint-disable */
 /**
- * Service Worker for Grupo Antoni Landing Page
- * Implements cache-first strategy for static assets
- * Network-first for HTML
+ * Service Worker for Grupo Antoni
+ * Caches static assets for offline support and faster loading
  */
 
-/* eslint-disable no-restricted-globals */
-const STATIC_CACHE = 'antoni-static-v1';
-const IMAGE_CACHE = 'antoni-images-v1';
+const CACHE_NAME = 'grupo-antoni-v1';
+const STATIC_CACHE = 'grupo-antoni-static-v1';
+const IMAGE_CACHE = 'grupo-antoni-images-v1';
 
-// Assets to cache on install
-const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/css/main.css',
-  '/js/main.js',
-  '/img/ANTONI.png',
-  '/assets/icons/favicon.ico'
-];
+// Assets to cache immediately
+const STATIC_ASSETS = ['/', '/index.html', '/css/main.css', '/js/main.js', '/img/ANTONI.png'];
 
-// Install event - cache static assets
+// Install event - Cache static assets
 self.addEventListener('install', event => {
-  console.log('[SW] Installing service worker...');
-
   event.waitUntil(
     caches.open(STATIC_CACHE).then(cache => {
-      console.log('[SW] Caching static assets');
       return cache.addAll(STATIC_ASSETS).catch(err => {
-        console.warn('[SW] Failed to cache some assets:', err);
+        console.warn('Service Worker: Some assets failed to cache', err);
       });
     })
   );
-
   self.skipWaiting();
 });
 
-// Activate event - clean up old caches
+// Activate event - Clean up old caches
 self.addEventListener('activate', event => {
-  console.log('[SW] Activating service worker...');
-
   event.waitUntil(
-    caches.keys().then(cacheNames =>
-      Promise.all(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
         cacheNames
-          .filter(name => name !== STATIC_CACHE && name !== IMAGE_CACHE)
-          .map(name => {
-            console.log('[SW] Deleting old cache:', name);
-            return caches.delete(name);
+          .filter(cacheName => {
+            return (
+              cacheName.startsWith('grupo-antoni-') &&
+              cacheName !== STATIC_CACHE &&
+              cacheName !== IMAGE_CACHE
+            );
           })
-      )
-    )
+          .map(cacheName => caches.delete(cacheName))
+      );
+    })
   );
-
   return self.clients.claim();
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - Serve from cache, fallback to network
 self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
@@ -69,86 +58,68 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // HTML: Network-first strategy
-  if (request.headers.get('accept')?.includes('text/html')) {
-    event.respondWith(networkFirst(request));
-    return;
-  }
-
-  // Images: Cache-first with network fallback
+  // Strategy: Cache First for static assets, Network First for HTML
   if (request.destination === 'image') {
-    event.respondWith(cacheFirst(request, IMAGE_CACHE));
-    return;
-  }
-
-  // CSS/JS/Fonts: Cache-first strategy
-  if (
-    request.destination === 'style' ||
-    request.destination === 'script' ||
-    request.destination === 'font'
-  ) {
-    event.respondWith(cacheFirst(request, STATIC_CACHE));
-    return;
-  }
-
-  // Default: Network-first
-  event.respondWith(networkFirst(request));
-});
-
-/**
- * Network-first strategy: try network, fallback to cache
- */
-async function networkFirst(request) {
-  try {
-    const networkResponse = await fetch(request);
-
-    // Cache successful responses
-    if (networkResponse.ok) {
-      const cache = await caches.open(STATIC_CACHE);
-      cache.put(request, networkResponse.clone());
-    }
-
-    return networkResponse;
-  } catch (error) {
-    // Network failed, try cache
-    const cachedResponse = await caches.match(request);
-    if (cachedResponse) {
-      return cachedResponse;
-    }
-
-    // Both failed
-    throw error;
-  }
-}
-
-/**
- * Cache-first strategy: try cache, fallback to network
- */
-async function cacheFirst(request, cacheName) {
-  const cache = await caches.open(cacheName);
-  const cachedResponse = await cache.match(request);
-
-  if (cachedResponse) {
-    // Update cache in background
-    fetch(request)
-      .then(networkResponse => {
-        if (networkResponse.ok) {
-          cache.put(request, networkResponse.clone());
+    // Images: Cache First with Network Fallback
+    event.respondWith(
+      caches.match(request).then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
         }
+        return fetch(request).then(response => {
+          // Cache successful image responses
+          if (response.status === 200) {
+            const responseToCache = response.clone();
+            caches.open(IMAGE_CACHE).then(cache => {
+              cache.put(request, responseToCache);
+            });
+          }
+          return response;
+        });
       })
-      .catch(() => {
-        // Ignore network errors in background update
-      });
-
-    return cachedResponse;
+    );
+  } else if (
+    request.destination === 'script' ||
+    request.destination === 'style' ||
+    url.pathname.match(/\.(woff|woff2|ttf|otf)$/)
+  ) {
+    // CSS/JS/Fonts: Cache First
+    event.respondWith(
+      caches.match(request).then(cachedResponse => {
+        return (
+          cachedResponse ||
+          fetch(request).then(response => {
+            if (response.status === 200) {
+              const responseToCache = response.clone();
+              caches.open(STATIC_CACHE).then(cache => {
+                cache.put(request, responseToCache);
+              });
+            }
+            return response;
+          })
+        );
+      })
+    );
+  } else {
+    // HTML: Network First with Cache Fallback
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          // Cache successful HTML responses
+          if (response.status === 200) {
+            const responseToCache = response.clone();
+            caches.open(STATIC_CACHE).then(cache => {
+              cache.put(request, responseToCache);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          // Fallback to cache if network fails
+          return caches.match(request).then(cachedResponse => {
+            return cachedResponse || caches.match('/index.html');
+          });
+        })
+    );
   }
-
-  // Not in cache, fetch from network
-  const networkResponse = await fetch(request);
-
-  if (networkResponse.ok) {
-    cache.put(request, networkResponse.clone());
-  }
-
-  return networkResponse;
-}
+});

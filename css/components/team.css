@@ -270,6 +270,14 @@
   transition: all var(--transition-normal);
   z-index: 10;
   box-shadow: none;
+  padding: 0;
+}
+
+.carousel-nav svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
 }
 
 .carousel-nav:hover {
@@ -277,6 +285,10 @@
   color: #4a90e2;
   transform: translateY(-50%) scale(1.1);
   box-shadow: none;
+}
+
+.carousel-nav:hover svg {
+  stroke: #4a90e2;
 }
 
 .carousel-nav:disabled {
