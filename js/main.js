@@ -2,20 +2,26 @@
    ANTONI - MAIN JAVASCRIPT
    ======================================== */
 
-// Import modules
+/* ========================================
+   MOBILE-FIRST OPTIMIZATION AUDIT:
+   - Removed Services component (not used in HTML)
+   - Lazy loading all non-critical components
+   - CSS loaded via Vite (code splitting enabled)
+   - Analytics deferred until after user interaction
+   ======================================== */
+
+// Import CSS - Vite will handle this automatically with code splitting
+import '../css/main.css';
+
+// CRITICAL: Import only essential modules for initial render
 import { Navbar } from './components/navbar.js';
 import { Hero } from './components/hero.js';
-import { About } from './components/about.js';
-import { Services } from './components/services.js';
-import { Projects } from './components/projects.js';
-import { Brand } from './components/brand.js';
-import { Team } from './components/team.js';
-import { Contact } from './components/contact.js';
 import { Footer } from './components/footer.js';
-import { ScrollAnimations } from './utils/scroll-animations.js';
-import { Analytics } from './utils/analytics.js';
-import { MobileImageOptimizer } from './utils/mobile-image-optimizer.js';
 import { i18n } from './utils/i18n.js';
+import { LazyLoader } from './utils/lazy-loader.js';
+
+// NON-CRITICAL: Components are lazy loaded when sections enter viewport
+// See lazy loading implementation below for dynamic imports
 
 // ========================================
 // MAIN APPLICATION CLASS
@@ -38,22 +44,19 @@ class App {
     try {
       const isMobile = window.innerWidth <= 767.98;
 
-      // CRITICAL: Initialize only essential components first for mobile
+      // CRITICAL: Initialize only essential components for first render
       this.navbar = new Navbar();
       this.hero = new Hero();
+      this.footer = new Footer();
 
       // Initialize i18n (internationalization) - needed for content
       i18n.init();
       this.setupLanguageSwitch();
 
-      // Initialize mobile image optimizer FIRST on mobile
-      if (isMobile) {
-        this.mobileImageOptimizer = new MobileImageOptimizer();
-        this.mobileImageOptimizer.init();
-        this.mobileImageOptimizer.preloadCriticalImages();
-      }
+      // Initialize advanced lazy loading
+      this.lazyLoader = new LazyLoader();
 
-      // Initialize lazy loading (mobile-optimized)
+      // Initialize legacy lazy loading (mobile-optimized)
       this.initLazyLoading();
 
       // Initialize global event listeners
@@ -62,86 +65,281 @@ class App {
       // Initialize social media popup
       this.initSocialMediaPopup();
 
-      // DEFER non-critical components on mobile
+      // MOBILE-FIRST: Lazy load components when sections enter viewport
+      this.initLazyComponentLoading();
+
+      // Defer service worker registration (non-critical)
+      if ('serviceWorker' in navigator) {
+        // Load service worker after page is interactive
+        if (document.readyState === 'complete') {
+          this.loadServiceWorker();
+        } else {
+          window.addEventListener('load', () => this.loadServiceWorker());
+        }
+      }
+
+      // Defer mobile image optimizer (non-critical)
       if (isMobile) {
-        // Use requestIdleCallback or setTimeout to defer non-critical components
-        const deferInit = (callback, delay = 0) => {
-          if ('requestIdleCallback' in window) {
-            requestIdleCallback(callback, { timeout: delay + 100 });
-          } else {
-            setTimeout(callback, delay);
-          }
-        };
-
-        // Initialize critical components immediately
-        this.footer = new Footer();
-
-        // Defer non-critical components
-        deferInit(() => {
-          this.about = new About();
-        }, 100);
-
-        deferInit(() => {
-          this.services = new Services();
-        }, 200);
-
-        deferInit(() => {
-          this.projects = new Projects();
-        }, 300);
-
-        deferInit(() => {
-          this.brand = new Brand();
-        }, 400);
-
-        deferInit(() => {
-          this.team = new Team();
-        }, 500);
-
-        deferInit(() => {
-          this.contact = new Contact();
-        }, 600);
-
-        deferInit(() => {
-          this.scrollAnimations = new ScrollAnimations();
-        }, 700);
-
-        // Defer analytics and logo color extraction (very heavy)
-        deferInit(() => {
-          Analytics.init();
-        }, 1000);
-
-        deferInit(() => {
-          this.extractLogoAccentColor().catch(() => {
-            // Silently fail if logo color extraction fails
-          });
-        }, 1500);
-      } else {
-        // Desktop: initialize everything normally
-        // Extract logo color and set CSS variables
-        this.extractLogoAccentColor().catch(() => {
-          // Silently fail if logo color extraction fails
+        // Load after first paint
+        requestAnimationFrame(() => {
+          this.loadMobileImageOptimizer();
         });
+      }
 
-        // Initialize analytics
-        Analytics.init();
+      // Defer analytics until after user interaction (mobile-first)
+      this.initDeferredAnalytics();
 
-        // Initialize components
-        this.about = new About();
-        this.services = new Services();
-        this.projects = new Projects();
-        this.brand = new Brand();
-        this.team = new Team();
-        this.contact = new Contact();
-        this.footer = new Footer();
-
-        // Initialize scroll animations
-        this.scrollAnimations = new ScrollAnimations();
+      // Defer logo color extraction (very heavy, only on desktop)
+      if (!isMobile) {
+        // Load after page is fully interactive
+        if (document.readyState === 'complete') {
+          this.extractLogoAccentColor().catch(() => {});
+        } else {
+          window.addEventListener('load', () => {
+            this.extractLogoAccentColor().catch(() => {});
+          });
+        }
       }
 
       console.log('Antoni app initialized successfully');
     } catch (error) {
       console.error('Error initializing app:', error);
     }
+  }
+
+  /**
+   * MOBILE-FIRST: Lazy load components when sections enter viewport
+   * Uses IntersectionObserver for optimal performance
+   */
+  initLazyComponentLoading() {
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: load all components after delay
+      setTimeout(() => this.loadAllComponents(), 1000);
+      return;
+    }
+
+    // Lazy load About section
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      const aboutObserver = new IntersectionObserver(
+        entries => {
+          if (entries[0].isIntersecting) {
+            this.loadAboutComponent();
+            aboutObserver.disconnect();
+          }
+        },
+        { rootMargin: '100px' }
+      );
+      aboutObserver.observe(aboutSection);
+    }
+
+    // Lazy load Projects section
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      const projectsObserver = new IntersectionObserver(
+        entries => {
+          if (entries[0].isIntersecting) {
+            this.loadProjectsComponent();
+            projectsObserver.disconnect();
+          }
+        },
+        { rootMargin: '100px' }
+      );
+      projectsObserver.observe(projectsSection);
+    }
+
+    // Lazy load Brand section
+    const brandSection = document.getElementById('brand');
+    if (brandSection) {
+      const brandObserver = new IntersectionObserver(
+        entries => {
+          if (entries[0].isIntersecting) {
+            this.loadBrandComponent();
+            brandObserver.disconnect();
+          }
+        },
+        { rootMargin: '100px' }
+      );
+      brandObserver.observe(brandSection);
+    }
+
+    // Lazy load Team section
+    const teamSection = document.getElementById('team');
+    if (teamSection) {
+      const teamObserver = new IntersectionObserver(
+        entries => {
+          if (entries[0].isIntersecting) {
+            this.loadTeamComponent();
+            teamObserver.disconnect();
+          }
+        },
+        { rootMargin: '100px' }
+      );
+      teamObserver.observe(teamSection);
+    }
+
+    // Lazy load Contact section
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      const contactObserver = new IntersectionObserver(
+        entries => {
+          if (entries[0].isIntersecting) {
+            this.loadContactComponent();
+            contactObserver.disconnect();
+          }
+        },
+        { rootMargin: '100px' }
+      );
+      contactObserver.observe(contactSection);
+    }
+
+    // Lazy load Scroll Animations (only when needed)
+    const scrollAnimationsObserver = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          this.loadScrollAnimations();
+          scrollAnimationsObserver.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    // Observe first section that might need animations
+    const firstAnimatedSection = document.querySelector('[data-animate]');
+    if (firstAnimatedSection) {
+      scrollAnimationsObserver.observe(firstAnimatedSection);
+    }
+  }
+
+  /**
+   * Dynamic imports for lazy loading components
+   */
+  async loadAboutComponent() {
+    if (this.about) return;
+    try {
+      const { About } = await import('./components/about.js');
+      this.about = new About();
+    } catch (error) {
+      console.warn('Failed to load About component:', error);
+    }
+  }
+
+  async loadProjectsComponent() {
+    if (this.projects) return;
+    try {
+      const { Projects } = await import('./components/projects.js');
+      this.projects = new Projects();
+    } catch (error) {
+      console.warn('Failed to load Projects component:', error);
+    }
+  }
+
+  async loadBrandComponent() {
+    if (this.brand) return;
+    try {
+      const { Brand } = await import('./components/brand.js');
+      this.brand = new Brand();
+    } catch (error) {
+      console.warn('Failed to load Brand component:', error);
+    }
+  }
+
+  async loadTeamComponent() {
+    if (this.team) return;
+    try {
+      const { Team } = await import('./components/team.js');
+      this.team = new Team();
+    } catch (error) {
+      console.warn('Failed to load Team component:', error);
+    }
+  }
+
+  async loadContactComponent() {
+    if (this.contact) return;
+    try {
+      const { Contact } = await import('./components/contact.js');
+      this.contact = new Contact();
+    } catch (error) {
+      console.warn('Failed to load Contact component:', error);
+    }
+  }
+
+  async loadScrollAnimations() {
+    if (this.scrollAnimations) return;
+    try {
+      const { ScrollAnimations } = await import('./utils/scroll-animations.js');
+      this.scrollAnimations = new ScrollAnimations();
+    } catch (error) {
+      console.warn('Failed to load ScrollAnimations:', error);
+    }
+  }
+
+  async loadServiceWorker() {
+    try {
+      const { registerServiceWorker } = await import('./utils/service-worker.js');
+      registerServiceWorker();
+    } catch (error) {
+      console.warn('Failed to load service worker:', error);
+    }
+  }
+
+  async loadMobileImageOptimizer() {
+    if (this.mobileImageOptimizer) return;
+    try {
+      const { MobileImageOptimizer } = await import('./utils/mobile-image-optimizer.js');
+      this.mobileImageOptimizer = new MobileImageOptimizer();
+      this.mobileImageOptimizer.init();
+      this.mobileImageOptimizer.preloadCriticalImages();
+    } catch (error) {
+      console.warn('Failed to load MobileImageOptimizer:', error);
+    }
+  }
+
+  /**
+   * MOBILE-FIRST: Load analytics only after user interaction
+   */
+  initDeferredAnalytics() {
+    const loadAnalytics = async () => {
+      try {
+        const { Analytics } = await import('./utils/analytics.js');
+        Analytics.init();
+      } catch (error) {
+        console.warn('Failed to load Analytics:', error);
+      }
+    };
+
+    // Load analytics after first user interaction (click, scroll, touch)
+    const events = ['click', 'scroll', 'touchstart', 'keydown'];
+    const loadOnce = () => {
+      loadAnalytics();
+      events.forEach(event => {
+        document.removeEventListener(event, loadOnce, { once: true });
+      });
+    };
+
+    events.forEach(event => {
+      document.addEventListener(event, loadOnce, { once: true, passive: true });
+    });
+
+    // Fallback: load after 3 seconds if no interaction
+    setTimeout(() => {
+      if (!window.__ANALYTICS_LOADED__) {
+        loadAnalytics();
+      }
+    }, 3000);
+  }
+
+  /**
+   * Fallback: Load all components if IntersectionObserver not available
+   */
+  async loadAllComponents() {
+    await Promise.all([
+      this.loadAboutComponent(),
+      this.loadProjectsComponent(),
+      this.loadBrandComponent(),
+      this.loadTeamComponent(),
+      this.loadContactComponent(),
+      this.loadScrollAnimations()
+    ]);
   }
 
   /**
@@ -262,7 +460,8 @@ class App {
   }
 
   /**
-   * Initialize global event listeners
+   * MOBILE-FIRST: Initialize global event listeners
+   * Optimized with passive listeners and debounce/throttle
    */
   initGlobalEventListeners() {
     // Handle reduced motion preference
@@ -270,28 +469,42 @@ class App {
     this.handleReducedMotion(mediaQuery);
     mediaQuery.addEventListener('change', this.handleReducedMotion);
 
-    // Handle window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        this.handleResize();
-      }, 250);
-    });
+    // MOBILE-FIRST: Optimized resize handler with debounce
+    this.resizeHandler = this.debounce(() => {
+      this.handleResize();
+    }, 250);
+    window.addEventListener('resize', this.resizeHandler);
 
     // Handle page visibility change
-    document.addEventListener('visibilitychange', () => {
+    this.visibilityHandler = () => {
       if (document.hidden) {
         this.handlePageHidden();
       } else {
         this.handlePageVisible();
       }
-    });
+    };
+    document.addEventListener('visibilitychange', this.visibilityHandler);
 
     // Handle keyboard navigation
-    document.addEventListener('keydown', e => {
+    this.keyboardHandler = e => {
       this.handleKeyboardNavigation(e);
-    });
+    };
+    document.addEventListener('keydown', this.keyboardHandler);
+  }
+
+  /**
+   * MOBILE-FIRST: Debounce utility
+   */
+  debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func.apply(this, args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
   }
 
   /**
@@ -372,15 +585,19 @@ class App {
   }
 
   /**
-   * Handle window resize
+   * MOBILE-FIRST: Handle window resize with debounce
+   * Optimized to prevent excessive calls on mobile
    */
   handleResize() {
-    // Notify components about resize
-    if (this.team && this.team.handleResize) {
+    // Notify components about resize (only if loaded)
+    if (this.team?.handleResize) {
       this.team.handleResize();
     }
-    if (this.projects && this.projects.handleResize) {
+    if (this.projects?.handleResize) {
       this.projects.handleResize();
+    }
+    if (this.brand?.handleResize) {
+      this.brand.handleResize();
     }
   }
 
@@ -522,42 +739,33 @@ class App {
 
   /**
    * Destroy app and clean up
+   * MOBILE-FIRST: Cleanup optimized to prevent memory leaks
    */
   destroy() {
-    // Clean up components
-    if (this.navbar && this.navbar.destroy) {
-      this.navbar.destroy();
-    }
-    if (this.hero && this.hero.destroy) {
-      this.hero.destroy();
-    }
-    if (this.about && this.about.destroy) {
-      this.about.destroy();
-    }
-    if (this.services && this.services.destroy) {
-      this.services.destroy();
-    }
-    if (this.projects && this.projects.destroy) {
-      this.projects.destroy();
-    }
-    if (this.team && this.team.destroy) {
-      this.team.destroy();
-    }
-    if (this.contact && this.contact.destroy) {
-      this.contact.destroy();
-    }
-    if (this.footer && this.footer.destroy) {
-      this.footer.destroy();
-    }
-    if (this.scrollAnimations && this.scrollAnimations.destroy) {
-      this.scrollAnimations.destroy();
-    }
+    // Clean up components (lazy loaded components may not exist)
+    if (this.navbar?.destroy) this.navbar.destroy();
+    if (this.hero?.destroy) this.hero.destroy();
+    if (this.about?.destroy) this.about.destroy();
+    // Services component removed (not used)
+    if (this.projects?.destroy) this.projects.destroy();
+    if (this.brand?.destroy) this.brand.destroy();
+    if (this.team?.destroy) this.team.destroy();
+    if (this.contact?.destroy) this.contact.destroy();
+    if (this.footer?.destroy) this.footer.destroy();
+    if (this.scrollAnimations?.destroy) this.scrollAnimations.destroy();
+    if (this.lazyLoader?.destroy) this.lazyLoader.destroy();
+    if (this.mobileImageOptimizer?.destroy) this.mobileImageOptimizer.destroy();
 
-    // Clean up global listeners
-    window.removeEventListener('resize', this.handleResize);
-    document.removeEventListener('visibilitychange', this.handlePageHidden);
-    document.removeEventListener('visibilitychange', this.handlePageVisible);
-    document.removeEventListener('keydown', this.handleKeyboardNavigation);
+    // MOBILE-FIRST: Clean up optimized event handlers
+    if (this.resizeHandler) {
+      window.removeEventListener('resize', this.resizeHandler);
+    }
+    if (this.visibilityHandler) {
+      document.removeEventListener('visibilitychange', this.visibilityHandler);
+    }
+    if (this.keyboardHandler) {
+      document.removeEventListener('keydown', this.keyboardHandler);
+    }
   }
 }
 

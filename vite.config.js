@@ -8,10 +8,16 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: mode !== 'production',
+    // MOBILE-FIRST OPTIMIZATION: No sourcemaps in production for smaller bundle
+    sourcemap: false,
+    // Use esbuild for fastest minification
     minify: 'esbuild',
+    // Enable CSS code splitting for better caching
     cssCodeSplit: true,
-    chunkSizeWarningLimit: 1000,
+    // Target modern browsers for smaller bundle
+    target: 'esnext',
+    // Reduce chunk size warning for mobile optimization
+    chunkSizeWarningLimit: 500,
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
@@ -30,29 +36,61 @@ export default defineConfig(({ mode }) => ({
         'brand/consultants': resolve(__dirname, 'brand/consultants.html')
       },
       output: {
-        manualChunks: {
-          // Vendor chunks removed (AOS and Swiper not used)
-          // Component chunks
-          'components-core': [
-            './js/components/navbar.js',
-            './js/components/hero.js',
-            './js/components/footer.js'
-          ],
-          'components-content': [
-            './js/components/about.js',
-            './js/components/projects.js',
-            './js/components/team.js'
-          ],
-          'components-interactive': [
-            './js/components/brand.js',
-            './js/components/contact.js',
-            './js/components/services.js'
-          ],
-          utils: [
-            './js/utils/analytics.js',
-            './js/utils/performance.js',
-            './js/utils/scroll-animations.js'
-          ]
+        manualChunks(id) {
+          // MOBILE-FIRST: Optimize chunks for minimal initial load
+          // Core critical components (loaded immediately)
+          if (id.includes('navbar.js') || id.includes('hero.js')) {
+            return 'core-critical';
+          }
+
+          // Utils that are needed early
+          if (id.includes('utils/i18n.js') || id.includes('utils/lazy-loader.js')) {
+            return 'utils-critical';
+          }
+
+          // Footer (loaded early but not critical)
+          if (id.includes('footer.js')) {
+            return 'core-footer';
+          }
+
+          // Content components (lazy loaded on scroll)
+          if (
+            id.includes('components/about.js') ||
+            id.includes('components/projects.js') ||
+            id.includes('components/team.js')
+          ) {
+            return 'content-lazy';
+          }
+
+          // Interactive components (lazy loaded on interaction)
+          if (id.includes('components/brand.js') || id.includes('components/contact.js')) {
+            return 'interactive-lazy';
+          }
+
+          // Utils (lazy loaded)
+          if (
+            id.includes('utils/analytics.js') ||
+            id.includes('utils/performance.js') ||
+            id.includes('utils/scroll-animations.js')
+          ) {
+            return 'utils-lazy';
+          }
+
+          // Service worker and mobile optimizers (lazy)
+          if (
+            id.includes('utils/service-worker.js') ||
+            id.includes('utils/mobile-image-optimizer.js')
+          ) {
+            return 'utils-mobile';
+          }
+
+          // Node modules (vendor chunk)
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+
+          // Default: let Vite handle other chunks
+          return undefined;
         },
         chunkFileNames: chunkInfo => {
           const facadeModuleId = chunkInfo.facadeModuleId
@@ -78,10 +116,15 @@ export default defineConfig(({ mode }) => ({
     port: 3001,
     open: true,
     cors: true,
+    watch: {
+      // Ignore certain files to reduce unnecessary reloads
+      ignored: ['**/node_modules/**', '**/.git/**', '**/dist/**', '**/*.log', '**/.DS_Store'],
+      // Reduce polling interval for better performance
+      usePolling: false
+    },
+    // Reduce HMR sensitivity
     hmr: {
-      protocol: 'ws',
-      host: 'localhost',
-      port: 3001
+      overlay: true
     }
   },
   preview: {
@@ -92,15 +135,18 @@ export default defineConfig(({ mode }) => ({
     devSourcemap: true,
     postcss: {
       plugins: [
-        // eslint-disable-next-line global-require
+        /* eslint-disable global-require */
         require('autoprefixer'),
-        // eslint-disable-next-line global-require
-        require('cssnano')({
-          preset: 'default'
-        })
-      ]
+        // cssnano solo en producción, no en desarrollo
+        mode === 'production' &&
+          require('cssnano')({
+            preset: 'default'
+          })
+        /* eslint-enable global-require */
+      ].filter(Boolean)
     }
   },
+  // MOBILE-FIRST: Remove unused dependencies (AOS, Swiper not used in code)
   optimizeDeps: {
     exclude: ['@rollup/plugin-visualizer']
   },

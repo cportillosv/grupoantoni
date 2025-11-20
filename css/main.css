@@ -1,16 +1,25 @@
 /* ========================================
    GRUPO ANTONI - MAIN STYLES
+   MOBILE-FIRST OPTIMIZATION
    ======================================== */
 
-/* Google Fonts and Font Awesome are loaded in HTML head - removed from here to prevent render blocking */
+/* 
+ * MOBILE-FIRST AUDIT NOTES:
+ * - CSS crítico inline en <head> (above-the-fold)
+ * - CSS no crítico cargado via Vite con code splitting
+ * - Google Fonts cargados asíncronamente (no bloquean)
+ * - Font Awesome removido - usando SVG inline para mejor performance
+ * - Media queries en formato mobile-first (max-width)
+ * - Estilos desktop como enhancement (min-width)
+ */
 
-/* Import utility styles first */
+/* Import utility styles first (mobile-first base) */
 @import './utils/reset.css';
 @import './utils/typography.css';
 @import './utils/responsive.css';
 @import './mobile-responsive.css';
 
-/* Import component styles */
+/* Import component styles (Vite code splitting maneja la carga diferida) */
 @import './components/header.css';
 @import './components/hero.css';
 @import './components/quote.css';

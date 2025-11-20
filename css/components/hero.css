@@ -43,7 +43,8 @@
   z-index: 2;
 }
 
-.hero-slide img {
+.hero-slide img,
+.hero-slide-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -297,6 +298,43 @@
   .hero {
     height: 100vh;
     align-items: center;
+  }
+
+  /* Fondo para el contenedor de slides en mobile */
+  .hero-slideshow {
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Contenedor para centrar imágenes SVG en mobile */
+  .hero-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Ajustar TODAS las imágenes en mobile para que se vean completas */
+  .hero-slide img,
+  .hero-slide picture img,
+  .hero-slide-image {
+    object-fit: contain !important;
+    object-position: center center !important;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 100vh;
+    display: block;
+  }
+
+  /* Asegurar que picture también se comporte correctamente */
+  .hero-slide picture {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero-content {

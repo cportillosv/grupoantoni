@@ -112,17 +112,13 @@ export class Navbar {
       }
     });
 
-    // Handle scroll
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-      scrollTimeout = setTimeout(() => this.handleScroll(), 10);
-    });
+    // MOBILE-FIRST: Optimized scroll handler with throttle
+    this.scrollHandler = this.throttle(() => this.handleScroll(), 16); // ~60fps
+    window.addEventListener('scroll', this.scrollHandler, { passive: true });
 
-    // Handle resize
-    window.addEventListener('resize', () => this.handleResize());
+    // MOBILE-FIRST: Optimized resize handler with debounce
+    this.resizeHandler = this.debounce(() => this.handleResize(), 250);
+    window.addEventListener('resize', this.resizeHandler);
 
     // Handle keyboard navigation
     this.navLinks.forEach(link => {
@@ -266,6 +262,35 @@ export class Navbar {
     }
   }
 
+  /**
+   * MOBILE-FIRST: Throttle utility for scroll events
+   */
+  throttle(func, limit) {
+    let inThrottle;
+    return function (...args) {
+      if (!inThrottle) {
+        func.apply(this, args);
+        inThrottle = true;
+        setTimeout(() => (inThrottle = false), limit);
+      }
+    };
+  }
+
+  /**
+   * MOBILE-FIRST: Debounce utility for resize events
+   */
+  debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func.apply(this, args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
   destroy() {
     // Remove event listeners
     if (this.navToggle) {
@@ -277,8 +302,13 @@ export class Navbar {
       link.removeEventListener('keydown', this.handleKeydown);
     });
 
-    window.removeEventListener('scroll', this.handleScroll);
-    window.removeEventListener('resize', this.handleResize);
+    // MOBILE-FIRST: Remove optimized handlers
+    if (this.scrollHandler) {
+      window.removeEventListener('scroll', this.scrollHandler);
+    }
+    if (this.resizeHandler) {
+      window.removeEventListener('resize', this.resizeHandler);
+    }
     document.removeEventListener('click', this.closeMenu);
 
     // Reset body overflow
