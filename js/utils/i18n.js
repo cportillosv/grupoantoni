@@ -59,6 +59,13 @@ export const translations = {
     projects: {
       title: 'Our <span class="projects-title-highlight">projects.</span>',
       subtitle: 'A selection of works that reflect our experience and commitment.',
+      maharishiVastu: {
+        name: 'Maharishi Vastu Projects',
+        location: '(In alliance with Maharishi Vastu Consultants, Fairfield, Iowa, USA)',
+        description:
+          'Architecture and construction in accordance with Natural Law through the application of the Vastu Shastra principles as brought to light by Maharishi Mahesh Yogi. These principles adopted from the ancient Vedic civilization of the Indian sub-continent emphasize the expression of cosmic energy (the macro-cosmos) and its influence on the Earth and the built environment (the micro-cosmos), maximizing the respect for Nature and its influence on our planet. Scientific research has found a correlation between the application of Maharishi Vastu on the design and construction of a particular building and the peace, stability and wellness of the persons residing in it.',
+        link: 'Learn more →'
+      },
       romanaCondos: {
         name: 'Romana Condos',
         location: 'Location — La Romana, Dominican Republic',
@@ -94,8 +101,8 @@ export const translations = {
         },
         zoraida: {
           name: 'Zoraida Álvarez de la Cruz,',
-          title: 'MS, Senior Architect',
-          bio: 'Senior architect with extensive experience in design and project management, ensuring seamless execution and delivery of complex construction projects with attention to detail and quality.'
+          title: 'MS in Sustainable Architecture, Senior Architect',
+          bio: "Senior architect with a Master's degree in Sustainable Architecture. Extensive experience in design and project management, ensuring seamless execution and delivery of complex construction projects with attention to detail, quality, and environmental sustainability."
         },
         frankelys: {
           name: 'Frankelys Pérez de los Santos,',
@@ -209,7 +216,7 @@ export const translations = {
               'This project is a two-level home with 335.88 m², designed to offer functionality and flow. On the first level, the living room and dining room integrate with a contemporary kitchen. The second level features four bedrooms, balconies, and terraces for connection with the environment. Additionally, it includes a covered marquee, strategic bathrooms, and other elements that guarantee comfort and aesthetics.'
           },
           antoniVilla: {
-            name: 'Antoni Villa San Juan',
+            name: 'Villa Rio San Juan',
             location: 'Rio San Juan, Dominican Republic',
             area: '222.0 m²',
             description:
@@ -244,15 +251,16 @@ export const translations = {
         title:
           'Maharishi Vastu <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Projects</span>',
         subtitle:
-          'Architecture inspired by Vastu Shastra principles, seeking balance between energy, nature, and well-being. Our Vastu projects integrate ancient wisdom with modern comfort.',
+          'Architecture and construction in accordance with Natural Law through the application of the Vastu Shastra principles as brought to light by Maharishi Mahesh Yogi.',
         backToProjects: 'Back to Projects →',
+        allianceNote:
+          'This service is offered in alliance with: <strong>MAHARISHI VASTU CONSULTING (MVC)</strong>, Fairfield, Iowa, USA',
         projects: {
           vastuShastra: {
             name: 'Vastu Shastra',
-            location: 'N/A',
-            area: 'N/A',
+            location: '(In alliance with Maharishi Vastu Consultants, Fairfield, Iowa, USA)',
             description:
-              'Vastu is inspired by the principles of Vastu Shastra architecture, seeking balance between energy, nature, and well-being. Its orientation takes advantage of sunlight and cross ventilation, promoting interior harmony. The symmetrical design and elevated ceiling symbolize spiritual connection and positive circulation of prana. Natural materials and integration with the tropical environment reinforce its essence: a home that unites modern comfort with ancestral wisdom.'
+              'Architecture and construction in accordance with Natural Law through the application of the Vastu Shastra principles as brought to light by Maharishi Mahesh Yogi. These principles adopted from the ancient Vedic civilization of the Indian sub-continent emphasize the expression of cosmic energy (the macro-cosmos) and its influence on the Earth and the built environment (the micro-cosmos), maximizing the respect for Nature and its influence on our planet. Scientific research has found a correlation between the application of Maharishi Vastu on the design and construction of a particular building and the peace, stability and wellness of the persons residing in it.'
           }
         }
       }
@@ -404,8 +412,8 @@ export const translations = {
         },
         zoraida: {
           name: 'Zoraida Álvarez de la Cruz,',
-          title: 'MS, Arquitecta Senior',
-          bio: 'Arquitecta senior con amplia experiencia en diseño y gestión de proyectos, asegurando la ejecución y entrega sin problemas de proyectos de construcción complejos con atención al detalle y la calidad.'
+          title: 'MS en Arquitectura Sostenible, Arquitecta Senior',
+          bio: 'Arquitecta senior con maestría en Arquitectura Sostenible. Amplia experiencia en diseño y gestión de proyectos, asegurando la ejecución y entrega sin problemas de proyectos de construcción complejos con atención al detalle, la calidad y la sostenibilidad ambiental.'
         },
         frankelys: {
           name: 'Frankelys Pérez de los Santos,',
@@ -519,7 +527,7 @@ export const translations = {
               'Este proyecto es una vivienda de dos niveles con 335.88 m², diseñada para ofrecer funcionalidad y fluidez. En el primer nivel, la sala y el comedor se integran con una cocina contemporánea. El segundo nivel cuenta con cuatro dormitorios, balcones y terrazas para conexión con el entorno. Además, incluye marquesina techada, baños estratégicos y otros elementos que garantizan comodidad y estética.'
           },
           antoniVilla: {
-            name: 'Antoni Villa San Juan',
+            name: 'Villa Rio San Juan',
             location: 'Rio San Juan, República Dominicana',
             area: '222.0 m²',
             description:
@@ -554,15 +562,16 @@ export const translations = {
         title:
           'Proyectos <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Maharishi Vastu</span>',
         subtitle:
-          'Arquitectura inspirada en los principios de Vastu Shastra, buscando equilibrio entre energía, naturaleza y bienestar. Nuestros proyectos Vastu integran sabiduría ancestral con confort moderno.',
+          'Arquitectura y construcción de acuerdo con la Ley Natural mediante la aplicación de los principios de Vastu Shastra traídos a la luz por Maharishi Mahesh Yogi.',
         backToProjects: 'Volver a Proyectos →',
+        allianceNote:
+          'Este servicio es ofrecido en alianza con: <strong>MAHARISHI VASTU CONSULTING (MVC)</strong>, Fairfield, Iowa, EEUU',
         projects: {
           vastuShastra: {
             name: 'Vastu Shastra',
-            location: 'N/A',
-            area: 'N/A',
+            location: '(En alianza con Maharishi Vastu Consultants, Fairfield, Iowa, EEUU)',
             description:
-              'Vastu se inspira en los principios de la arquitectura Vastu Shastra, buscando equilibrio entre energía, naturaleza y bienestar. Su orientación aprovecha la luz solar y la ventilación cruzada, promoviendo armonía interior. El diseño simétrico y el techo elevado simbolizan conexión espiritual y circulación positiva del prana. Los materiales naturales y la integración con el entorno tropical refuerzan su esencia: una vivienda que une confort moderno con sabiduría ancestral.'
+              'Arquitectura y construcción de acuerdo con la Ley Natural mediante la aplicación de los principios de Vastu Shastra traídos a la luz por Maharishi Mahesh Yogi. Estos principios adoptados de la antigua civilización Védica del subcontinente indio enfatizan la expresión de la energía cósmica (el macro-cosmos) y su influencia en la Tierra y el entorno construido (el micro-cosmos), maximizando el respeto por la Naturaleza y su influencia en nuestro planeta. La investigación científica ha encontrado una correlación entre la aplicación de Maharishi Vastu en el diseño y construcción de un edificio en particular y la paz, estabilidad y bienestar de las personas que residen en él.'
           }
         }
       }

@@ -4,12 +4,23 @@
  * Caches static assets for offline support and faster loading
  */
 
-const CACHE_NAME = 'grupo-antoni-v1';
-const STATIC_CACHE = 'grupo-antoni-static-v1';
-const IMAGE_CACHE = 'grupo-antoni-images-v1';
+// MOBILE-FIRST: Versionar caches para invalidar correctamente en deploys
+// Actualizado a v3 para forzar invalidación después de optimizaciones mobile
+const CACHE_VERSION = 'v3';
+const CACHE_NAME = `grupo-antoni-${CACHE_VERSION}`;
+const STATIC_CACHE = `grupo-antoni-static-${CACHE_VERSION}`;
+const IMAGE_CACHE = `grupo-antoni-images-${CACHE_VERSION}`;
 
 // Assets to cache immediately
-const STATIC_ASSETS = ['/', '/index.html', '/css/main.css', '/js/main.js', '/img/ANTONI.png'];
+// MOBILE-FIRST: Arquitectura optimizada para mobile
+//
+// NOTA IMPORTANTE: Vite genera archivos CSS/JS con hash (ej: main-DCA9ggJa.css, chunk-xxx.js)
+// Por lo tanto, NO cacheamos rutas estáticas de CSS/JS aquí. El Service Worker
+// los cacheará dinámicamente cuando se soliciten usando stale-while-revalidate.
+//
+// NO precachear imágenes del hero (LCP) - deben cargarse frescas siempre
+// Solo cacheamos rutas que sabemos que existen y no dependen de hash
+const STATIC_ASSETS = ['/', '/index.html', '/img/optimized/ANTONI-optimized.png'];
 
 // Install event - Cache static assets
 self.addEventListener('install', event => {
@@ -58,23 +69,47 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Strategy: Cache First for static assets, Network First for HTML
+  // MOBILE-FIRST: Stale-While-Revalidate para imágenes
+  // Sirve caché inmediatamente pero actualiza en background
+  // EXCEPCIÓN: NO cachear imágenes del hero (LCP) - deben cargarse frescas
   if (request.destination === 'image') {
-    // Images: Cache First with Network Fallback
+    // NO cachear imágenes del hero (LCP crítico)
+    const isHeroImage =
+      url.pathname.includes('au2249316275_Architectural_render') ||
+      url.pathname.includes('hero') ||
+      url.pathname.match(/\/img\/[12]\.(svg|webp|png)$/);
+
+    if (isHeroImage) {
+      // Hero images: Network First (siempre frescas para LCP)
+      event.respondWith(
+        fetch(request).catch(() => {
+          return caches.match(request).then(cachedResponse => {
+            return cachedResponse || new Response('Image not available', { status: 404 });
+          });
+        })
+      );
+      return;
+    }
+
+    // Resto de imágenes: Stale-While-Revalidate
     event.respondWith(
-      caches.match(request).then(cachedResponse => {
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-        return fetch(request).then(response => {
-          // Cache successful image responses
-          if (response.status === 200) {
-            const responseToCache = response.clone();
-            caches.open(IMAGE_CACHE).then(cache => {
-              cache.put(request, responseToCache);
+      caches.open(IMAGE_CACHE).then(cache => {
+        return cache.match(request).then(cachedResponse => {
+          // Fetch actualizado en background (no bloquea)
+          const fetchPromise = fetch(request)
+            .then(response => {
+              if (response.status === 200) {
+                cache.put(request, response.clone());
+              }
+              return response;
+            })
+            .catch(() => {
+              // Si falla la red, usar caché si existe
+              return cachedResponse || new Response('Image not available', { status: 404 });
             });
-          }
-          return response;
+
+          // MOBILE-FIRST: Devolver caché inmediatamente si existe, actualizar en background
+          return cachedResponse || fetchPromise;
         });
       })
     );
@@ -83,21 +118,27 @@ self.addEventListener('fetch', event => {
     request.destination === 'style' ||
     url.pathname.match(/\.(woff|woff2|ttf|otf)$/)
   ) {
-    // CSS/JS/Fonts: Cache First
+    // CSS/JS/Fonts: Stale-While-Revalidate (porque Vite genera con hash)
+    // Sirve caché inmediatamente pero actualiza en background
     event.respondWith(
-      caches.match(request).then(cachedResponse => {
-        return (
-          cachedResponse ||
-          fetch(request).then(response => {
-            if (response.status === 200) {
-              const responseToCache = response.clone();
-              caches.open(STATIC_CACHE).then(cache => {
-                cache.put(request, responseToCache);
-              });
-            }
-            return response;
-          })
-        );
+      caches.open(STATIC_CACHE).then(cache => {
+        return cache.match(request).then(cachedResponse => {
+          // Fetch actualizado en background (no bloquea)
+          const fetchPromise = fetch(request)
+            .then(response => {
+              if (response.status === 200) {
+                cache.put(request, response.clone());
+              }
+              return response;
+            })
+            .catch(() => {
+              // Si falla la red, usar caché si existe
+              return cachedResponse;
+            });
+
+          // Devolver caché inmediatamente si existe, actualizar en background
+          return cachedResponse || fetchPromise;
+        });
       })
     );
   } else {

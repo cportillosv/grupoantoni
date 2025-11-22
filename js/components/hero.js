@@ -10,6 +10,9 @@ export class Hero {
     this.ctaButtons = document.querySelectorAll('.hero-actions .btn, .hero-cta-button');
     this.heroSlides = document.querySelectorAll('.hero-slide');
     this.currentSlide = 0;
+    this.slideshowInterval = null;
+    this.scrollTimeout = null;
+    this.isMobile = window.innerWidth <= 767.98;
 
     this.init();
   }
@@ -21,15 +24,54 @@ export class Hero {
     this.initSlideshow();
   }
 
+  /**
+   * MOBILE-FIRST: Slideshow optimizado
+   * - En mobile: NO activar slideshow (solo mostrar primera slide)
+   * - En desktop: Activar después de window.load para no bloquear LCP
+   */
   initSlideshow() {
     if (!this.heroSlides || this.heroSlides.length === 0) {
       return;
     }
 
-    // Change slide every 5 seconds
-    setInterval(() => {
+    const isMobile = window.innerWidth <= 767.98;
+
+    // MOBILE-FIRST: No slideshow en mobile para mejor LCP y menos re-renders
+    if (isMobile) {
+      // En mobile, solo mostrar la primera slide (ya está activa)
+      // Ocultar las demás slides para evitar carga innecesaria
+      this.heroSlides.forEach((slide, index) => {
+        if (index > 0) {
+          slide.style.display = 'none';
+        }
+      });
+      return;
+    }
+
+    // Desktop: Activar slideshow DESPUÉS de que la página esté completamente cargada
+    // Esto evita bloquear el LCP inicial
+    if (document.readyState === 'complete') {
+      this.startSlideshow();
+    } else {
+      window.addEventListener('load', () => {
+        // Usar requestIdleCallback para no bloquear si hay trabajo pendiente
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(() => this.startSlideshow(), { timeout: 2000 });
+        } else {
+          setTimeout(() => this.startSlideshow(), 1000);
+        }
+      });
+    }
+  }
+
+  /**
+   * Iniciar slideshow con intervalo optimizado
+   */
+  startSlideshow() {
+    // Cambiar slide cada 6 segundos (más tiempo para reducir re-renders)
+    this.slideshowInterval = setInterval(() => {
       this.nextSlide();
-    }, 5000);
+    }, 6000);
   }
 
   nextSlide() {
@@ -53,14 +95,21 @@ export class Hero {
       button.addEventListener('click', e => this.handleCTAClick(e));
     });
 
-    // Handle scroll for parallax effect
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
+    // MOBILE-FIRST: Scroll handler optimizado con requestAnimationFrame
+    // Throttle mejorado para no bloquear el main thread
+    let ticking = false;
+    const handleScrollOptimized = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          this.handleScroll();
+          ticking = false;
+        });
+        ticking = true;
       }
-      scrollTimeout = setTimeout(() => this.handleScroll(), 10);
-    });
+    };
+
+    // En mobile, usar passive listener para mejor performance
+    window.addEventListener('scroll', handleScrollOptimized, { passive: true });
 
     // Handle resize
     window.addEventListener('resize', () => this.handleResize());
@@ -190,10 +239,16 @@ export class Hero {
       return;
     }
 
+    // MOBILE-FIRST: No cambiar estilos dinámicamente en mobile
+    // Evitar recalculaciones y jank
+    if (this.isMobile) {
+      return;
+    }
+
     const scrolled = window.pageYOffset;
     const heroHeight = this.hero ? this.hero.offsetHeight : 0;
 
-    // Add blur effect as user scrolls
+    // Add blur effect as user scrolls (solo desktop)
     if (scrolled > heroHeight * 0.3) {
       this.heroBackground.style.filter = `blur(${Math.min(2, (scrolled / heroHeight) * 4)}px)`;
     } else {
@@ -230,6 +285,12 @@ export class Hero {
   }
 
   destroy() {
+    // Limpiar slideshow interval
+    if (this.slideshowInterval) {
+      clearInterval(this.slideshowInterval);
+      this.slideshowInterval = null;
+    }
+
     // Remove event listeners
     this.ctaButtons.forEach(button => {
       button.removeEventListener('click', this.handleCTAClick);

@@ -59,6 +59,13 @@ class App {
       // Initialize legacy lazy loading (mobile-optimized)
       this.initLazyLoading();
 
+      // MOBILE-FIRST: Adelantar MobileImageOptimizer en móvil
+      // En móvil queremos que el optimizador de imágenes esté disponible lo antes posible,
+      // y no esperar a la fase "no crítica"
+      if (isMobile) {
+        this.loadMobileImageOptimizer();
+      }
+
       // Initialize global event listeners
       this.initGlobalEventListeners();
 
@@ -66,23 +73,34 @@ class App {
       this.initSocialMediaPopup();
 
       // MOBILE-FIRST: Lazy load components when sections enter viewport
+      // Esto ya usa IntersectionObserver, así que no bloquea
       this.initLazyComponentLoading();
 
-      // Defer service worker registration (non-critical)
-      if ('serviceWorker' in navigator) {
-        // Load service worker after page is interactive
-        if (document.readyState === 'complete') {
+      // MOBILE-FIRST: Cargar recursos no críticos DESPUÉS de window.load
+      // Usar requestIdleCallback cuando esté disponible para no bloquear
+      const loadNonCritical = () => {
+        // Service Worker (no crítico - solo para cache)
+        if ('serviceWorker' in navigator) {
           this.loadServiceWorker();
-        } else {
-          window.addEventListener('load', () => this.loadServiceWorker());
         }
-      }
+        // MobileImageOptimizer ahora se carga antes en initializeApp para móviles
+      };
 
-      // Defer mobile image optimizer (non-critical)
-      if (isMobile) {
-        // Load after first paint
-        requestAnimationFrame(() => {
-          this.loadMobileImageOptimizer();
+      if (document.readyState === 'complete') {
+        // Página ya cargada, usar requestIdleCallback si está disponible
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadNonCritical, { timeout: 2000 });
+        } else {
+          setTimeout(loadNonCritical, 100);
+        }
+      } else {
+        // Esperar a window.load
+        window.addEventListener('load', () => {
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadNonCritical, { timeout: 2000 });
+          } else {
+            setTimeout(loadNonCritical, 100);
+          }
         });
       }
 
@@ -110,15 +128,36 @@ class App {
   /**
    * MOBILE-FIRST: Lazy load components when sections enter viewport
    * Uses IntersectionObserver for optimal performance
+   *
+   * ESTRATEGIA:
+   * - En mobile: Cargar todas las secciones inmediatamente para evitar
+   *   sensación de "aparecen tarde"
+   * - En desktop: Usar IntersectionObserver con rootMargin amplio (300px)
+   *   para anticipar carga
    */
   initLazyComponentLoading() {
+    const isMobile = window.innerWidth <= 767.98;
+
+    // MOBILE-FIRST: En mobile cargamos todas las secciones de contenido principales inmediatamente
+    // para evitar la sensación de que "aparecen tarde"
+    if (isMobile) {
+      this.loadAboutComponent();
+      this.loadProjectsComponent();
+      this.loadBrandComponent();
+      this.loadTeamComponent();
+      this.loadContactComponent();
+      // En mobile podemos prescindir de animaciones pesadas de scroll
+      return;
+    }
+
+    // DESKTOP: A partir de aquí queda la lógica de desktop con IntersectionObserver
     if (!('IntersectionObserver' in window)) {
       // Fallback: load all components after delay
       setTimeout(() => this.loadAllComponents(), 1000);
       return;
     }
 
-    // Lazy load About section
+    // Lazy load About section - rootMargin aumentado a 300px para anticipar carga
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
       const aboutObserver = new IntersectionObserver(
@@ -128,12 +167,12 @@ class App {
             aboutObserver.disconnect();
           }
         },
-        { rootMargin: '100px' }
+        { rootMargin: '300px 0px', threshold: 0.1 }
       );
       aboutObserver.observe(aboutSection);
     }
 
-    // Lazy load Projects section
+    // Lazy load Projects section - rootMargin aumentado a 300px
     const projectsSection = document.getElementById('projects');
     if (projectsSection) {
       const projectsObserver = new IntersectionObserver(
@@ -143,12 +182,12 @@ class App {
             projectsObserver.disconnect();
           }
         },
-        { rootMargin: '100px' }
+        { rootMargin: '300px 0px', threshold: 0.1 }
       );
       projectsObserver.observe(projectsSection);
     }
 
-    // Lazy load Brand section
+    // Lazy load Brand section - rootMargin aumentado a 300px
     const brandSection = document.getElementById('brand');
     if (brandSection) {
       const brandObserver = new IntersectionObserver(
@@ -158,12 +197,12 @@ class App {
             brandObserver.disconnect();
           }
         },
-        { rootMargin: '100px' }
+        { rootMargin: '300px 0px', threshold: 0.1 }
       );
       brandObserver.observe(brandSection);
     }
 
-    // Lazy load Team section
+    // Lazy load Team section - rootMargin aumentado a 300px
     const teamSection = document.getElementById('team');
     if (teamSection) {
       const teamObserver = new IntersectionObserver(
@@ -173,12 +212,12 @@ class App {
             teamObserver.disconnect();
           }
         },
-        { rootMargin: '100px' }
+        { rootMargin: '300px 0px', threshold: 0.1 }
       );
       teamObserver.observe(teamSection);
     }
 
-    // Lazy load Contact section
+    // Lazy load Contact section - rootMargin aumentado a 300px
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       const contactObserver = new IntersectionObserver(
@@ -188,16 +227,21 @@ class App {
             contactObserver.disconnect();
           }
         },
-        { rootMargin: '100px' }
+        { rootMargin: '300px 0px', threshold: 0.1 }
       );
       contactObserver.observe(contactSection);
     }
 
-    // Lazy load Scroll Animations (only when needed)
+    // DESKTOP: Lazy load Scroll Animations solo cuando sea necesario
     const scrollAnimationsObserver = new IntersectionObserver(
       entries => {
         if (entries[0].isIntersecting) {
-          this.loadScrollAnimations();
+          // Cargar animaciones después de un pequeño delay para no bloquear
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => this.loadScrollAnimations(), { timeout: 1000 });
+          } else {
+            setTimeout(() => this.loadScrollAnimations(), 500);
+          }
           scrollAnimationsObserver.disconnect();
         }
       },
@@ -493,17 +537,27 @@ class App {
   }
 
   /**
-   * MOBILE-FIRST: Debounce utility
+   * MOBILE-FIRST: Debounce utility optimizado
+   * Usa requestAnimationFrame cuando sea posible para mejor performance
    */
   debounce(func, wait) {
     let timeout;
+    let rafId;
     return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func.apply(this, args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
+      // Cancelar timeout y RAF anteriores
+      if (timeout) clearTimeout(timeout);
+      if (rafId) cancelAnimationFrame(rafId);
+
+      // Usar RAF si el wait es corto (< 100ms), sino usar setTimeout
+      if (wait < 100 && 'requestAnimationFrame' in window) {
+        rafId = requestAnimationFrame(() => {
+          func.apply(this, args);
+        });
+      } else {
+        timeout = setTimeout(() => {
+          func.apply(this, args);
+        }, wait);
+      }
     };
   }
 
@@ -658,6 +712,11 @@ class App {
 
   /**
    * Initialize lazy loading for images (optimized for mobile)
+   *
+   * DECISIÓN: MobileImageOptimizer gestiona mobile, por eso retornamos aquí.
+   * MobileImageOptimizer usa su propio IntersectionObserver con rootMargin de 20px
+   * y maneja todas las imágenes en mobile de forma agresiva. No hay conflicto
+   * porque MobileImageOptimizer se carga antes y marca las imágenes como procesadas.
    */
   initLazyLoading() {
     const isMobile = window.innerWidth <= 767.98;

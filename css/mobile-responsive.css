@@ -138,59 +138,8 @@
     display: block;
   }
 
-  /* Hero Section Mobile */
-  .hero {
-    height: 100vh;
-    min-height: 100vh;
-    margin-top: 60px;
-  }
-
-  .hero-title-subtle {
-    font-size: 1.75rem;
-    margin-bottom: 1.5rem;
-    opacity: 0.8;
-  }
-
-  .hero-background img {
-    object-position: top center;
-  }
-
-  /* Primera imagen del slide a 100vh en móvil */
-  .hero-background {
-    height: 100vh;
-  }
-
-  .hero-slideshow {
-    height: 100vh;
-  }
-
-  .hero-slide:first-child,
-  .hero-slide.active:first-child {
-    height: 100vh;
-  }
-
-  .hero-slide:first-child img,
-  .hero-slide.active:first-child img {
-    height: 100vh;
-    object-fit: cover;
-    object-position: center center;
-  }
-
-  .hero-content {
-    padding: 2rem 1rem;
-    text-align: center;
-  }
-
-  .hero-title {
-    font-size: 2rem;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
+  /* Hero Section Mobile - Reglas consolidadas en hero.css */
+  /* Eliminadas reglas duplicadas para evitar conflictos y jank */
 
   /* Quote Section Mobile */
   .quote-section {
@@ -258,12 +207,51 @@
     max-width: 100%;
   }
 
+  /* MOBILE-FIRST: Mantener tamaño original del card de valores */
+  .values-card {
+    min-height: 350px;
+  }
+
+  /* MOBILE-FIRST: Asegurar que la imagen de fondo se muestre completa */
+  .values-card .card-background {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .values-card .card-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
+
   .card-content {
     padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+  }
+
+  /* MOBILE-FIRST: Optimizar padding y espaciado en values-card para tamaño original */
+  .values-card .card-content {
+    padding: 1rem 0.75rem;
+    padding-top: 1.25rem;
+    justify-content: flex-start;
+  }
+
+  .values-card .card-title {
+    margin-bottom: 0.2rem;
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .values-card .card-divider {
+    margin-bottom: 0.4rem;
+    margin-top: 0.2rem;
+    height: 0.2rem;
   }
 
   .card-title {
@@ -311,15 +299,37 @@
   .values-list {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.4rem;
     width: 100%;
     align-items: center;
+    flex: 1;
+    justify-content: flex-start;
+    padding: 0.25rem 0;
+    margin-top: 0.25rem;
+  }
+
+  /* MOBILE-FIRST: Ajustes específicos para values-card - optimizado para tamaño original */
+  .values-card .values-list {
+    gap: 0.3rem;
+    padding: 0.2rem 0;
+    margin-top: 0.2rem;
+    justify-content: flex-start;
+    overflow-y: auto;
   }
 
   .value-item {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    padding: 0.3rem 0;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  /* MOBILE-FIRST: Valores más compactos en values-card */
+  .values-card .value-item {
+    font-size: 0.8rem;
     padding: 0.25rem 0;
-    line-height: 1.4;
+    line-height: 1.2;
+    flex-shrink: 0;
   }
 
   /* Projects Section Mobile */
@@ -411,7 +421,9 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+    /* MOBILE-FIRST: Desactivar animaciones complejas en mobile */
     animation: none !important;
+    transition-duration: 0.1s !important;
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
@@ -700,14 +712,7 @@
     font-size: 2.5rem;
   }
 
-  .hero {
-    height: calc(100vh - 70px);
-    margin-top: 70px;
-  }
-
-  .hero-background img {
-    object-position: top center;
-  }
+  /* Hero reglas consolidadas en hero.css - evitar duplicidad */
 
   .about-cards-grid {
     grid-template-columns: 1fr;
@@ -761,14 +766,7 @@
     font-size: 3rem;
   }
 
-  .hero {
-    height: calc(100vh - 80px);
-    margin-top: 80px;
-  }
-
-  .hero-background img {
-    object-position: top center;
-  }
+  /* Hero reglas consolidadas en hero.css - evitar duplicidad */
 
   .about-cards-grid {
     grid-template-columns: 1fr;
@@ -880,10 +878,7 @@
 
 /* Landscape orientation on mobile */
 @media (max-width: 767.98px) and (orientation: landscape) {
-  .hero {
-    height: 100vh;
-    min-height: 400px;
-  }
+  /* Hero reglas consolidadas en hero.css - evitar duplicidad */
 
   .quote-section {
     height: 100vh;
@@ -999,14 +994,6 @@
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
   }
-
-  /* Optimize animations on mobile - reduce complexity */
-  @media (prefers-reduced-motion: no-preference) {
-    /* Keep animations but optimize them */
-    * {
-      will-change: auto;
-    }
-  }
 }
 
 /* Mobile-specific text selection */
@@ -1070,13 +1057,26 @@
     content-visibility: auto;
   }
 
-  /* Lazy loading placeholder styles */
-  img[loading='lazy']:not(.lazy-loaded) {
+  /* Lazy loading placeholder styles - Solo para imágenes específicas, no global */
+  /* MOBILE-FIRST: Evitar interferir con hero ni otras imágenes críticas */
+  .project-image img[loading='lazy']:not(.lazy-loaded),
+  .card-background img[loading='lazy']:not(.lazy-loaded),
+  .member-photo img[loading='lazy']:not(.lazy-loaded):not([data-no-lazy='true']) {
     background-color: #f0f0f0;
     background-image: linear-gradient(90deg, #f0f0f0 0px, #e0e0e0 40px, #f0f0f0 80px);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
     min-height: 200px;
+  }
+
+  /* Asegurar que las imágenes del team sean siempre visibles */
+  .member-photo img[data-no-lazy='true'],
+  .member-photo img[loading='eager'] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    background: none !important;
+    animation: none !important;
   }
 
   @keyframes shimmer {

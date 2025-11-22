@@ -127,3 +127,7 @@ temp/
 
 # Image optimization cache
 assets/images/optimized/
+
+# Trash can - archivos no usados
+trash-can/
+unused-files.json

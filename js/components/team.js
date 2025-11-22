@@ -22,6 +22,17 @@ export class Team {
   }
 
   init() {
+    // Ensure all team members are visible immediately
+    this.teamMembers.forEach(member => {
+      member.style.opacity = '1';
+      member.style.visibility = 'visible';
+      const images = member.querySelectorAll('img');
+      images.forEach(img => {
+        img.style.opacity = '1';
+        img.style.visibility = 'visible';
+        img.style.display = 'block';
+      });
+    });
     this.setupTeamLayout();
     this.bindEvents();
     this.initAnimations();
@@ -63,6 +74,15 @@ export class Team {
           clonedMember.style.display = 'block';
           clonedMember.style.flex = '1';
           clonedMember.style.maxWidth = '300px';
+          clonedMember.style.opacity = '1';
+          clonedMember.style.visibility = 'visible';
+          // Ensure images in cloned member are visible
+          const clonedImages = clonedMember.querySelectorAll('img');
+          clonedImages.forEach(img => {
+            img.style.opacity = '1';
+            img.style.visibility = 'visible';
+            img.style.display = 'block';
+          });
           slide.appendChild(clonedMember);
         }
       }
@@ -120,6 +140,17 @@ export class Team {
     const visibleMembers =
       this.carouselSlides[this.currentIndex]?.querySelectorAll('.team-member') || [];
     visibleMembers.forEach((member, index) => {
+      // Ensure member is visible immediately
+      member.style.opacity = '1';
+      member.style.visibility = 'visible';
+      member.style.transform = 'translateY(0)';
+      // Ensure images are visible
+      const images = member.querySelectorAll('img');
+      images.forEach(img => {
+        img.style.opacity = '1';
+        img.style.visibility = 'visible';
+        img.style.display = 'block';
+      });
       setTimeout(() => {
         member.classList.add('animate');
       }, index * 100);
