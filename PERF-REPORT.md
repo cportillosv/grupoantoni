@@ -452,5 +452,50 @@ Después de completar todas las optimizaciones pendientes:
 
 ---
 
-**Última actualización:** 2025-01-11  
-**Próximos pasos:** Ejecutar optimización de imágenes y actualizar HTML
+**Última actualización:** 2025-01-20  
+**Última optimización:** Mobile-First optimizations aplicadas (ver `MOBILE-OPTIMIZATION-NOTES.md`)
+
+### 🚀 Optimizaciones Mobile-First Avanzadas (2025-01-20 - Segunda Fase)
+
+#### Cambios en `js/main.js`:
+
+1. **MobileImageOptimizer adelantado en móvil:**
+   - Se carga inmediatamente después de `initLazyLoading()` en `initializeApp()`
+   - Ya no espera a la fase "no crítica" (`loadNonCritical`)
+   - Impacto: Optimizador de imágenes disponible desde el inicio en mobile
+
+2. **Secciones cargadas inmediatamente en mobile:**
+   - `initLazyComponentLoading()` ahora carga todas las secciones (About, Projects, Brand, Team, Contact) inmediatamente en mobile
+   - Elimina sensación de "secciones que aparecen tarde"
+   - En desktop: rootMargin aumentado a 300px para anticipar carga
+
+3. **Coordinación con MobileImageOptimizer:**
+   - `initLazyLoading()` documentado: MobileImageOptimizer gestiona mobile, por eso retorna temprano
+   - No hay conflicto porque MobileImageOptimizer se carga antes y marca imágenes como procesadas
+
+#### Cambios en `sw.js`:
+
+1. **Cache de HTML optimizado:**
+   - Eliminado `/index.html` de `STATIC_ASSETS` para evitar cache agresivo
+   - HTML se maneja con Network First strategy (siempre actualizado)
+   - Eliminadas rutas estáticas de CSS/JS (Vite genera con hash, se cachean dinámicamente)
+
+2. **Cache versionado:**
+   - Actualizado a `v3` para forzar invalidación después de optimizaciones
+   - Limpia caches antiguos automáticamente
+
+#### Resultados Esperados:
+
+- **Mobile:** Secciones disponibles inmediatamente, sin delays visibles
+- **Desktop:** Secciones cargan 300px antes de entrar al viewport
+- **Service Worker:** HTML siempre fresco, assets cacheados eficientemente
+
+### 🚀 Optimizaciones Mobile-First Recientes (2025-01-20)
+
+- ✅ **LCP optimizado:** Preload de imágenes críticas, slideshow desactivado en mobile
+- ✅ **TBT reducido:** JavaScript no crítico con `requestIdleCallback`, animaciones simplificadas
+- ✅ **Lazy loading mejorado:** rootMargin 200px en mobile, fade-in suave
+- ✅ **Service Worker:** Stale-While-Revalidate para imágenes
+- ✅ **Animaciones:** Desactivadas en mobile, soporte para `prefers-reduced-motion`
+
+**Próximos pasos:** Ejecutar Lighthouse Mobile y verificar métricas reales

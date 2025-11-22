@@ -2,17 +2,51 @@
    SCROLL ANIMATIONS UTILITY
    ======================================== */
 
+/**
+ * MOBILE-FIRST: Scroll Animations optimizado
+ * En mobile, simplifica o desactiva animaciones para mejor performance
+ */
 export class ScrollAnimations {
   constructor() {
+    this.isMobile = window.innerWidth <= 767.98;
+
+    // MOBILE-FIRST: Patrón defensivo - retornar temprano en mobile
+    // Garantiza que, incluso si se instancia por error, no habrá trabajo extra
+    if (this.isMobile) {
+      return;
+    }
+
     this.animatedElements = document.querySelectorAll('[data-animate]');
     this.observers = new Map();
+
+    // Si el usuario prefiere menos movimiento, no inicializar
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
     this.init();
   }
 
   init() {
+    // MOBILE-FIRST: En mobile, no inicializar nada (ya retornamos en constructor)
+    // Esta función solo se ejecuta en desktop
     this.createIntersectionObserver();
     this.observeElements();
     this.bindEvents();
+  }
+
+  /**
+   * MOBILE-FIRST: Animaciones simplificadas para mobile
+   * Solo fade-in básico, sin transformaciones pesadas
+   */
+  initSimpleAnimations() {
+    this.animatedElements.forEach(element => {
+      // Aplicar clase animate directamente sin observer complejo
+      // Usar un pequeño delay para no bloquear
+      requestAnimationFrame(() => {
+        element.classList.add('animate');
+      });
+    });
   }
 
   createIntersectionObserver() {
@@ -33,6 +67,11 @@ export class ScrollAnimations {
 
   observeElements() {
     this.animatedElements.forEach(element => {
+      // MOBILE-FIRST: Excluir elementos del hero (ya tienen su propia animación)
+      // Asegurar que ninguna animación toca hero en mobile o desktop
+      if (element.closest('.hero') || element.closest('#home')) {
+        return;
+      }
       this.observer.observe(element);
     });
   }

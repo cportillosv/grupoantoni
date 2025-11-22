@@ -134,6 +134,11 @@
   border-radius: 12px;
   box-shadow: none;
   border: none;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  max-width: 100%;
+  height: auto;
 }
 
 .member-name {

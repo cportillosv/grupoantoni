@@ -109,6 +109,69 @@
   color: white;
 }
 
+/* MOBILE-FIRST: Ajustar card-content para values-card en mobile */
+@media (max-width: 767.98px) {
+  /* MOBILE-FIRST: Mantener tamaño original (350px) */
+  .values-card {
+    min-height: 350px;
+  }
+
+  /* MOBILE-FIRST: Asegurar que la imagen de fondo se muestre completa */
+  .values-card .card-background {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .values-card .card-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
+
+  /* MOBILE-FIRST: Optimizar padding y espaciado para que quepan todos los valores */
+  .values-card .card-content {
+    justify-content: flex-start;
+    padding: 1rem 0.75rem;
+    padding-top: 1.25rem;
+  }
+
+  .values-card .card-title {
+    margin-bottom: 0.2rem;
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  /* MOBILE-FIRST: Reducir espacio entre título y valores */
+  .values-card .card-divider {
+    margin-bottom: 0.4rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    height: 0.2rem;
+  }
+
+  .values-card .values-list {
+    flex: 1;
+    justify-content: flex-start;
+    min-height: 0;
+    gap: 0.3rem;
+    padding: 0.2rem 0;
+    margin-top: 0.2rem;
+    overflow-y: auto;
+  }
+
+  .values-card .value-item {
+    font-size: 0.8rem;
+    padding: 0.25rem 0;
+    line-height: 1.2;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
 .card-content > .card-divider {
   flex-shrink: 0;
   flex-grow: 0;

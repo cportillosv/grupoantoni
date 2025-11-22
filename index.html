@@ -203,12 +203,12 @@
         <div class="hero-slideshow">
           <div class="hero-slide active">
             <picture>
-              <!-- SVG for mobile (max-width: 767.98px) -->
+              <!-- MOBILE-FIRST: SVG optimizado para mobile (preparado específicamente para móvil) -->
               <source 
                 type="image/svg+xml"
                 media="(max-width: 767.98px)"
                 srcset="/img/1.svg" />
-              <!-- WebP format for desktop (min-width: 768px) -->
+              <!-- WebP format for desktop/tablet (min-width: 768px) -->
               <source 
                 type="image/webp"
                 media="(min-width: 768px)"
@@ -216,22 +216,23 @@
                         /img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-desktop.webp 1200w,
                         /img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-large.webp 1920w"
                 sizes="100vw" />
-              <!-- Fallback PNG (old browsers) -->
+              <!-- Fallback SVG para mobile -->
+              <!-- MOBILE-FIRST: LCP image - NO lazy, eager loading, explicit dimensions -->
               <img
-                src="/img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-optimized.png"
+                src="/img/1.svg"
                 alt="Modern luxury residential building with glass facades" 
                 loading="eager" 
                 fetchpriority="high"
                 width="1920" 
                 height="1080"
-                decoding="async"
+                decoding="sync"
                 sizes="100vw"
                 class="hero-slide-image" />
             </picture>
           </div>
           <div class="hero-slide">
             <picture>
-              <!-- SVG for mobile (max-width: 767.98px) -->
+              <!-- MOBILE-FIRST: SVG optimizado para mobile (preparado específicamente para móvil) -->
               <source 
                 type="image/svg+xml"
                 media="(max-width: 767.98px)"
@@ -241,9 +242,10 @@
                 type="image/png"
                 media="(min-width: 768px)"
                 srcset="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_0 (1).png" />
-              <!-- Fallback -->
+              <!-- Fallback SVG para mobile -->
+              <!-- MOBILE-FIRST: Non-critical slide - lazy load, async decoding -->
               <img
-                src="/img/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_0 (1).png"
+                src="/img/2.svg"
                 alt="Contemporary multi-story residential complex with green roofs" 
                 loading="lazy" 
                 width="1920"
@@ -255,7 +257,7 @@
           </div>
           <div class="hero-slide">
             <picture>
-              <!-- SVG for mobile (max-width: 767.98px) -->
+              <!-- MOBILE-FIRST: SVG optimizado para mobile (preparado específicamente para móvil) -->
               <source 
                 type="image/svg+xml"
                 media="(max-width: 767.98px)"
@@ -274,9 +276,9 @@
                 srcset="/img/optimized/FACHADA EN PERSPETIVA-tablet.webp 768w,
                         /img/optimized/FACHADA EN PERSPETIVA-desktop.webp 1200w"
                 sizes="100vw" />
-              <!-- Fallback PNG (old browsers) -->
+              <!-- Fallback SVG para mobile -->
               <img
-                src="/img/FACHADA EN PERSPETIVA.png"
+                src="/img/3.svg"
                 alt="Modern two-story residential building with minimalist design"
                 loading="lazy"
                 width="1920"
@@ -288,7 +290,7 @@
           </div>
           <div class="hero-slide">
             <picture>
-              <!-- SVG for mobile (max-width: 767.98px) -->
+              <!-- MOBILE-FIRST: SVG optimizado para mobile (preparado específicamente para móvil) -->
               <source 
                 type="image/svg+xml"
                 media="(max-width: 767.98px)"
@@ -301,9 +303,9 @@
                         /img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-desktop.webp 1200w,
                         /img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-large.webp 1920w"
                 sizes="100vw" />
-              <!-- Fallback PNG -->
+              <!-- Fallback SVG para mobile -->
               <img
-                src="/img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-optimized.png"
+                src="/img/4.svg"
                 alt="Luxury architectural design with modern aesthetics"
                 loading="lazy"
                 width="1920"
@@ -343,33 +345,53 @@
           <div class="about-card mission-card" data-animate="fade-up">
             <div class="card-background">
               <picture>
-                <!-- AVIF format (best compression) -->
+                <!-- MOBILE-FIRST: Mobile específico -->
                 <source 
                   type="image/avif"
-                  srcset="/img/optimized/about/mission-bg-mobile.avif 400w,
-                          /img/optimized/about/mission-bg-tablet.avif 768w,
-                          /img/optimized/about/mission-bg-desktop.avif 1200w,
-                          /img/optimized/about/mission-bg-large.avif 1920w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
-                <!-- WebP format (fallback) -->
+                  media="(max-width: 767.98px)"
+                  srcset="/img/optimized/about/mission-bg-mobile.avif" />
                 <source 
                   type="image/webp"
-                  srcset="/img/optimized/about/mission-bg-mobile.webp 400w,
-                          /img/optimized/about/mission-bg-tablet.webp 768w,
-                          /img/optimized/about/mission-bg-desktop.webp 1200w,
-                          /img/optimized/about/mission-bg-large.webp 1920w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                  media="(max-width: 767.98px)"
+                  srcset="/img/optimized/about/mission-bg-mobile.webp" />
+                <!-- Tablet -->
+                <source 
+                  type="image/avif"
+                  media="(min-width: 768px) and (max-width: 1199.98px)"
+                  srcset="/img/optimized/about/mission-bg-tablet.avif" />
+                <source 
+                  type="image/webp"
+                  media="(min-width: 768px) and (max-width: 1199.98px)"
+                  srcset="/img/optimized/about/mission-bg-tablet.webp" />
+                <!-- Desktop -->
+                <source 
+                  type="image/avif"
+                  media="(min-width: 1200px) and (max-width: 1919.98px)"
+                  srcset="/img/optimized/about/mission-bg-desktop.avif" />
+                <source 
+                  type="image/webp"
+                  media="(min-width: 1200px) and (max-width: 1919.98px)"
+                  srcset="/img/optimized/about/mission-bg-desktop.webp" />
+                <!-- Large -->
+                <source 
+                  type="image/avif"
+                  media="(min-width: 1920px)"
+                  srcset="/img/optimized/about/mission-bg-large.avif" />
+                <source 
+                  type="image/webp"
+                  media="(min-width: 1920px)"
+                  srcset="/img/optimized/about/mission-bg-large.webp" />
                 <!-- Fallback PNG (old browsers) -->
                 <img
-                  src="/img/optimized/about/mission-bg-optimized.png"
+                  src="/img/optimized/about/mission-bg-mobile.webp"
                   alt="Mission background"
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
-                  fetchpriority="low"
+                  fetchpriority="auto"
+                  data-no-lazy="true"
                   width="1920"
                   height="1080"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  style="aspect-ratio: 16/9; object-fit: cover;" />
+                  style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
               </picture>
               <div class="card-overlay"></div>
             </div>
@@ -435,7 +457,9 @@
         <img 
           src="/img/PERSPECTIVAS_720Foto-enhanced.png" 
           alt="Modern residential complex aerial view" 
-          loading="lazy"
+          loading="eager"
+          fetchpriority="high"
+          data-no-lazy="true"
           width="1920" 
           height="1080"
           decoding="async"
@@ -471,24 +495,22 @@
               <img 
                 src="/img/Vastu Shastra.png"
                 alt="Maharishi Vastu - Architecture inspired by Vastu Shastra principles" 
-                loading="lazy" 
+                loading="eager" 
                 decoding="async"
-                fetchpriority="low" 
+                fetchpriority="auto"
+                data-no-lazy="true" 
                 width="800" 
                 height="600"
                 sizes="(max-width: 768px) 100vw, 800px"
                 style="aspect-ratio: auto; object-fit: contain;" />
             </div>
             <div class="project-content">
-              <h3 class="project-name">Maharishi Vastu</h3>
-              <p class="project-location">Location — Various locations</p>
-              <p class="project-description">
-                Architecture inspired by the principles of Vastu Shastra, seeking balance between energy,
-                nature, and well-being. The orientation takes advantage of sunlight and cross ventilation, promoting
-                interior harmony. The symmetrical design and elevated ceiling symbolize spiritual connection and
-                positive circulation of prana.
+              <h3 class="project-name" data-i18n="projects.maharishiVastu.name">Maharishi Vastu Projects</h3>
+              <p class="project-location" data-i18n="projects.maharishiVastu.location">(In alliance with Maharishi Vastu Consultants, Fairfield, Iowa, USA)</p>
+              <p class="project-description" data-i18n="projects.maharishiVastu.description">
+                Architecture and construction in accordance with Natural Law through the application of the Vastu Shastra principles as brought to light by Maharishi Mahesh Yogi. These principles adopted from the ancient Vedic civilization of the Indian sub-continent emphasize the expression of cosmic energy (the macro-cosmos) and its influence on the Earth and the built environment (the micro-cosmos), maximizing the respect for Nature and its influence on our planet. Scientific research has found a correlation between the application of Maharishi Vastu on the design and construction of a particular building and the peace, stability and wellness of the persons residing in it.
               </p>
-              <a href="/projects/maharishi-vastu.html" class="project-link">Learn more →</a>
+              <a href="/projects/maharishi-vastu.html" class="project-link" data-i18n="projects.maharishiVastu.link">Learn more →</a>
             </div>
           </div>
 
@@ -547,12 +569,12 @@
             </div>
           </div>
 
-          <!-- Project 4: Villa Rios San Juan -->
+          <!-- Project 4: Villa Rio San Juan -->
           <div class="project-item project-item-reverse" data-animate="fade-up" data-delay="300">
             <div class="project-image">
               <img 
                 src="/img/ANTONÍ VILLA SAN JUAN.png"
-                alt="Villa Rios San Juan - Modern two-level villa with contemporary tropical design" 
+                alt="Villa Rio San Juan - Modern two-level villa with contemporary tropical design" 
                 loading="lazy" 
                 decoding="async"
                 fetchpriority="low" 
@@ -562,7 +584,7 @@
                 style="aspect-ratio: auto; object-fit: contain;" />
             </div>
             <div class="project-content">
-              <h3 class="project-name">Villa Rios San Juan</h3>
+              <h3 class="project-name">Villa Rio San Juan</h3>
               <p class="project-location">Location — Rio San Juan, Dominican Republic</p>
               <p class="project-description">
                 Modern two-level villa with contemporary tropical architectural design. Its first level presents an open plan 
@@ -629,8 +651,8 @@
             <!-- Reordenados: Miguel CEO, Rafael Martinez, Zoraida primero -->
             <article class="team-member featured" data-animate="fade-up">
               <div class="member-photo">
-                <img src="/img/Team/optimized-jpg/Miguel.jpg" alt="Miguel Saviñón Antoni, CEO" loading="lazy"
-                  decoding="async" fetchpriority="low" width="200" height="200" />
+                <img src="/img/Team/optimized-jpg/Miguel.jpg" alt="Miguel Saviñón Antoni, CEO" loading="eager"
+                  decoding="async" fetchpriority="auto" width="200" height="200" data-no-lazy="true" />
               </div>
               <h3 class="member-name">
                 <span data-i18n="team.members.miguel.name">Miguel Saviñón Antoni,</span> <span class="member-title"
@@ -645,8 +667,8 @@
 
             <article class="team-member featured" data-animate="fade-up" data-delay="100">
               <div class="member-photo">
-                <img src="/img/Team/optimized-jpg/Rafael.jpg" alt="Rafael Martinez Solimán, MS" loading="lazy"
-                  decoding="async" fetchpriority="low" width="200" height="200" />
+                <img src="/img/Team/optimized-jpg/Rafael.jpg" alt="Rafael Martinez Solimán, MS" loading="eager"
+                  decoding="async" fetchpriority="auto" width="200" height="200" data-no-lazy="true" />
               </div>
               <h3 class="member-name">
                 <span data-i18n="team.members.rafael.name">Rafael Martinez Solimán,</span> <span class="member-title"
@@ -662,8 +684,8 @@
             <article class="team-member featured" data-animate="fade-up" data-delay="200">
               <div class="member-photo">
                 <img src="/img/Team/optimized-jpg/Zoraida.jpg"
-                  alt="Arch. Zoraida Álvarez de la Cruz, MSc - Arquitecta Senior" loading="lazy" decoding="async"
-                  fetchpriority="low" width="300" height="300" />
+                  alt="Arch. Zoraida Álvarez de la Cruz, MSc - Arquitecta Senior" loading="eager" decoding="async"
+                  fetchpriority="auto" width="300" height="300" data-no-lazy="true" />
               </div>
               <h3 class="member-name">
                 <span data-i18n="team.members.zoraida.name">Zoraida Álvarez de la Cruz,</span>
@@ -678,8 +700,8 @@
 
             <article class="team-member featured" data-animate="fade-up" data-delay="200">
               <div class="member-photo">
-                <img src="/img/Team/optimized-jpg/Frankelys.jpg" alt=" Frankelys Pérez de los Santos" loading="lazy"
-                  decoding="async" fetchpriority="low" width="200" height="200" />
+                <img src="/img/Team/optimized-jpg/Frankelys.jpg" alt=" Frankelys Pérez de los Santos" loading="eager"
+                  decoding="async" fetchpriority="auto" width="200" height="200" data-no-lazy="true" />
               </div>
               <h3 class="member-name">
                 <span data-i18n="team.members.frankelys.name">Frankelys Pérez de los Santos,</span>
@@ -693,8 +715,8 @@
 
             <article class="team-member featured" data-animate="fade-up" data-delay="400">
               <div class="member-photo">
-                <img src="/img/Team/optimized-jpg/Edwin.jpg" alt=" Eng. Edwin Cadena Barranco, MSc" loading="lazy"
-                  decoding="async" fetchpriority="low" width="300" height="300" />
+                <img src="/img/Team/optimized-jpg/Edwin.jpg" alt=" Eng. Edwin Cadena Barranco, MSc" loading="eager"
+                  decoding="async" fetchpriority="auto" width="300" height="300" data-no-lazy="true" />
               </div>
               <h3 class="member-name">
                 <span data-i18n="team.members.edwin.name">Edwin Cadena Barranco,</span>
@@ -708,8 +730,8 @@
 
             <article class="team-member featured" data-animate="fade-up" data-delay="500">
               <div class="member-photo">
-                <img src="/img/Team/optimized-jpg/Christopher.jpg" alt=" Christopher" loading="lazy" decoding="async"
-                  fetchpriority="low" width="300" height="300" />
+                <img src="/img/Team/optimized-jpg/Christopher.jpg" alt=" Christopher" loading="eager" decoding="async"
+                  fetchpriority="auto" width="300" height="300" data-no-lazy="true" />
               </div>
               <h3 class="member-name"><span data-i18n="team.members.christopher.name">Christopher Sánchez Báez,</span>
                 <span class="member-title" data-i18n="team.members.christopher.title">Project Architect</span>
@@ -949,10 +971,16 @@
   </div>
 
   <!-- MOBILE-FIRST: Scripts optimized for minimal initial load -->
-  <!-- Main JS: defer ensures non-blocking, module for code splitting -->
-  <script type="module" src="/js/main.js" defer></script>
+  <!-- Main JS: type="module" + defer = no bloquea render, carga asíncrona -->
+  <!-- Vite procesará esto y generará el bundle optimizado en producción -->
+  <script type="module" src="/js/main.js"></script>
   
-  <!-- Preload critical resources for above-the-fold content -->
+  <!-- MOBILE-FIRST: Preload critical LCP image - SVG optimizado para mobile (coincide EXACTAMENTE con el primer source) -->
+  <!-- Mobile: SVG preparado específicamente para móvil (1.svg) -->
+  <link rel="preload" href="/img/1.svg" as="image" fetchpriority="high" media="(max-width: 767.98px)" />
+  <!-- Desktop: WebP tablet version -->
+  <link rel="preload" href="/img/optimized/au2249316275_Architectural_render_of_a_3-story_residential_bui_5d641a6f-d939-48c7-b81b-fec32c126037_2-tablet.webp" as="image" fetchpriority="high" media="(min-width: 768px)" />
+  <!-- Preload logo (above-the-fold) -->
   <link rel="preload" href="/img/optimized/ANTONI-optimized.png" as="image" fetchpriority="high" />
   
   <!-- DNS prefetch for external resources (non-blocking) -->
