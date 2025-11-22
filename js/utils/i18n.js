@@ -725,12 +725,21 @@ export class I18n {
       const key = element.getAttribute('data-i18n');
       const translation = this.t(key);
 
+      // Si la traducción es la misma que la clave, significa que no se encontró
+      if (translation === key) {
+        console.warn(`Translation not found for key: ${key}`);
+        return;
+      }
+
       if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
         if (element.type === 'submit' || element.type === 'button') {
           element.value = translation;
         } else {
           element.placeholder = translation;
         }
+      } else if (element.tagName === 'A') {
+        // Para enlaces, actualizar el texto
+        element.textContent = translation;
       } else {
         element.textContent = translation;
       }
