@@ -132,6 +132,13 @@
 .project-location {
   color: #6b7280;
   font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.project-area {
+  color: #6b7280;
+  font-weight: 500;
   margin-bottom: 1rem;
   font-size: 1rem;
 }
