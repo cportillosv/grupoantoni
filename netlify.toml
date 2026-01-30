@@ -3,37 +3,6 @@
   command = "npm run build"
   environment = { NODE_VERSION = "18" }
 
-# ============================================
-# UNDER CONSTRUCTION MODE - ACTIVE
-# To disable: comment or remove this section
-# ============================================
-[[redirects]]
-  from = "/"
-  to = "/under-construction.html"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/index.html"
-  to = "/under-construction.html"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/projects/*"
-  to = "/under-construction.html"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/brand/*"
-  to = "/under-construction.html"
-  status = 200
-  force = true
-# ============================================
-# END UNDER CONSTRUCTION MODE
-# ============================================
-
 # Redirecciones para páginas HTML (sin .html en la URL)
 [[redirects]]
   from = "/projects/residential"
