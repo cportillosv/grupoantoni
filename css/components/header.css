@@ -253,8 +253,9 @@
   font-size: 14px;
 }
 
+/* Oculto hasta que estén habilitados los canales (checklist MS-260130) */
 .nav-social {
-  display: flex;
+  display: none;
   gap: 20px;
   align-items: center;
   justify-content: flex-end;

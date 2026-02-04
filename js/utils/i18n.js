@@ -17,7 +17,7 @@ export const translations = {
       vivienda: 'Vivienda',
       tourism: 'Turismo',
       hospitalario: 'Hospitalario',
-      maharishiVastu: 'Maharishi Vastu'
+      maharishiVastu: 'Maharishi Vastu®'
     },
     // Hero Section
     hero: {
@@ -60,8 +60,8 @@ export const translations = {
       title: 'Our <span class="projects-title-highlight">projects.</span>',
       subtitle: 'A selection of works that reflect our experience and commitment.',
       maharishiVastu: {
-        name: 'Maharishi Vastu Projects',
-        location: '(In alliance with Maharishi Vastu Consultants, Fairfield, Iowa, USA)',
+        name: 'Maharishi Vastu® Projects',
+        location: 'In alliance with Maharishi Vastu Consultants, Fairfield, Iowa, USA',
         description:
           'Architecture and construction in accordance with Natural Law through the application of the Vastu Shastra principles as brought to light by Maharishi Mahesh Yogi. These principles adopted from the ancient Vedic civilization of the Indian sub-continent emphasize the expression of cosmic energy (the macro-cosmos) and its influence on the Earth and the built environment (the micro-cosmos), maximizing the respect for Nature and its influence on our planet. Scientific research has found a correlation between the application of Maharishi Vastu on the design and construction of a particular building and the peace, stability and wellness of the persons residing in it.',
         link: 'Learn more →'
@@ -129,7 +129,7 @@ export const translations = {
     contact: {
       title: 'Ready to take <span class="contact-title-highlight">the first step?</span>',
       subtitle:
-        'Fill out the form and our team will get in touch to guide you through your project. You can also schedule a direct consultation or contact us via WhatsApp.',
+        'Fill out the form and our team will get in touch to guide you through your project. Direct office contact: (829) 893-0121.',
       form: {
         fullName: 'Full name',
         email: 'Email',
@@ -249,19 +249,70 @@ export const translations = {
       },
       maharishiVastu: {
         title:
-          'Maharishi Vastu <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Projects</span>',
+          'Maharishi Vastu® <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Projects</span>',
         subtitle:
           'Architecture and construction in accordance with Natural Law through the application of the Vastu Shastra principles as brought to light by Maharishi Mahesh Yogi.',
         backToProjects: 'Back to Projects →',
         allianceNote:
-          'This service is offered in alliance with: <strong>MAHARISHI VASTU CONSULTING (MVC)</strong>, Fairfield, Iowa, USA',
+          'This service is offered in alliance with <strong>MAHARISHI VASTU CONSULTING (MVC)</strong>, Fairfield, Iowa, USA.',
+        portfolioNote:
+          'The following designs belong to the portfolio of projects of the Caribbean Vastu Peace Colony, to be built in Rio San Juan, Dominican Republic. For more information about this project contact: Vastu@grupoantoni.com.',
         projects: {
           vastuShastra: {
             name: 'Vastu Shastra',
-            location: '(In alliance with Maharishi Vastu Consultants, Fairfield, Iowa, USA)',
+            location: 'In alliance with Maharishi Vastu Consultants, Fairfield, Iowa, USA',
             description:
-              'Architecture and construction in accordance with Natural Law through the application of the Vastu Shastra principles as brought to light by Maharishi Mahesh Yogi. These principles adopted from the ancient Vedic civilization of the Indian sub-continent emphasize the expression of cosmic energy (the macro-cosmos) and its influence on the Earth and the built environment (the micro-cosmos), maximizing the respect for Nature and its influence on our planet. Scientific research has found a correlation between the application of Maharishi Vastu on the design and construction of a particular building and the peace, stability and wellness of the persons residing in it.'
+              'Architecture and construction in accordance with Natural Law, through the application of the Vastu Shastra principles, as brought to light by Maharishi Mahesh Yogi. These principles, adopted from the ancient Vedic civilization of the Indian sub-continent, emphasize the expression of cosmic energy (the macro-cosmos) and its influence on the Earth and the built environment (the micro-cosmos), maximizing the respect for Nature and its influence on our planet. Scientific research has found a direct correlation between the application of Maharishi Vastu on the design and construction of a particular building and the peace, stability, abundance and wellness of the persons residing in it.'
+          },
+          shantiBungalow: {
+            name: 'Shanti Bungalow',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'A serene single-story bungalow designed following Maharishi Vastu principles, featuring a distinctive pyramidal roof with a golden kalash finial. The open veranda and abundant natural light create a peaceful living environment that promotes harmony with nature and inner tranquility.'
+          },
+          atmaChalet: {
+            name: 'Atma Chalet',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'An elegant tropical residence that embodies Vastu Shastra principles with its precise east-facing orientation and harmonious proportions. The design integrates wooden elements, expansive glass panels, and lush tropical landscaping to create a dwelling that nurtures well-being and positive energy flow.'
+          },
+          atmaKitur: {
+            name: 'Atma Kitur',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'An elegant tropical residence that embodies Vastu Shastra principles with its precise east-facing orientation and harmonious proportions. The design integrates wooden elements, expansive glass panels, and lush tropical landscaping to create a dwelling that nurtures well-being and positive energy flow.'
+          },
+          minimalistVastu: {
+            name: 'Minimalist Vastu',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'An elegant tropical residence that embodies Vastu Shastra principles with its precise east-facing orientation and harmonious proportions. The design integrates wooden elements, expansive glass panels, and lush tropical landscaping to create a dwelling that nurtures well-being and positive energy flow.'
+          },
+          nandaVilla: {
+            name: 'Nanda Villa',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'A compact yet elegant Vastu-compliant residence featuring the characteristic golden kalash and carefully oriented entrance. The minimalist design maximizes natural light and ventilation while maintaining the sacred proportions that promote peace, prosperity, and spiritual growth.'
+          },
+          anandaVilla: {
+            name: 'Ananda Villa',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'A compact yet elegant Vastu-compliant residence featuring the characteristic golden kalash and carefully oriented entrance. The minimalist design maximizes natural light and ventilation while maintaining the sacred proportions that promote peace, prosperity, and spiritual growth.'
+          },
+          meditationAcademy: {
+            name: 'Transcendental Meditation Academy',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'A multi-building educational complex designed according to Maharishi Vastu principles, featuring traditional stone and wood architecture with characteristic pitched roofs. The harmonious layout includes meditation halls, residential quarters, and beautifully landscaped courtyards that create an ideal environment for learning and spiritual practice.'
           }
+        },
+        clickToEnlarge: 'Click to enlarge',
+        lightbox: {
+          caption0: 'Shanti Bungalow - Caribbean Vastu Peace Colony',
+          caption1: 'Minimalist Vastu - Caribbean Vastu Peace Colony',
+          caption2: 'Ananda Villa - Caribbean Vastu Peace Colony',
+          caption3: 'Transcendental Meditation Academy - Caribbean Vastu Peace Colony'
         }
       }
     },
@@ -289,19 +340,10 @@ export const translations = {
           description:
             'Located in an urban area with warm climate, the Luz del Trópico residence combines modern elegance and spatial efficiency. Its vertical three-level volumetry is distinguished by clean lines, large windows, and lattices that regulate natural light. The facade mixes neutral tones with contemporary textures, highlighting the balance between aesthetics and functionality. Gardens and green parking reinforce its sustainable approach, integrating harmoniously with the tropical environment.'
         },
-        torreSelvaUrbana1: {
-          name: 'Torre Selva Urbana',
-          location: 'N/A',
-          area: 'N/A',
+        torreVistasDelEste: {
+          name: 'Torre Vistas del Este',
           description:
-            'Torre Selva Urbana is a contemporary residential building that fuses elegance and sustainability. Its glass and concrete facade is balanced with vertical green walls that integrate nature into the urban environment. The large windows allow natural lighting and panoramic views, while noble materials and tropical landscaping create a modern, ecological, and sophisticated atmosphere.'
-        },
-        torreSelvaUrbana2: {
-          name: 'Torre Selva Urbana',
-          location: 'Rio San Juan, Dominican Republic',
-          area: 'N/A',
-          description:
-            'They fuse the warmth of natural materials with the modern elegance of glass and concrete. Their open and tropical design prioritizes connection with the environment, integrating large terraces, panoramic windows, and elevated gardens. Wood provides texture and harmony, while glass frames the natural views, creating a contemporary and luminous environment.'
+            'Torre Vistas del Este is a contemporary residential building that fuses elegance and sustainability. Its glass and concrete facade is balanced with vertical green walls that integrate nature into the urban environment. The large windows allow natural lighting and panoramic views, while noble materials and tropical landscaping create a modern, ecological, and sophisticated atmosphere.'
         },
         loftsAntoni: {
           name: 'Lofts Antoni',
@@ -335,7 +377,7 @@ export const translations = {
       vivienda: 'Vivienda',
       tourism: 'Turismo',
       hospitalario: 'Hospitalario',
-      maharishiVastu: 'Maharishi Vastu'
+      maharishiVastu: 'Maharishi Vastu®'
     },
     // Hero Section
     hero: {
@@ -377,6 +419,13 @@ export const translations = {
     projects: {
       title: 'Nuestros <span class="projects-title-highlight">proyectos.</span>',
       subtitle: 'Una selección de obras que reflejan nuestra experiencia y compromiso.',
+      maharishiVastu: {
+        name: 'Proyectos Maharishi Vastu®',
+        location: 'En alianza con Maharishi Vastu Consultants, Fairfield, Iowa, EEUU',
+        description:
+          'Arquitectura y construcción de acuerdo con la Ley Natural mediante la aplicación de los principios de Vastu Shastra traídos a la luz por Maharishi Mahesh Yogi. Estos principios adoptados de la antigua civilización Védica del subcontinente indio enfatizan la expresión de la energía cósmica (el macro-cosmos) y su influencia en la Tierra y el entorno construido (el micro-cosmos), maximizando el respeto por la Naturaleza y su influencia en nuestro planeta. La investigación científica ha encontrado una correlación entre la aplicación de Maharishi Vastu en el diseño y construcción de un edificio en particular y la paz, estabilidad y bienestar de las personas que residen en él.',
+        link: 'Saber más →'
+      },
       romanaCondos: {
         name: 'Condominios Romana',
         location: 'Ubicación — La Romana, República Dominicana',
@@ -440,7 +489,7 @@ export const translations = {
     contact: {
       title: '¿Listo para dar <span class="contact-title-highlight">el primer paso?</span>',
       subtitle:
-        'Complete el formulario y nuestro equipo se pondrá en contacto para guiarlo en su proyecto. También puede programar una consulta directa o contactarnos vía WhatsApp.',
+        'Complete el formulario y nuestro equipo se pondrá en contacto para guiarlo en su proyecto. Contacto directo de oficina: (829) 893-0121.',
       form: {
         fullName: 'Nombre completo',
         email: 'Correo electrónico',
@@ -560,19 +609,70 @@ export const translations = {
       },
       maharishiVastu: {
         title:
-          'Proyectos <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Maharishi Vastu</span>',
+          'Proyectos <span style="color: #4f8ce3; font-style: italic; font-weight: 600;">Maharishi Vastu®</span>',
         subtitle:
           'Arquitectura y construcción de acuerdo con la Ley Natural mediante la aplicación de los principios de Vastu Shastra traídos a la luz por Maharishi Mahesh Yogi.',
         backToProjects: 'Volver a Proyectos →',
         allianceNote:
-          'Este servicio es ofrecido en alianza con: <strong>MAHARISHI VASTU CONSULTING (MVC)</strong>, Fairfield, Iowa, EEUU',
+          'Este servicio es ofrecido en alianza con <strong>MAHARISHI VASTU CONSULTING (MVC)</strong>, Fairfield, Iowa, EEUU.',
+        portfolioNote:
+          'Los siguientes diseños pertenecen al portfolio de proyectos de la Caribbean Vastu Peace Colony, a construirse en Río San Juan, República Dominicana. Para más información sobre este proyecto contactar: Vastu@grupoantoni.com.',
         projects: {
           vastuShastra: {
             name: 'Vastu Shastra',
-            location: '(En alianza con Maharishi Vastu Consultants, Fairfield, Iowa, EEUU)',
+            location: 'En alianza con Maharishi Vastu Consultants, Fairfield, Iowa, EEUU',
             description:
-              'Arquitectura y construcción de acuerdo con la Ley Natural mediante la aplicación de los principios de Vastu Shastra traídos a la luz por Maharishi Mahesh Yogi. Estos principios adoptados de la antigua civilización Védica del subcontinente indio enfatizan la expresión de la energía cósmica (el macro-cosmos) y su influencia en la Tierra y el entorno construido (el micro-cosmos), maximizando el respeto por la Naturaleza y su influencia en nuestro planeta. La investigación científica ha encontrado una correlación entre la aplicación de Maharishi Vastu en el diseño y construcción de un edificio en particular y la paz, estabilidad y bienestar de las personas que residen en él.'
+              'Arquitectura y construcción de acuerdo con la Ley Natural, mediante la aplicación de los principios de Vastu Shastra, traídos a la luz por Maharishi Mahesh Yogi. Estos principios, adoptados de la antigua civilización Védica del subcontinente indio, enfatizan la expresión de la energía cósmica (el macro-cosmos) y su influencia en la Tierra y el entorno construido (el micro-cosmos), maximizando el respeto por la Naturaleza y su influencia en nuestro planeta. La investigación científica ha encontrado una correlación directa entre la aplicación de Maharishi Vastu en el diseño y construcción de un edificio en particular y la paz, estabilidad, abundancia y bienestar de las personas que residen en él.'
+          },
+          shantiBungalow: {
+            name: 'Shanti Bungalow',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'Un bungalow sereno de una sola planta diseñado siguiendo los principios de Maharishi Vastu, con un característico techo piramidal y un kalash dorado en el remate. La veranda abierta y la abundante luz natural crean un ambiente de vida tranquilo que promueve la armonía con la naturaleza y la tranquilidad interior.'
+          },
+          atmaChalet: {
+            name: 'Atma Chalet',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'Una elegante residencia tropical que encarna los principios del Vastu Shastra con su orientación precisa hacia el este y proporciones armoniosas. El diseño integra elementos de madera, amplios paneles de vidrio y exuberante paisajismo tropical para crear una vivienda que nutre el bienestar y el flujo de energía positiva.'
+          },
+          atmaKitur: {
+            name: 'Atma Kitur',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'Una elegante residencia tropical que encarna los principios del Vastu Shastra con su orientación precisa hacia el este y proporciones armoniosas. El diseño integra elementos de madera, amplios paneles de vidrio y exuberante paisajismo tropical para crear una vivienda que nutre el bienestar y el flujo de energía positiva.'
+          },
+          minimalistVastu: {
+            name: 'Minimalist Vastu',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'Una elegante residencia tropical que encarna los principios del Vastu Shastra con su orientación precisa hacia el este y proporciones armoniosas. El diseño integra elementos de madera, amplios paneles de vidrio y exuberante paisajismo tropical para crear una vivienda que nutre el bienestar y el flujo de energía positiva.'
+          },
+          nandaVilla: {
+            name: 'Nanda Villa',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'Una residencia compacta y elegante conforme a Vastu, con el característico kalash dorado y una entrada cuidadosamente orientada. El diseño minimalista maximiza la luz natural y la ventilación manteniendo las proporciones sagradas que promueven la paz, la prosperidad y el crecimiento espiritual.'
+          },
+          anandaVilla: {
+            name: 'Ananda Villa',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'Una residencia compacta y elegante conforme a Vastu, con el característico kalash dorado y una entrada cuidadosamente orientada. El diseño minimalista maximiza la luz natural y la ventilación manteniendo las proporciones sagradas que promueven la paz, la prosperidad y el crecimiento espiritual.'
+          },
+          meditationAcademy: {
+            name: 'Academia de Meditación',
+            location: 'Caribbean Vastu Peace Colony',
+            description:
+              'Un complejo educativo de varios edificios diseñado según los principios de Maharishi Vastu, con arquitectura tradicional en piedra y madera y característicos techos a dos aguas. El diseño armonioso incluye salas de meditación, residencias y patios con paisajismo que crean un entorno ideal para el aprendizaje y la práctica espiritual.'
           }
+        },
+        clickToEnlarge: 'Clic para ampliar',
+        lightbox: {
+          caption0: 'Shanti Bungalow - Caribbean Vastu Peace Colony',
+          caption1: 'Minimalist Vastu - Caribbean Vastu Peace Colony',
+          caption2: 'Ananda Villa - Caribbean Vastu Peace Colony',
+          caption3: 'Transcendental Meditation Academy - Caribbean Vastu Peace Colony'
         }
       }
     },
@@ -600,19 +700,10 @@ export const translations = {
           description:
             'Ubicada en una zona urbana de clima cálido, la residencia Luz del Trópico combina elegancia moderna y eficiencia espacial. Su volumetría vertical de tres niveles se distingue por líneas limpias, grandes ventanales y celosías que regulan la luz natural. La fachada mezcla tonos neutros con texturas contemporáneas, resaltando el equilibrio entre estética y funcionalidad. Los jardines y parqueos verdes refuerzan su enfoque sostenible, integrándose armoniosamente con el entorno tropical.'
         },
-        torreSelvaUrbana1: {
-          name: 'Torre Selva Urbana',
-          location: 'N/A',
-          area: 'N/A',
+        torreVistasDelEste: {
+          name: 'Torre Vistas del Este',
           description:
-            'La Torre Selva Urbana es un edificio residencial de diseño contemporáneo que fusiona elegancia y sostenibilidad. Su fachada de vidrio y concreto se equilibra con muros verdes verticales que integran la naturaleza al entorno urbano. Los amplios ventanales permiten iluminación natural y vistas panorámicas, mientras los materiales nobles y el paisajismo tropical crean una atmósfera moderna, ecológica y sofisticada.'
-        },
-        torreSelvaUrbana2: {
-          name: 'Torre Selva Urbana',
-          location: 'Rio San Juan, República Dominicana',
-          area: 'N/A',
-          description:
-            'Fusionan la calidez de los materiales naturales con la elegancia moderna del vidrio y el concreto. Su diseño abierto y tropical prioriza la conexión con el entorno, integrando amplias terrazas, ventanales panorámicos y jardines elevados. La madera aporta textura y armonía, mientras el cristal enmarca las vistas naturales, creando un ambiente contemporáneo y luminoso.'
+            'Torre Vistas del Este es un edificio residencial de diseño contemporáneo que fusiona elegancia y sostenibilidad. Su fachada de vidrio y concreto se equilibra con muros verdes verticales que integran la naturaleza al entorno urbano. Los amplios ventanales permiten iluminación natural y vistas panorámicas, mientras los materiales nobles y el paisajismo tropical crean una atmósfera moderna, ecológica y sofisticada.'
         },
         loftsAntoni: {
           name: 'Lofts Antoni',
