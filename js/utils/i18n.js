@@ -129,7 +129,7 @@ export const translations = {
     contact: {
       title: 'Ready to take <span class="contact-title-highlight">the first step?</span>',
       subtitle:
-        'Fill out the form and our team will get in touch to guide you through your project. Direct office contact: (829) 893-0121.',
+        'Fill out the form and our team will get in touch to guide you through your project. Direct office contact: <strong>(829) 893-0121</strong>.',
       form: {
         fullName: 'Full name',
         email: 'Email',
@@ -256,13 +256,13 @@ export const translations = {
         allianceNote:
           'This service is offered in alliance with <strong>MAHARISHI VASTU CONSULTING (MVC)</strong>, Fairfield, Iowa, USA.',
         portfolioNote:
-          'The following designs belong to the portfolio of projects of the Caribbean Vastu Peace Colony, to be built in Rio San Juan, Dominican Republic. For more information about this project contact: Vastu@grupoantoni.com.',
+          'The following designs belong to the portfolio of projects of the Caribbean Vastu Peace Colony, to be built in Rio San Juan, Dominican Republic. For more information about this project, contact: <strong>Vastu@grupoantoni.com</strong> or <strong>Vastu.AL@Maharishi.net</strong>.',
         projects: {
           vastuShastra: {
             name: 'Vastu Shastra',
             location: 'In alliance with Maharishi Vastu Consultants, Fairfield, Iowa, USA',
             description:
-              'Architecture and construction in accordance with Natural Law, through the application of the Vastu Shastra principles, as brought to light by Maharishi Mahesh Yogi. These principles, adopted from the ancient Vedic civilization of the Indian sub-continent, emphasize the expression of cosmic energy (the macro-cosmos) and its influence on the Earth and the built environment (the micro-cosmos), maximizing the respect for Nature and its influence on our planet. Scientific research has found a direct correlation between the application of Maharishi Vastu on the design and construction of a particular building and the peace, stability, abundance and wellness of the persons residing in it.'
+              'Architecture and construction in accordance with Natural Law through the application of the Vastu Shastra principles as brought to light by Maharishi Mahesh Yogi. These principles, adopted from the ancient Vedic civilization of the Indian sub-continent, emphasize the expression of cosmic energy (the macro-cosmos) and its influence on the Earth and the built environment (the micro-cosmos), maximizing the respect for Nature and its influence on our planet. Scientific research has found a direct correlation between the application of Maharishi Vastu on the design and construction of a particular building and the peace, stability, abundance, and wellness of the persons residing in it.'
           },
           shantiBungalow: {
             name: 'Shanti Bungalow',
@@ -489,7 +489,7 @@ export const translations = {
     contact: {
       title: '¿Listo para dar <span class="contact-title-highlight">el primer paso?</span>',
       subtitle:
-        'Complete el formulario y nuestro equipo se pondrá en contacto para guiarlo en su proyecto. Contacto directo de oficina: (829) 893-0121.',
+        'Complete el formulario y nuestro equipo se pondrá en contacto para guiarlo en su proyecto. Contacto directo de oficina: <strong>(829) 893-0121</strong>.',
       form: {
         fullName: 'Nombre completo',
         email: 'Correo electrónico',
@@ -616,13 +616,13 @@ export const translations = {
         allianceNote:
           'Este servicio es ofrecido en alianza con <strong>MAHARISHI VASTU CONSULTING (MVC)</strong>, Fairfield, Iowa, EEUU.',
         portfolioNote:
-          'Los siguientes diseños pertenecen al portfolio de proyectos de la Caribbean Vastu Peace Colony, a construirse en Río San Juan, República Dominicana. Para más información sobre este proyecto contactar: Vastu@grupoantoni.com.',
+          'Los siguientes diseños pertenecen al portfolio de proyectos de la Caribbean Vastu Peace Colony, a construirse en Río San Juan, República Dominicana. Para más información sobre este proyecto, contactar: <strong>Vastu@grupoantoni.com</strong> o <strong>Vastu.AL@Maharishi.net</strong>.',
         projects: {
           vastuShastra: {
             name: 'Vastu Shastra',
             location: 'En alianza con Maharishi Vastu Consultants, Fairfield, Iowa, EEUU',
             description:
-              'Arquitectura y construcción de acuerdo con la Ley Natural, mediante la aplicación de los principios de Vastu Shastra, traídos a la luz por Maharishi Mahesh Yogi. Estos principios, adoptados de la antigua civilización Védica del subcontinente indio, enfatizan la expresión de la energía cósmica (el macro-cosmos) y su influencia en la Tierra y el entorno construido (el micro-cosmos), maximizando el respeto por la Naturaleza y su influencia en nuestro planeta. La investigación científica ha encontrado una correlación directa entre la aplicación de Maharishi Vastu en el diseño y construcción de un edificio en particular y la paz, estabilidad, abundancia y bienestar de las personas que residen en él.'
+              'Arquitectura y construcción de acuerdo con la Ley Natural mediante la aplicación de los principios de Vastu Shastra traídos a la luz por Maharishi Mahesh Yogi. Estos principios, adoptados de la antigua civilización Védica del subcontinente indio, enfatizan la expresión de la energía cósmica (el macro-cosmos) y su influencia en la Tierra y el entorno construido (el micro-cosmos), maximizando el respeto por la Naturaleza y su influencia en nuestro planeta. La investigación científica ha encontrado una correlación directa entre la aplicación de Maharishi Vastu en el diseño y construcción de un edificio en particular y la paz, estabilidad, abundancia, y bienestar de las personas que residen en él.'
           },
           shantiBungalow: {
             name: 'Shanti Bungalow',

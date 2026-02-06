@@ -227,11 +227,11 @@
           </div>
           <div class="hero-slide">
             <picture>
-              <!-- Mobile: SVG optimizado (primero para que no se cargue en desktop) -->
+              <!-- Mobile: 4.svg responsive y recortado -->
               <source 
                 type="image/svg+xml"
                 media="(max-width: 767.98px)"
-                srcset="/img/2.svg" />
+                srcset="/img/4.svg" />
               <!-- Desktop: Vastu Shastra.png -->
               <source 
                 type="image/png"
@@ -473,18 +473,26 @@
         <div class="projects-list">
           <!-- Project 1: Maharishi Vastu -->
           <div class="project-item" data-animate="fade-up">
-            <div class="project-image">
-              <img 
-                src="/img/Vastu Shastra.png"
-                alt="Maharishi Vastu - Architecture inspired by Vastu Shastra principles" 
-                loading="eager" 
-                decoding="async"
-                fetchpriority="auto"
-                data-no-lazy="true" 
-                width="800" 
-                height="600"
-                sizes="(max-width: 768px) 100vw, 800px"
-                style="aspect-ratio: auto; object-fit: contain;" />
+            <div class="project-image project-image-vastu">
+              <picture>
+                <!-- Mobile: 4.svg responsive y recortado -->
+                <source 
+                  type="image/svg+xml"
+                  media="(max-width: 767.98px)"
+                  srcset="/img/4.svg" />
+                <!-- Desktop: Vastu Shastra.png -->
+                <img 
+                  src="/img/Vastu Shastra.png"
+                  alt="Maharishi Vastu - Architecture inspired by Vastu Shastra principles" 
+                  loading="eager" 
+                  decoding="async"
+                  fetchpriority="auto"
+                  data-no-lazy="true" 
+                  width="800" 
+                  height="600"
+                  sizes="(max-width: 767.98px) 100vw, 800px"
+                  style="width: 100%; height: auto; object-fit: cover; aspect-ratio: 4/3;" />
+              </picture>
             </div>
             <div class="project-content">
               <h3 class="project-name" data-i18n="projects.maharishiVastu.name">Maharishi Vastu® Projects</h3>
@@ -985,9 +993,9 @@
               <h2 id="contact-title" class="contact-title" data-i18n-html="contact.title">
                 Ready to take <span class="contact-title-highlight">the first step?</span>
               </h2>
-              <p class="contact-subtitle" data-i18n="contact.subtitle">
+              <p class="contact-subtitle" data-i18n-html="contact.subtitle">
                 Fill out the form and our team will get in touch to guide you through your
-                project. Direct office contact: (829) 893-0121.
+                project. Direct office contact: <strong>(829) 893-0121</strong>.
               </p>
             </header>
             <form class="contact-form" id="contactForm" novalidate>
@@ -1032,9 +1040,6 @@
               <div class="form-actions">
                 <button type="submit" class="btn btn-primary" data-i18n="contact.form.submit">Send Message</button>
               </div>
-              <p class="contact-phone-direct" style="margin-top: 1rem; font-weight: 500;">
-                (829) 893-0121
-              </p>
             </form>
           </div>
 

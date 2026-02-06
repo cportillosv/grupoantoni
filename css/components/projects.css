@@ -101,6 +101,22 @@
   border-radius: 0.75rem;
 }
 
+/* Maharishi Vastu: picture + 4.svg en mobile, responsive y recortado */
+.project-image-vastu picture {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.project-image-vastu picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center center;
+}
+
 .project-image:hover img {
   transform: scale(1.05);
 }
@@ -234,6 +250,17 @@
 
   .project-image img {
     max-height: 16rem;
+  }
+
+  /* Maharishi Vastu (4.svg) en mobile: recorte responsive */
+  .project-image-vastu picture,
+  .project-image-vastu picture img {
+    width: 100%;
+    max-height: 18rem;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center center;
   }
 
   .project-name {
