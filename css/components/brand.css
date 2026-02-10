@@ -111,6 +111,12 @@
   transition: all var(--transition-normal);
 }
 
+/* SQUARE logo at 80% size */
+.brand-logo[data-brand='square'] .logo-img {
+  height: 160px;
+  max-width: 176px;
+}
+
 .brand-logo:hover {
   transform: translateY(-8px);
   box-shadow: none;

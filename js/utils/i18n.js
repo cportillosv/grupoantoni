@@ -43,7 +43,7 @@ export const translations = {
           'Integrity',
           'Excellence',
           'Flexibility',
-          'Growth',
+          'Coherence',
           'Perseverance',
           'Financial Viability',
           'Social Responsibility'
@@ -70,7 +70,7 @@ export const translations = {
         name: 'Romana Condos',
         location: 'Location — La Romana, Dominican Republic',
         description:
-          'Residential development in La Romana featuring three modern buildings ranging from 70 m² to 95 m², with one- and two-bedroom apartments (four per floor), surrounded by gardens, a central park, swimming pool, walking paths, and recreational areas.',
+          'Residential development in La Romana featuring three modern buildings containing one- and two-bedroom apartments (70 m² to 95 m², four per floor), surrounded by gardens, a central park, swimming pool, walking paths, and recreational areas.',
         link: 'Learn more →'
       },
       mountainBungalows: {
@@ -112,7 +112,7 @@ export const translations = {
         edwin: {
           name: 'Edwin Cadena Barranco,',
           title: 'MS, Structural Engineer',
-          bio: 'Structural engineer with extensive experience in building design and construction, ensuring safety and structural integrity in all projects.'
+          bio: 'Structural engineer with extensive experience in building, design, and construction, ensuring safety and structural integrity in all projects.'
         },
         christopher: {
           name: 'Christopher Sánchez Báez,',
@@ -209,7 +209,7 @@ export const translations = {
         backToProjects: 'Back to Projects →',
         projects: {
           casaElvira: {
-            name: 'Casa Elvira Santos',
+            name: 'Residencia Privada',
             location: 'San José de Ocoa, Dominican Republic',
             area: '335.88 m²',
             description:
@@ -224,10 +224,10 @@ export const translations = {
           },
           villaLaCosta: {
             name: 'Villa La Costa',
-            location: 'Rio San Juan, Dominican Republic',
+            location: 'Near Punta Cana, Dominican Republic',
             area: '568.0 m²',
             description:
-              'Private villa located in Río San Juan, with impressive sea views and a contemporary design with clean lines and overlapping volumes. Its architecture combines concrete, wood, and glass, generating a fluid connection between interior and exterior. The large windows and panoramic terraces maximize natural light and the coastal landscape, offering an environment of luxury, comfort, and harmony with nature.'
+              'Private villa located near Punta Cana, with impressive sea views and a contemporary design with clean lines and overlapping volumes. Its architecture combines concrete, wood, and glass, generating a fluid connection between interior and exterior. The large windows and panoramic terraces maximize natural light and the coastal landscape, offering an environment of luxury, comfort, and harmony with nature.'
           }
         }
       },
@@ -243,7 +243,7 @@ export const translations = {
             location: 'Gazcue, Santo Domingo, Dominican Republic',
             area: 'N/A',
             description:
-              'This remodeling consists of the revitalization of the facade of this surgery center in order to give it a more contemporary image that matches the prestige that this center has acquired over time.'
+              'This remodeling consists of the revitalization of the facade of this surgery center in order to give it a more contemporary image that matches the prestige that this center has acquired over time. This design has a touch of Art Deco, to match the prevailing style in the district.'
           }
         }
       },
@@ -256,7 +256,7 @@ export const translations = {
         allianceNote:
           'This service is offered in alliance with <strong>MAHARISHI VASTU CONSULTING (MVC)</strong>, Fairfield, Iowa, USA.',
         portfolioNote:
-          'The following designs belong to the portfolio of projects of the Caribbean Vastu Peace Colony, to be built in Rio San Juan, Dominican Republic. For more information about this project, contact: <strong>Vastu@grupoantoni.com</strong> or <strong>Vastu.AL@Maharishi.net</strong>.',
+          'The following designs belong to the portfolio of buildings in the Caribbean Vastu Peace Colony®, to be built in Rio San Juan, Dominican Republic. For more information about this project, contact: <strong>Vastu@grupoantoni.com</strong> or <strong>Vastu.AL@Maharishi.net</strong>.',
         projects: {
           vastuShastra: {
             name: 'Vastu Shastra',
@@ -266,66 +266,59 @@ export const translations = {
           },
           shantiBungalow: {
             name: 'Shanti Bungalow',
-            location: 'Caribbean Vastu Peace Colony',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'A serene single-story bungalow designed following Maharishi Vastu principles, featuring a distinctive pyramidal roof with a golden kalash finial. The open veranda and abundant natural light create a peaceful living environment that promotes harmony with nature and inner tranquility.'
           },
           atmaChalet: {
             name: 'Atma Chalet',
-            location: 'Caribbean Vastu Peace Colony',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'An elegant tropical residence that embodies Vastu Shastra principles with its precise east-facing orientation and harmonious proportions. The design integrates wooden elements, expansive glass panels, and lush tropical landscaping to create a dwelling that nurtures well-being and positive energy flow.'
           },
           atmaKitur: {
             name: 'Atma Kitur',
-            location: 'Caribbean Vastu Peace Colony',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'An elegant tropical residence that embodies Vastu Shastra principles with its precise east-facing orientation and harmonious proportions. The design integrates wooden elements, expansive glass panels, and lush tropical landscaping to create a dwelling that nurtures well-being and positive energy flow.'
           },
           minimalistVastu: {
             name: 'Minimalist Vastu',
-            location: 'Caribbean Vastu Peace Colony',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'An elegant tropical residence that embodies Vastu Shastra principles with its precise east-facing orientation and harmonious proportions. The design integrates wooden elements, expansive glass panels, and lush tropical landscaping to create a dwelling that nurtures well-being and positive energy flow.'
           },
           nandaVilla: {
             name: 'Nanda Villa',
-            location: 'Caribbean Vastu Peace Colony',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'A compact yet elegant Vastu-compliant residence featuring the characteristic golden kalash and carefully oriented entrance. The minimalist design maximizes natural light and ventilation while maintaining the sacred proportions that promote peace, prosperity, and spiritual growth.'
           },
           anandaVilla: {
             name: 'Ananda Villa',
-            location: 'Caribbean Vastu Peace Colony',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'A compact yet elegant Vastu-compliant residence featuring the characteristic golden kalash and carefully oriented entrance. The minimalist design maximizes natural light and ventilation while maintaining the sacred proportions that promote peace, prosperity, and spiritual growth.'
           },
           meditationAcademy: {
-            name: 'Transcendental Meditation Academy',
-            location: 'Caribbean Vastu Peace Colony',
+            name: 'Transcendental Meditation® Academy',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'A multi-building educational complex designed according to Maharishi Vastu principles, featuring traditional stone and wood architecture with characteristic pitched roofs. The harmonious layout includes meditation halls, residential quarters, and beautifully landscaped courtyards that create an ideal environment for learning and spiritual practice.'
           }
         },
         clickToEnlarge: 'Click to enlarge',
         lightbox: {
-          caption0: 'Shanti Bungalow - Caribbean Vastu Peace Colony',
-          caption1: 'Minimalist Vastu - Caribbean Vastu Peace Colony',
-          caption2: 'Ananda Villa - Caribbean Vastu Peace Colony',
-          caption3: 'Transcendental Meditation Academy - Caribbean Vastu Peace Colony'
+          caption0: 'Shanti Bungalow - Caribbean Vastu Peace Colony®',
+          caption1: 'Minimalist Vastu - Caribbean Vastu Peace Colony®',
+          caption2: 'Ananda Villa - Caribbean Vastu Peace Colony®',
+          caption3: 'Transcendental Meditation® Academy - Caribbean Vastu Peace Colony®'
         }
       }
     },
     // Individual Projects
     projectDetails: {
       residential: {
-        antoniResidences: {
-          name: 'Antoni Residences',
-          location: 'La Romana, Dominican Republic',
-          area: '540 m²',
-          description:
-            'This residential complex presents a contemporary design with materials such as wood, concrete, and glass. It is an apartment complex, integrated into the natural environment, offering privacy, natural light, and cross ventilation. Each apartment features spacious areas, balconies, and exterior areas, creating an exclusive and welcoming environment, ideal for those seeking comfort. Includes recreational spaces for all types of families and a common social area with pool.'
-        },
         remodelacionFachada: {
           name: 'Private Residential Facade Remodelation',
           location: 'Samaná, Dominican Republic',
@@ -403,7 +396,7 @@ export const translations = {
           'Integridad',
           'Excelencia',
           'Flexibilidad',
-          'Crecimiento',
+          'Coherencia',
           'Perseverancia',
           'Viabilidad Financiera',
           'Responsabilidad Social'
@@ -430,7 +423,7 @@ export const translations = {
         name: 'Condominios Romana',
         location: 'Ubicación — La Romana, República Dominicana',
         description:
-          'Desarrollo residencial en La Romana con tres edificios modernos que van desde 70 m² hasta 95 m², con apartamentos de uno y dos dormitorios (cuatro por piso), rodeados de jardines, un parque central, piscina, senderos peatonales y áreas recreativas.',
+          'Desarrollo residencial en La Romana con tres edificios modernos que contienen apartamentos de uno y dos dormitorios (70 m² a 95 m², cuatro por piso), rodeados de jardines, un parque central, piscina, senderos peatonales y áreas recreativas.',
         link: 'Saber más →'
       },
       mountainBungalows: {
@@ -472,7 +465,7 @@ export const translations = {
         edwin: {
           name: 'Edwin Cadena Barranco,',
           title: 'MS, Ingeniero Estructural',
-          bio: 'Ingeniero estructural con amplia experiencia en diseño y construcción de edificios, asegurando la seguridad y la integridad estructural en todos los proyectos.'
+          bio: 'Ingeniero estructural con amplia experiencia en edificaciones, diseño y construcción, asegurando la seguridad y la integridad estructural en todos los proyectos.'
         },
         christopher: {
           name: 'Christopher Sánchez Báez,',
@@ -569,7 +562,7 @@ export const translations = {
         backToProjects: 'Volver a Proyectos →',
         projects: {
           casaElvira: {
-            name: 'Casa Elvira Santos',
+            name: 'Residencia Privada',
             location: 'San José de Ocoa, República Dominicana',
             area: '335.88 m²',
             description:
@@ -584,10 +577,10 @@ export const translations = {
           },
           villaLaCosta: {
             name: 'Villa La Costa',
-            location: 'Rio San Juan, República Dominicana',
+            location: 'Cerca de Punta Cana, República Dominicana',
             area: '568.0 m²',
             description:
-              'Villa privada ubicada en Río San Juan, con impresionantes vistas al mar y un diseño contemporáneo de líneas limpias y volúmenes superpuestos. Su arquitectura combina concreto, madera y vidrio, generando una conexión fluida entre interior y exterior. Los amplios ventanales y terrazas panorámicas aprovechan al máximo la luz natural y el paisaje costero, ofreciendo un ambiente de lujo, confort y armonía con la naturaleza.'
+              'Villa privada ubicada cerca de Punta Cana, con impresionantes vistas al mar y un diseño contemporáneo de líneas limpias y volúmenes superpuestos. Su arquitectura combina concreto, madera y vidrio, generando una conexión fluida entre interior y exterior. Los amplios ventanales y terrazas panorámicas aprovechan al máximo la luz natural y el paisaje costero, ofreciendo un ambiente de lujo, confort y armonía con la naturaleza.'
           }
         }
       },
@@ -603,7 +596,7 @@ export const translations = {
             location: 'Gazcue, Santo Domingo, República Dominicana',
             area: 'N/A',
             description:
-              'Esta remodelación consiste en la revitalización de la fachada de este centro de cirugía con el fin de brindarle una imagen más contemporánea que vaya acorde al prestigio que este centro ha adquirido con el paso del tiempo.'
+              'Esta remodelación consiste en la revitalización de la fachada de este centro de cirugía con el fin de brindarle una imagen más contemporánea que vaya acorde al prestigio que este centro ha adquirido con el paso del tiempo. Este diseño tiene un toque de Art Decó, para coincidir con el estilo predominante en el distrito.'
           }
         }
       },
@@ -616,7 +609,7 @@ export const translations = {
         allianceNote:
           'Este servicio es ofrecido en alianza con <strong>MAHARISHI VASTU CONSULTING (MVC)</strong>, Fairfield, Iowa, EEUU.',
         portfolioNote:
-          'Los siguientes diseños pertenecen al portfolio de proyectos de la Caribbean Vastu Peace Colony, a construirse en Río San Juan, República Dominicana. Para más información sobre este proyecto, contactar: <strong>Vastu@grupoantoni.com</strong> o <strong>Vastu.AL@Maharishi.net</strong>.',
+          'Los siguientes diseños pertenecen al portfolio de edificios de la Caribbean Vastu Peace Colony®, a construirse en Río San Juan, República Dominicana. Para más información sobre este proyecto, contactar: <strong>Vastu@grupoantoni.com</strong> o <strong>Vastu.AL@Maharishi.net</strong>.',
         projects: {
           vastuShastra: {
             name: 'Vastu Shastra',
@@ -626,66 +619,59 @@ export const translations = {
           },
           shantiBungalow: {
             name: 'Shanti Bungalow',
-            location: 'Caribbean Vastu Peace Colony',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'Un bungalow sereno de una sola planta diseñado siguiendo los principios de Maharishi Vastu, con un característico techo piramidal y un kalash dorado en el remate. La veranda abierta y la abundante luz natural crean un ambiente de vida tranquilo que promueve la armonía con la naturaleza y la tranquilidad interior.'
           },
           atmaChalet: {
             name: 'Atma Chalet',
-            location: 'Caribbean Vastu Peace Colony',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'Una elegante residencia tropical que encarna los principios del Vastu Shastra con su orientación precisa hacia el este y proporciones armoniosas. El diseño integra elementos de madera, amplios paneles de vidrio y exuberante paisajismo tropical para crear una vivienda que nutre el bienestar y el flujo de energía positiva.'
           },
           atmaKitur: {
             name: 'Atma Kitur',
-            location: 'Caribbean Vastu Peace Colony',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'Una elegante residencia tropical que encarna los principios del Vastu Shastra con su orientación precisa hacia el este y proporciones armoniosas. El diseño integra elementos de madera, amplios paneles de vidrio y exuberante paisajismo tropical para crear una vivienda que nutre el bienestar y el flujo de energía positiva.'
           },
           minimalistVastu: {
             name: 'Minimalist Vastu',
-            location: 'Caribbean Vastu Peace Colony',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'Una elegante residencia tropical que encarna los principios del Vastu Shastra con su orientación precisa hacia el este y proporciones armoniosas. El diseño integra elementos de madera, amplios paneles de vidrio y exuberante paisajismo tropical para crear una vivienda que nutre el bienestar y el flujo de energía positiva.'
           },
           nandaVilla: {
             name: 'Nanda Villa',
-            location: 'Caribbean Vastu Peace Colony',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'Una residencia compacta y elegante conforme a Vastu, con el característico kalash dorado y una entrada cuidadosamente orientada. El diseño minimalista maximiza la luz natural y la ventilación manteniendo las proporciones sagradas que promueven la paz, la prosperidad y el crecimiento espiritual.'
           },
           anandaVilla: {
             name: 'Ananda Villa',
-            location: 'Caribbean Vastu Peace Colony',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'Una residencia compacta y elegante conforme a Vastu, con el característico kalash dorado y una entrada cuidadosamente orientada. El diseño minimalista maximiza la luz natural y la ventilación manteniendo las proporciones sagradas que promueven la paz, la prosperidad y el crecimiento espiritual.'
           },
           meditationAcademy: {
-            name: 'Academia de Meditación',
-            location: 'Caribbean Vastu Peace Colony',
+            name: 'Academia de Meditación Transcendental®',
+            location: 'Caribbean Vastu Peace Colony®',
             description:
               'Un complejo educativo de varios edificios diseñado según los principios de Maharishi Vastu, con arquitectura tradicional en piedra y madera y característicos techos a dos aguas. El diseño armonioso incluye salas de meditación, residencias y patios con paisajismo que crean un entorno ideal para el aprendizaje y la práctica espiritual.'
           }
         },
         clickToEnlarge: 'Clic para ampliar',
         lightbox: {
-          caption0: 'Shanti Bungalow - Caribbean Vastu Peace Colony',
-          caption1: 'Minimalist Vastu - Caribbean Vastu Peace Colony',
-          caption2: 'Ananda Villa - Caribbean Vastu Peace Colony',
-          caption3: 'Transcendental Meditation Academy - Caribbean Vastu Peace Colony'
+          caption0: 'Shanti Bungalow - Caribbean Vastu Peace Colony®',
+          caption1: 'Minimalist Vastu - Caribbean Vastu Peace Colony®',
+          caption2: 'Ananda Villa - Caribbean Vastu Peace Colony®',
+          caption3: 'Academia de Meditación Transcendental® - Caribbean Vastu Peace Colony®'
         }
       }
     },
     // Proyectos Individuales
     projectDetails: {
       residential: {
-        antoniResidences: {
-          name: 'Antoni Residences',
-          location: 'La Romana, República Dominicana',
-          area: '540 m²',
-          description:
-            'Este conjunto residencial presenta un diseño contemporáneo con materiales como madera, concreto y vidrio. Es un complejo de apartamentos, integradas al entorno natural, ofrecen privacidad, luz natural y ventilación cruzada. Cada apartamento cuenta con espacios amplios, balcones y áreas exteriores, creando un ambiente exclusivo y acogedor, ideal para quienes buscan confort. Incluye espacios recreativos para todo tipo de familia y área social común con piscina.'
-        },
         remodelacionFachada: {
           name: 'Remodelación de Fachada Residencial Privado',
           location: 'Samaná, República Dominicana',

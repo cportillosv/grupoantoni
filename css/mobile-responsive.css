@@ -466,6 +466,11 @@
     margin-bottom: 0.5rem;
   }
 
+  .brand-logo[data-brand='square'] .logo-img {
+    max-width: 112px;
+    max-height: 112px;
+  }
+
   .brand-header {
     margin-bottom: 2rem;
   }
@@ -495,6 +500,11 @@
     .brand-logo .logo-img {
       max-width: 120px;
       max-height: 120px;
+    }
+
+    .brand-logo[data-brand='square'] .logo-img {
+      max-width: 96px;
+      max-height: 96px;
     }
   }
 
