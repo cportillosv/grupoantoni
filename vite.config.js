@@ -68,11 +68,7 @@ export default defineConfig(({ mode }) => ({
           }
 
           // Utils (lazy loaded)
-          if (
-            id.includes('utils/analytics.js') ||
-            id.includes('utils/performance.js') ||
-            id.includes('utils/scroll-animations.js')
-          ) {
+          if (id.includes('utils/analytics.js') || id.includes('utils/scroll-animations.js')) {
             return 'utils-lazy';
           }
 
