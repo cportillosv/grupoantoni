@@ -45,8 +45,6 @@
             </li>
             <li role="none"><a href="/projects/tourism.html" class="dropdown-link" role="menuitem"
                 data-i18n="nav.tourism">Turismo</a></li>
-            <li role="none"><a href="/projects/hospitalario.html" class="dropdown-link" role="menuitem"
-                data-i18n="nav.hospitalario">Hospitalario</a></li>
           </ul>
         </li>
         <li role="none"><a href="/index.html#team" class="nav-link" role="menuitem" data-i18n="nav.team">TEAM</a></li>
@@ -73,9 +71,15 @@
           <div class="nav-lang-switch">
             <button class="lang-switch-btn" id="langSwitchMobile" aria-label="Switch language"
               title="Cambiar idioma / Switch language">
-              <span class="lang-code" data-i18n-lang="en">🇬🇧</span>
-              <span class="lang-separator">/</span>
-              <span class="lang-code" data-i18n-lang="es">🇪🇸</span>
+              <span class="lang-option" data-i18n-lang="es">
+                <span class="lang-flag" role="img" aria-label="Bandera de España">🇪🇸</span>
+                <span class="lang-label">Español</span>
+              </span>
+              <span class="lang-separator" aria-hidden="true">/</span>
+              <span class="lang-option" data-i18n-lang="en">
+                <span class="lang-flag" role="img" aria-label="United States flag">🇺🇸</span>
+                <span class="lang-label">English</span>
+              </span>
             </button>
           </div>
         </li>
@@ -110,9 +114,15 @@
       <div class="nav-lang-switch">
         <button class="lang-switch-btn" id="langSwitch" aria-label="Switch language"
           title="Cambiar idioma / Switch language">
-          <span class="lang-code" data-i18n-lang="en">🇬🇧</span>
-          <span class="lang-separator">/</span>
-          <span class="lang-code" data-i18n-lang="es">🇪🇸</span>
+          <span class="lang-option" data-i18n-lang="es">
+                <span class="lang-flag" role="img" aria-label="Bandera de España">🇪🇸</span>
+                <span class="lang-label">Español</span>
+              </span>
+              <span class="lang-separator" aria-hidden="true">/</span>
+              <span class="lang-option" data-i18n-lang="en">
+                <span class="lang-flag" role="img" aria-label="United States flag">🇺🇸</span>
+                <span class="lang-label">English</span>
+              </span>
         </button>
       </div>
       <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -147,73 +157,6 @@
     <section class="projects-page-content" style="padding: 4rem 0;">
       <div class="container">
         <div class="projects-list">
-          <!-- Remodelación de Fachada Residencial Privado -->
-          <div class="project-item"
-            style="display: flex; align-items: center; gap: 4rem; margin-bottom: 8rem; flex-direction: row-reverse;">
-            <div class="project-image" style="flex: 1; position: relative; overflow: hidden; border-radius: 0.75rem;">
-              <img src="/img/Remodelación de fachada residencial privado.png"
-                alt="Private Residential Facade Remodelation" loading="lazy"
-                style="width: 100%; height: 28rem; object-fit: cover; border-radius: 0.75rem; transition: transform 0.4s ease;" />
-            </div>
-            <div class="project-content"
-              style="flex: 1; padding: 0 2rem; display: flex; flex-direction: column; justify-content: center;">
-              <h3
-                style="font-size: 2.25rem; font-weight: 700; font-style: italic; color: #1a1a1a; margin-bottom: 1rem; line-height: 1.2;"
-                data-i18n="projectDetails.residential.remodelacionFachada.name">
-                Private Residential Facade Remodelation
-              </h3>
-              <p style="color: #6b7280; font-weight: 500; margin-bottom: 0.5rem; font-size: 1rem;"
-                data-i18n="projectDetails.residential.remodelacionFachada.location">
-                Location — Samaná, Dominican Republic
-              </p>
-              <p style="color: #6b7280; font-weight: 500; margin-bottom: 1rem; font-size: 1rem;"
-                data-i18n="projectDetails.residential.remodelacionFachada.area">
-                Area — N/A
-              </p>
-              <p style="color: #374151; line-height: 1.75; margin-bottom: 2rem; font-size: 1.125rem;"
-                data-i18n="projectDetails.residential.remodelacionFachada.description">
-                This project features contemporary tropical design that integrates natural materials such as bamboo,
-                wood, and coral stone. It stands out for its pergolas, terraces, and large windows that connect
-                interior and exterior. Tropical gardens and palm trees surround the home, providing freshness and
-                harmony. Its modern and sustainable style creates an elegant environment, ideal for enjoying the
-                Caribbean climate with comfort and connection with nature.
-              </p>
-            </div>
-          </div>
-
-          <!-- Residencial Vertical "Luz del Trópico" -->
-          <div class="project-item" style="display: flex; align-items: center; gap: 4rem; margin-bottom: 8rem;">
-            <div class="project-image" style="flex: 1; position: relative; overflow: hidden; border-radius: 0.75rem;">
-              <img src="/img/Luz-del-Tropico.png" alt="Residencial Vertical Luz del Trópico"
-                loading="lazy"
-                style="width: 100%; height: 28rem; object-fit: cover; border-radius: 0.75rem; transition: transform 0.4s ease;" />
-            </div>
-            <div class="project-content"
-              style="flex: 1; padding: 0 2rem; display: flex; flex-direction: column; justify-content: center;">
-              <h3
-                style="font-size: 2.25rem; font-weight: 700; font-style: italic; color: #1a1a1a; margin-bottom: 1rem; line-height: 1.2;"
-                data-i18n="projectDetails.residential.luzDelTropico.name">
-                Residencial Vertical "Luz del Trópico"
-              </h3>
-              <p style="color: #6b7280; font-weight: 500; margin-bottom: 0.5rem; font-size: 1rem;"
-                data-i18n="projectDetails.residential.luzDelTropico.location">
-                Location — Boca Chica, Dominican Republic
-              </p>
-              <p style="color: #6b7280; font-weight: 500; margin-bottom: 1rem; font-size: 1rem;"
-                data-i18n="projectDetails.residential.luzDelTropico.area">
-                Area — 350 m²
-              </p>
-              <p style="color: #374151; line-height: 1.75; margin-bottom: 2rem; font-size: 1.125rem;"
-                data-i18n="projectDetails.residential.luzDelTropico.description">
-                Located in an urban area with warm climate, the Luz del Trópico residence combines modern elegance and
-                spatial efficiency. Its vertical three-level volumetry is distinguished by clean lines, large windows,
-                and lattices that regulate natural light. The facade mixes neutral tones with contemporary textures,
-                highlighting the balance between aesthetics and functionality. Gardens and green parking reinforce its
-                sustainable approach, integrating harmoniously with the tropical environment.
-              </p>
-            </div>
-          </div>
-
           <!-- Torre Vistas del Este -->
           <div class="project-item"
             style="display: flex; align-items: center; gap: 4rem; margin-bottom: 8rem; flex-direction: row-reverse;">

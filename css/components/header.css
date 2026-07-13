@@ -201,7 +201,7 @@
 .lang-switch-btn {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   background: transparent;
   border: 1px solid #e0e0e0;
   border-radius: 6px;
@@ -231,20 +231,39 @@
   outline-offset: 2px;
 }
 
-.lang-code {
+.lang-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   transition: all var(--transition-fast);
   padding: 2px 4px;
-  border-radius: 3px;
-  font-size: 18px;
-  line-height: 1;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.lang-flag {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-size: 16px;
+  line-height: 1;
 }
 
-.lang-code.active {
-  transform: scale(1.2);
-  filter: brightness(1.1);
+.lang-label {
+  font-size: 13px;
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+.lang-code,
+.lang-option {
+  transition: all var(--transition-fast);
+}
+
+.lang-code.active,
+.lang-option.active {
+  background-color: rgba(79, 140, 227, 0.12);
+  color: #1f5ca8;
 }
 
 .lang-separator {

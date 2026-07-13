@@ -1,150 +1,142 @@
 /* ========================================
    HERO COMPONENT
+   Imágenes completas — sin recorte
+   Estrategia: aspect-ratio + object-fit: contain
    ======================================== */
 
+/* ── Sección principal ─────────────────── */
 .hero {
-  height: 100vh;
-  min-height: 100vh;
-  max-height: 100vh;
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  width: 100%;
+  margin-top: 80px; /* navbar height desktop */
+  background-color: #000;
   text-align: center;
-  overflow: hidden;
-  margin-top: 60px;
 }
 
+/* ── Contenedor del fondo (slideshow) ──── */
 .hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
-  max-height: 100%;
-  z-index: 1;
-  overflow: hidden;
   background-color: #000;
 }
 
+/* ── Slideshow: proporción 16/9 fija ───── */
+/* Esto garantiza que el contenedor NUNCA colapsa ni se recorta */
 .hero-slideshow {
   position: relative;
   width: 100%;
-  height: 100%;
-  max-height: 100%;
+  aspect-ratio: 16 / 9; /* misma proporción que las imágenes */
+  background-color: #000;
   overflow: hidden;
 }
 
+/* Todos los slides apilados (absolute) */
 .hero-slide {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0; /* top:0 right:0 bottom:0 left:0 */
   width: 100%;
   height: 100%;
-  max-height: 100%;
   opacity: 0;
-  overflow: hidden;
-  /* MOBILE-FIRST: Transición más rápida en mobile para menos bloqueo */
   transition: opacity 0.8s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-/* MOBILE-FIRST: En mobile, desactivar TODAS las animaciones y transiciones */
+/* Slide activo visible */
+.hero-slide.active {
+  position: relative;
+  opacity: 1;
+  z-index: 2;
+}
+
+/* ── Blurred backdrop ─────────────────────────────────────────────────────────
+   Same image, blurred + scaled, fills the empty areas so there are no black
+   bars when the image doesn't perfectly match the 16:9 container ratio.
+   ────────────────────────────────────────────────────────────────────────── */
+.hero-slide-blur {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  /* Scale slightly beyond edges so the blur soft-edge doesn't show */
+  transform: scale(1.08);
+  filter: blur(18px) brightness(0.55) saturate(1.2);
+  z-index: 0;
+}
+
+/* MOBILE-FIRST: sin transición en mobile */
 @media (max-width: 767.98px) {
   .hero {
-    height: 100vh;
-    min-height: 100vh;
-    margin-top: 60px;
+    margin-top: 60px; /* navbar height mobile */
   }
 
   .hero-slide {
     transition: none;
     animation: none;
   }
-
-  .hero-content {
-    animation: none;
-    transition: none;
-  }
 }
 
-.hero-slide.active {
-  opacity: 1;
-  z-index: 2;
+/* ── Imágenes: llenan el slide sin recorte ─ */
+.hero-slide picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 0;
 }
 
 .hero-slide img,
 .hero-slide-image {
   width: 100%;
   height: 100%;
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: cover;
-  object-position: center center;
   display: block;
+  object-fit: contain; /* imagen completa, sin recorte */
+  object-position: center center;
   image-rendering: auto;
   filter: brightness(0.98) saturate(0.85) contrast(0.95);
-  transform: scale(1);
-  will-change: transform;
 }
 
-/* Desktop: Asegurar que las imágenes PNG se ajusten correctamente */
-@media (min-width: 768px) {
-  .hero-slide img,
-  .hero-slide-image {
-    object-fit: cover;
-    object-position: center center;
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 100vh;
-  }
-
-  .hero-slide picture {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-}
-
+/* ── Overlay de gradiente ──────────────── */
 .hero-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  max-height: 100%;
+  inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.3) 75%,
-    rgba(0, 0, 0, 0.7) 100%
+    rgba(0, 0, 0, 0.05) 40%,
+    rgba(0, 0, 0, 0.3) 70%,
+    rgba(0, 0, 0, 0.65) 100%
   );
   z-index: 3;
-  overflow: hidden;
+  pointer-events: none;
 }
 
+/* ── Contenido (texto + CTA) ───────────── */
+/* Se posiciona absolute sobre el slideshow */
 .hero-content {
-  position: relative;
-  z-index: 3;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
   max-width: 800px;
-  padding: var(--spacing-xl) var(--spacing-xl);
-  margin-bottom: var(--spacing-xl);
+  z-index: 10;
+  padding: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
   color: white !important;
-  /* MOBILE-FIRST: Animación más rápida en mobile, completa en desktop */
   animation: fadeInUp 0.6s ease-out;
 }
 
-/* MOBILE-FIRST: Desactivar animación en mobile para mejor LCP */
+/* MOBILE-FIRST: sin animación */
 @media (max-width: 767.98px) {
   .hero-content {
     animation: none;
     opacity: 1;
+    padding: var(--spacing-lg) var(--spacing-md);
+    padding-bottom: var(--spacing-lg);
   }
 }
 
+/* ── Tipografía ────────────────────────── */
 .hero-title {
   font-size: var(--font-size-6xl);
   font-weight: var(--font-weight-bold);
@@ -208,7 +200,7 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Hero CTA */
+/* ── CTA ───────────────────────────────── */
 .hero-cta {
   display: flex;
   flex-direction: column;
@@ -259,9 +251,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Botones eliminados - diseño más limpio */
-
-/* Scroll indicator */
+/* ── Scroll indicator ──────────────────── */
 .hero__scroll-indicator {
   position: absolute;
   bottom: var(--spacing-xl);
@@ -282,16 +272,16 @@
   opacity: 1;
 }
 
-/* Animations */
+/* ── Animaciones ───────────────────────── */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(30px) translateX(-50%);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateX(-50%);
   }
 }
 
@@ -313,15 +303,14 @@
   }
 }
 
-/* Video background support */
+/* ── Video background ──────────────────── */
 .hero--video {
   position: relative;
 }
 
 .hero__video {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -330,20 +319,12 @@
 
 .hero__video-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: var(--bg-overlay);
   z-index: 1;
 }
 
-/* Parallax effect */
-.hero--parallax {
-  background-attachment: fixed;
-}
-
-/* Responsive Design */
+/* ── Responsive ────────────────────────── */
 @media (max-width: 991.98px) {
   .hero-title {
     font-size: var(--font-size-5xl);
@@ -355,7 +336,6 @@
 
   .hero-content {
     padding: var(--spacing-xl) var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
   }
 
   .hero-cta-text {
@@ -364,57 +344,18 @@
 }
 
 @media (max-width: 767.98px) {
-  .hero {
-    height: 100vh;
-    align-items: center;
-  }
-
-  /* Fondo para el contenedor de slides en mobile */
+  /* En mobile las imágenes tienen aspecto ratio diferente — ajustar */
   .hero-slideshow {
-    background-color: #f8f9fa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Contenedor para centrar imágenes SVG en mobile */
-  .hero-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Ajustar TODAS las imágenes en mobile para que se vean completas */
-  .hero-slide img,
-  .hero-slide picture img,
-  .hero-slide-image {
-    object-fit: contain !important;
-    object-position: center center !important;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    max-height: 100vh;
-    display: block;
-  }
-
-  /* Asegurar que picture también se comporte correctamente */
-  .hero-slide picture {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero-content {
-    padding: var(--spacing-lg) var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
-    transform: translateY(-15%);
+    aspect-ratio: 4 / 3; /* más cuadrado en mobile para SVGs móviles */
   }
 
   .hero-title {
     font-size: var(--font-size-4xl);
     margin-bottom: var(--spacing-md);
+  }
+
+  .hero-title-subtle {
+    font-size: 1.75rem;
   }
 
   .hero-subtitle {
@@ -448,14 +389,6 @@
 }
 
 @media (max-width: 575.98px) {
-  .hero {
-    align-items: center;
-  }
-
-  .hero-content {
-    transform: translateY(-10%);
-  }
-
   .hero-title {
     font-size: var(--font-size-3xl);
   }
@@ -484,7 +417,7 @@
   }
 }
 
-/* Accessibility */
+/* ── Accesibilidad ─────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .hero-content {
     animation: none;
@@ -494,31 +427,22 @@
     animation: none;
   }
 
-  .hero--parallax {
-    background-attachment: scroll;
+  .hero-slide {
+    transition: none;
   }
 }
 
-/* High contrast mode */
 @media (prefers-contrast: high) {
   .hero-title,
-  .hero-subtitle {
-    text-shadow: none;
-    color: white;
-  }
-
-  .hero-tagline {
-    text-shadow: none;
-    color: white;
-  }
-
+  .hero-subtitle,
+  .hero-tagline,
   .hero-quote blockquote {
     text-shadow: none;
     color: white;
   }
 }
 
-/* Print styles */
+/* ── Print ─────────────────────────────── */
 @media print {
   .hero {
     height: auto;
@@ -526,31 +450,17 @@
     color: black;
   }
 
-  .hero-background {
-    display: none;
-  }
-
-  .hero-overlay {
+  .hero-background,
+  .hero-overlay,
+  .hero__scroll-indicator {
     display: none;
   }
 
   .hero-title,
-  .hero-subtitle {
-    color: black;
-    text-shadow: none;
-  }
-
-  .hero-tagline {
-    color: black;
-    text-shadow: none;
-  }
-
+  .hero-subtitle,
+  .hero-tagline,
   .hero-quote blockquote {
     color: black;
     text-shadow: none;
-  }
-
-  .hero__scroll-indicator {
-    display: none;
   }
 }

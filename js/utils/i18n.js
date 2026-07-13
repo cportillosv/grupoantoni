@@ -312,7 +312,9 @@ export const translations = {
           caption0: 'Shanti Bungalow - Caribbean Vastu Peace Colony®',
           caption1: 'Minimalist Vastu - Caribbean Vastu Peace Colony®',
           caption2: 'Ananda Villa - Caribbean Vastu Peace Colony®',
-          caption3: 'Transcendental Meditation® Academy - Caribbean Vastu Peace Colony®'
+          caption3: 'Soma Lodge - Caribbean Vastu Peace Colony®',
+          caption4: 'Vayu Retreat - Caribbean Vastu Peace Colony®',
+          caption5: 'Transcendental Meditation® Academy - Caribbean Vastu Peace Colony®'
         }
       }
     },
@@ -653,6 +655,18 @@ export const translations = {
             description:
               'Una residencia compacta y elegante conforme a Vastu, con el característico kalash dorado y una entrada cuidadosamente orientada. El diseño minimalista maximiza la luz natural y la ventilación manteniendo las proporciones sagradas que promueven la paz, la prosperidad y el crecimiento espiritual.'
           },
+          somaLodge: {
+            name: 'Soma Lodge',
+            location: 'Caribbean Vastu Peace Colony®',
+            description:
+              'Una residencia compacta y elegante conforme a Vastu, con el característico kalash dorado y una entrada cuidadosamente orientada. El diseño minimalista maximiza la luz natural y la ventilación manteniendo las proporciones sagradas que promueven la paz, la prosperidad y el crecimiento espiritual.'
+          },
+          vayuRetreat: {
+            name: 'Vayu Retreat',
+            location: 'Caribbean Vastu Peace Colony®',
+            description:
+              'Una residencia compacta y elegante conforme a Vastu, con el característico kalash dorado y una entrada cuidadosamente orientada. El diseño minimalista maximiza la luz natural y la ventilación manteniendo las proporciones sagradas que promueven la paz, la prosperidad y el crecimiento espiritual.'
+          },
           meditationAcademy: {
             name: 'Academia de Meditación Transcendental®',
             location: 'Caribbean Vastu Peace Colony®',
@@ -665,7 +679,9 @@ export const translations = {
           caption0: 'Shanti Bungalow - Caribbean Vastu Peace Colony®',
           caption1: 'Minimalist Vastu - Caribbean Vastu Peace Colony®',
           caption2: 'Ananda Villa - Caribbean Vastu Peace Colony®',
-          caption3: 'Academia de Meditación Transcendental® - Caribbean Vastu Peace Colony®'
+          caption3: 'Soma Lodge - Caribbean Vastu Peace Colony®',
+          caption4: 'Vayu Retreat - Caribbean Vastu Peace Colony®',
+          caption5: 'Academia de Meditación Transcendental® - Caribbean Vastu Peace Colony®'
         }
       }
     },
