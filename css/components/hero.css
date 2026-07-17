@@ -69,7 +69,7 @@
   height: 100%;
   display: block;
   object-fit: cover; /* cubre todo el ancho y alto */
-  object-position: center center;
+  object-position: center top;
   filter: brightness(0.97) saturate(0.88) contrast(0.96);
 }
 
