@@ -1,87 +1,65 @@
 /* ========================================
    HERO COMPONENT
-   Imágenes completas — sin recorte
-   Estrategia: aspect-ratio + object-fit: contain
+   Estrategia: altura viewport fija, imagen completa (contain)
+   + blurred backdrop para rellenar áreas vacías sin negro
    ======================================== */
 
 /* ── Sección principal ─────────────────── */
 .hero {
   position: relative;
   width: 100%;
-  margin-top: 80px; /* navbar height desktop */
+  margin-top: 80px; /* navbar desktop */
   background-color: #000;
-  text-align: center;
 }
 
-/* ── Contenedor del fondo (slideshow) ──── */
+/* ── Contenedor del fondo ──────────────── */
 .hero-background {
   position: relative;
   width: 100%;
-  background-color: #000;
 }
 
-/* ── Slideshow: proporción 16/9 fija ───── */
-/* Esto garantiza que el contenedor NUNCA colapsa ni se recorta */
+/* ── Slideshow: altura exacta de viewport ─
+   calc(100vh - 80px) = pantalla completa menos la navbar.
+   El contenedor tiene altura fija → no hay scroll, no hay colapso.
+   overflow:hidden recorta solo el blur, nunca la imagen.
+   ───────────────────────────────────────── */
 .hero-slideshow {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9; /* misma proporción que las imágenes */
-  background-color: #000;
+  height: calc(100vh - 80px);
   overflow: hidden;
+  background-color: #000;
 }
 
-/* Todos los slides apilados (absolute) */
+/* ── Slides: todos apilados (absolute) ─── */
 .hero-slide {
   position: absolute;
-  inset: 0; /* top:0 right:0 bottom:0 left:0 */
+  inset: 0; /* top/right/bottom/left: 0 */
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 0.8s ease-in-out;
+  transition: opacity 0.9s ease-in-out;
 }
 
-/* Slide activo visible */
+/* Slide activo: visible encima de los demás */
 .hero-slide.active {
-  position: relative;
   opacity: 1;
   z-index: 2;
 }
 
-/* ── Blurred backdrop ─────────────────────────────────────────────────────────
-   Same image, blurred + scaled, fills the empty areas so there are no black
-   bars when the image doesn't perfectly match the 16:9 container ratio.
-   ────────────────────────────────────────────────────────────────────────── */
+/* .hero-slide-blur ya no es necesario con cover — se oculta */
 .hero-slide-blur {
+  display: none;
+}
+
+/* ── Imagen: completa, sin recorte, encima del blur ─ */
+.hero-slide picture {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  /* Scale slightly beyond edges so the blur soft-edge doesn't show */
-  transform: scale(1.08);
-  filter: blur(18px) brightness(0.55) saturate(1.2);
-  z-index: 0;
-}
-
-/* MOBILE-FIRST: sin transición en mobile */
-@media (max-width: 767.98px) {
-  .hero {
-    margin-top: 60px; /* navbar height mobile */
-  }
-
-  .hero-slide {
-    transition: none;
-    animation: none;
-  }
-}
-
-/* ── Imágenes: llenan el slide sin recorte ─ */
-.hero-slide picture {
   display: block;
   width: 100%;
   height: 100%;
+  z-index: 1;
   line-height: 0;
 }
 
@@ -90,10 +68,9 @@
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: contain; /* imagen completa, sin recorte */
+  object-fit: cover; /* cubre todo el ancho y alto */
   object-position: center center;
-  image-rendering: auto;
-  filter: brightness(0.98) saturate(0.85) contrast(0.95);
+  filter: brightness(0.97) saturate(0.88) contrast(0.96);
 }
 
 /* ── Overlay de gradiente ──────────────── */
@@ -102,32 +79,45 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.05) 40%,
-    rgba(0, 0, 0, 0.3) 70%,
-    rgba(0, 0, 0, 0.65) 100%
+    rgba(0, 0, 0, 0.02) 40%,
+    rgba(0, 0, 0, 0.28) 72%,
+    rgba(0, 0, 0, 0.62) 100%
   );
   z-index: 3;
   pointer-events: none;
 }
 
-/* ── Contenido (texto + CTA) ───────────── */
-/* Se posiciona absolute sobre el slideshow */
+/* ── Contenido: centrado vertical y horizontal ── */
 .hero-content {
   position: absolute;
-  bottom: 0;
+  top: 68%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   z-index: 10;
   padding: var(--spacing-xl);
-  padding-bottom: var(--spacing-xl);
+  text-align: center;
   color: white !important;
-  animation: fadeInUp 0.6s ease-out;
+  animation: fadeIn 0.8s ease-out both;
 }
 
-/* MOBILE-FIRST: sin animación */
+/* ── MOBILE ─────────────────────────────── */
 @media (max-width: 767.98px) {
+  .hero {
+    margin-top: 60px; /* navbar mobile */
+  }
+
+  /* En mobile: 100vh completo menos navbar de 60px */
+  .hero-slideshow {
+    height: calc(100vh - 60px);
+  }
+
+  /* Sin transición en mobile → mejor LCP */
+  .hero-slide {
+    transition: none;
+  }
+
   .hero-content {
     animation: none;
     opacity: 1;
@@ -147,13 +137,14 @@
 }
 
 .hero-title-subtle {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 300;
   margin-bottom: 2rem;
-  line-height: 1.3;
-  color: rgba(255, 255, 255, 0.75) !important;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  opacity: 0.85;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-shadow:
+    0 2px 20px rgba(0, 0, 0, 0.6),
+    0 1px 4px rgba(0, 0, 0, 0.4);
   letter-spacing: 0.5px;
   font-style: italic;
 }
@@ -188,7 +179,6 @@
   color: rgba(255, 255, 255, 0.5) !important;
   line-height: var(--line-height-relaxed);
   margin: 0;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
 }
 
 .hero-quote cite {
@@ -251,59 +241,19 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* ── Scroll indicator ──────────────────── */
-.hero__scroll-indicator {
-  position: absolute;
-  bottom: var(--spacing-xl);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  animation: bounce 2s infinite;
-}
-
-.hero__scroll-arrow {
-  color: var(--text-primary);
-  font-size: var(--font-size-2xl);
-  opacity: 0.7;
-  transition: opacity var(--transition-fast);
-}
-
-.hero__scroll-arrow:hover {
-  opacity: 1;
-}
-
 /* ── Animaciones ───────────────────────── */
-@keyframes fadeInUp {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(30px) translateX(-50%);
+    transform: translate(-50%, -46%);
   }
-
   to {
     opacity: 1;
-    transform: translateY(0) translateX(-50%);
+    transform: translate(-50%, -50%);
   }
 }
 
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-
-  40% {
-    transform: translateX(-50%) translateY(-10px);
-  }
-
-  60% {
-    transform: translateX(-50%) translateY(-5px);
-  }
-}
-
-/* ── Video background ──────────────────── */
+/* ── Video background (opcional) ───────── */
 .hero--video {
   position: relative;
 }
@@ -324,63 +274,48 @@
   z-index: 1;
 }
 
-/* ── Responsive ────────────────────────── */
+/* ── Breakpoints ────────────────────────── */
 @media (max-width: 991.98px) {
   .hero-title {
     font-size: var(--font-size-5xl);
   }
-
   .hero-subtitle {
     font-size: var(--font-size-lg);
   }
-
   .hero-content {
     padding: var(--spacing-xl) var(--spacing-lg);
   }
-
   .hero-cta-text {
     font-size: var(--font-size-2xl);
   }
 }
 
 @media (max-width: 767.98px) {
-  /* En mobile las imágenes tienen aspecto ratio diferente — ajustar */
-  .hero-slideshow {
-    aspect-ratio: 4 / 3; /* más cuadrado en mobile para SVGs móviles */
-  }
-
   .hero-title {
     font-size: var(--font-size-4xl);
     margin-bottom: var(--spacing-md);
   }
-
   .hero-title-subtle {
     font-size: 1.75rem;
   }
-
   .hero-subtitle {
     font-size: var(--font-size-base);
     margin-bottom: var(--spacing-lg);
   }
-
   .hero-tagline {
     font-size: var(--font-size-base);
   }
-
   .hero-quote {
     margin-bottom: var(--spacing-lg);
   }
-
   .hero-cta {
     gap: var(--spacing-md);
     margin-top: var(--spacing-lg);
   }
-
   .hero-cta-text {
     font-size: var(--font-size-2xl);
     line-height: var(--line-height-normal);
   }
-
   .hero-cta-button {
     padding: var(--spacing-sm) var(--spacing-lg);
     font-size: var(--font-size-base);
@@ -392,24 +327,19 @@
   .hero-title {
     font-size: var(--font-size-3xl);
   }
-
   .hero-subtitle {
     font-size: var(--font-size-sm);
   }
-
   .hero-tagline {
     font-size: var(--font-size-sm);
   }
-
   .hero-quote blockquote {
     font-size: var(--font-size-sm);
   }
-
   .hero-cta-text {
     font-size: var(--font-size-xl);
     line-height: var(--line-height-normal);
   }
-
   .hero-cta-button {
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--font-size-sm);
@@ -422,11 +352,6 @@
   .hero-content {
     animation: none;
   }
-
-  .hero__scroll-indicator {
-    animation: none;
-  }
-
   .hero-slide {
     transition: none;
   }
@@ -449,13 +374,10 @@
     background: none;
     color: black;
   }
-
   .hero-background,
-  .hero-overlay,
-  .hero__scroll-indicator {
+  .hero-overlay {
     display: none;
   }
-
   .hero-title,
   .hero-subtitle,
   .hero-tagline,
