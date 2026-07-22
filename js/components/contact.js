@@ -136,15 +136,9 @@ export class Contact {
       }
     }
 
-    // Description validation
+    // Description validation — solo máximo, sin mínimo
     if (fieldName === 'description' && value) {
-      const minLength = parseInt(input.getAttribute('minlength')) || 280;
       const maxLength = parseInt(input.getAttribute('maxlength')) || 1000;
-
-      if (value.length < minLength) {
-        this.showFieldError(input, `Description must be at least ${minLength} characters`);
-        return false;
-      }
 
       if (value.length > maxLength) {
         this.showFieldError(input, `Description must be no more than ${maxLength} characters`);

@@ -138,7 +138,7 @@ export const translations = {
         phoneHelp: "Optional - We'll use this to contact you directly",
         description: 'Brief description',
         descriptionPlaceholder: 'Add a more detailed description or comments...',
-        descriptionHelp: '280-1000 characters',
+        descriptionHelp: 'Maximum 1000 characters',
         submit: 'Send Message',
         whatsapp: 'Chat on WhatsApp'
       }
@@ -493,7 +493,7 @@ export const translations = {
         phoneHelp: 'Opcional - Lo usaremos para contactarlo directamente',
         description: 'Breve descripción',
         descriptionPlaceholder: 'Agregue una descripción más detallada o comentarios...',
-        descriptionHelp: '280-1000 caracteres',
+        descriptionHelp: 'Máximo 1000 caracteres',
         submit: 'Enviar Mensaje',
         whatsapp: 'Chatear por WhatsApp'
       }
@@ -810,6 +810,26 @@ export class I18n {
   }
 
   /**
+   * Get raw translation value (including arrays and objects)
+   * Used for data-i18n-values (array translations)
+   */
+  tRaw(keyPath) {
+    const keys = keyPath.split('.');
+    let value = this.translations[this.currentLang];
+
+    for (const key of keys) {
+      if (value && typeof value === 'object' && key in value) {
+        value = value[key];
+      } else {
+        console.warn(`Translation key "${keyPath}" not found for language "${this.currentLang}"`);
+        return null;
+      }
+    }
+
+    return value;
+  }
+
+  /**
    * Translate the entire page
    */
   translatePage() {
@@ -855,11 +875,11 @@ export class I18n {
     // Translate elements with data-i18n-values attribute (for arrays)
     document.querySelectorAll('[data-i18n-values]').forEach(element => {
       const key = element.getAttribute('data-i18n-values');
-      const values = this.t(key);
+      const values = this.tRaw(key); // tRaw retorna el array real, t() solo retorna strings
       if (Array.isArray(values)) {
         const items = element.querySelectorAll('.value-item');
         items.forEach((item, index) => {
-          if (values[index]) {
+          if (values[index] !== undefined) {
             item.textContent = values[index];
           }
         });

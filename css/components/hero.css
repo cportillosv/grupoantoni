@@ -47,6 +47,14 @@
   z-index: 2;
 }
 
+/* Slide saliente: fade out pero encima del fondo negro.
+   Sin este z-index:1 el fondo #000 se ve a través durante la transición. */
+.hero-slide.leaving {
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.9s ease-in-out;
+}
+
 /* .hero-slide-blur ya no es necesario con cover — se oculta */
 .hero-slide-blur {
   display: none;

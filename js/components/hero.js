@@ -79,13 +79,16 @@ export class Hero {
       return;
     }
 
-    // Remove active class from current slide
-    this.heroSlides[this.currentSlide].classList.remove('active');
+    const leaving = this.heroSlides[this.currentSlide];
 
-    // Move to next slide
+    // Quita .active y agrega .leaving para mantener z-index:1 durante el fade out.
+    // Sin esto, el slide cae a z-index:0 y el fondo #000 se ve a través.
+    leaving.classList.remove('active');
+    leaving.classList.add('leaving');
+    setTimeout(() => leaving.classList.remove('leaving'), 900);
+
+    // Avanza y activa el siguiente slide
     this.currentSlide = (this.currentSlide + 1) % this.heroSlides.length;
-
-    // Add active class to new slide
     this.heroSlides[this.currentSlide].classList.add('active');
   }
 
